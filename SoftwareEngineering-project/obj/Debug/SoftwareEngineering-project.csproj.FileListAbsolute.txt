@@ -1,0 +1,10 @@
+c:\users\piotrek\documents\visual studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.exe.config
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.exe
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.pdb
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.csprojResolveAssemblyReference.cache
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.Properties.Resources.resources
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.csproj.GenerateResource.Cache
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.exe
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.pdb
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.CreateGame.resources
+C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.BoardView1.resources
