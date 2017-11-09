@@ -8,3 +8,14 @@ C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-proje
 C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.pdb
 C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.CreateGame.resources
 C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-project\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.BoardView1.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.exe.config
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.pdb
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.csprojResolveAssemblyReference.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.BoardView1.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.CreateGame.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.Properties.Resources.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.csproj.GenerateResource.Cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.csproj.CoreCompileInputs.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.pdb

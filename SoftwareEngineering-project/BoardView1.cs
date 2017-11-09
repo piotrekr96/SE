@@ -20,7 +20,6 @@ namespace SoftwareEngineering_project
         {
             InitializeComponent();
             CreateBoard();
-            AddBluePlayer();
             PreventFlickering();
         }
 
@@ -38,8 +37,9 @@ namespace SoftwareEngineering_project
                 BoardLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,50));
 
   
-            this.MaximumSize = new System.Drawing.Size((BoardLayoutPanel.ColumnCount * 50) + 16, (BoardLayoutPanel.RowCount * 50)+62);
+            this.MaximumSize = new System.Drawing.Size((BoardLayoutPanel.ColumnCount * 50) + 16, (BoardLayoutPanel.RowCount * 50)+62);         
         }
+
 
         private void BoardLayoutPanel_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
@@ -78,7 +78,7 @@ namespace SoftwareEngineering_project
 
         }
 
-        public void AddBluePlayer()
+        public void AddPlayers()
         {
             BluePlayer bp = new BluePlayer();
             PictureBox d = new PictureBox();
@@ -89,6 +89,7 @@ namespace SoftwareEngineering_project
             PictureBox z = new PictureBox();
             z.Image = rp.getBitmap();
             BoardLayoutPanel.Controls.Add(z, rp.getPosX(), rp.getPosY());
+
         }
 
         public void PreventFlickering()
@@ -102,6 +103,38 @@ namespace SoftwareEngineering_project
         {
             //scroll using mousewheel
             BoardLayoutPanel.Focus();
+        }
+
+        private void BoardLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        // check if position is empty of any player
+        public bool isFreeOfPlayer(int x, int y) {
+
+            // check pos of blue players
+            foreach (BluePlayer item in MyGlobals.bluePlayers) {
+                if (item.getPosX() == x && item.getPosY() == y) {
+                    return false;
+                }
+            }
+
+            // check pos of red players
+            foreach (RedPlayer item in MyGlobals.redPlayers)
+            {
+                if (item.getPosX() == x && item.getPosY() == y)
+                {
+                    return false;
+                }
+            }
+
+            // cell free if no matching pos
+            return true;
+        }
+
+        private void BoardLayoutPanel_MouseClick(Object sender, MouseEventArgs e) {
+            Console.Write("Clicked");
         }
     }
 }
