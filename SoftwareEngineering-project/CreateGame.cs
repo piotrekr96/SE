@@ -15,6 +15,7 @@ namespace SoftwareEngineering_project
         public CreateGame()
         {
             InitializeComponent();
+
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -52,8 +53,30 @@ namespace SoftwareEngineering_project
             if (MyGlobals.boardView1 == null)
             {
                 MyGlobals.boardView1 = new BoardView1();
-                MyGlobals.boardView1.Closed += (s, args) => this.Close();
+              /*  Console.WriteLine("BoardView constructor finished");
+                MyGlobals.boardView1.AddPlayers();
+               
 
+                // test movement
+                Console.WriteLine("Red player pos before moving: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
+                MyGlobals.redPlayers[0].MoveDown();
+                Console.WriteLine("Red player pos after moving down: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
+                MyGlobals.redPlayers[0].MoveLeft();
+                Console.WriteLine("Red player pos after moving left: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
+                MyGlobals.redPlayers[0].MoveRight();
+                Console.WriteLine("Red player pos after moving right: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
+
+                Console.WriteLine("Blue player pos before moving: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                MyGlobals.bluePlayers[0].MoveUp();
+                Console.WriteLine("Blue player pos after moving up: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                MyGlobals.bluePlayers[0].MoveLeft();
+                Console.WriteLine("Blue player pos after moving left: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                MyGlobals.bluePlayers[0].MoveRight();
+                Console.WriteLine("Blue player pos after moving right: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                */
+
+
+                MyGlobals.boardView1.Closed += (s, args) => this.Close();
                 MyGlobals.boardView1.ShowDialog();
             }
         }
