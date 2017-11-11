@@ -220,6 +220,47 @@ namespace SoftwareEngineering_project
             pi.setOwner(this);
             return true;
         }
+
+        // does not take coords
+        // a player can test a piece it it has been picked by him
+        public bool testPiece() {
+            return this.carrying.getSham();
+        }
+
+        public abstract bool canPlacePiece(int x, int y);
+
+        // can be placed without checking it is a sham
+        // returns true if at (x,y) it was a goal
+        public void placePiece(int x, int y)
+        {
+            // place piece at coords and update attributes
+            this.carrying.setPosX(x);
+            this.carrying.setPosY(y);
+            this.carrying.setOwner(null);
+            this.carrying = null;
+        }
+
+        public bool tryPlacePiece(int x, int y) {
+            if (!canPlacePiece(x, y))
+            {
+                Console.WriteLine("Index for placing on goal area is out of bounds!");
+                return false;
+            }
+
+            // if check passed, place piece and get feedback
+            placePiece(x, y);
+            if (discoverGoal(x, y))
+            {
+                Console.WriteLine("There was goal at those coordinates, and the piece has been placed!");
+            }
+            else {
+                Console.WriteLine("There was no goal at those coordinates, but the piece has been placed!");
+            }
+            return true;
+        }
+
+        public abstract bool discoverGoal(int x, int y);
+
     }
 
     public class BluePlayer : Player
@@ -252,6 +293,45 @@ namespace SoftwareEngineering_project
             return true;
         }
 
+        public override bool canPlacePiece(int x, int y)
+        {
+            // if x coord out out bounds, return failure
+            if (x < 0 || x > (MyGlobals.Width - 1))
+            {
+                return false;
+            }
+
+            int min = MyGlobals.Height - MyGlobals.smallHeight;
+            int max = MyGlobals.Height - 1;
+
+            // if y coord is out of blue goals area bounds, return failure
+            if (y < min || y > max)
+            {
+                return false;
+            }
+
+            // if all checks pass, return success
+            return true;
+        }
+
+        public override bool discoverGoal(int x, int y)
+        {
+            // check if cell at coords holds a goal or non-goal
+            foreach (Goal item in MyGlobals.goalsBlue)
+            {
+
+                // if there exists a goal at (x,y) and it has not been discovered yet, discover it
+                if (item.getPosX() == x && item.getPosY() == y && item.getDiscovered() != true)
+                {
+                    item.setDiscovered();
+                    return true;
+                }
+            }
+
+            // if at (x,y) there was no goal, return failure
+            return false;
+        }
+
     }
 
     public class RedPlayer : Player
@@ -281,8 +361,43 @@ namespace SoftwareEngineering_project
             return true;
         }
 
-        
+        public override bool canPlacePiece(int x, int y)
+        {
+            // if x coord out out bounds, return failure
+            if (x < 0 || x > (MyGlobals.Width - 1))
+            {
+                return false;
+            }
 
+            int max = MyGlobals.smallHeight - 1;
+
+            // if y coord is out of red goals area bounds, return failure
+            if (y < 0 || y > max)
+            {
+                return false;
+            }
+
+            // if all checks pass, return success
+            return true;
+        }
+
+        public override bool discoverGoal(int x, int y)
+        {
+            // check if cell at coords holds a goal or non-goal
+            foreach (Goal item in MyGlobals.goalsRed)
+            {
+
+                // if there exists a goal at (x,y) and it has not been discovered yet, discover it
+                if (item.getPosX() == x && item.getPosY() == y && item.getDiscovered() != true)
+                {
+                    item.setDiscovered();
+                    return true;
+                }
+            }
+
+            // if at (x,y) there was no goal, return failure
+            return false;
+        }
 
 
 

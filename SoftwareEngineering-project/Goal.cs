@@ -18,7 +18,7 @@ namespace SoftwareEngineering_project
             do {
                 position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
                 position_y = MyGlobals.rnd.Next(0, MyGlobals.smallHeight);
-            } while(!placeGoal(position_x, position_y));
+            } while(!placeGoalInit(position_x, position_y));
            
                    
         }
@@ -30,7 +30,7 @@ namespace SoftwareEngineering_project
         }
 
 
-        public bool placeGoal(int x, int y) {
+        public bool placeGoalInit(int x, int y) {
 
             // if a goal with same coords is already there, return failure
             foreach (Goal item in MyGlobals.goalsRed) {

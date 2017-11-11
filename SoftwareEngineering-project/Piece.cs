@@ -26,11 +26,11 @@ namespace SoftwareEngineering_project
             {
                 position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
                 position_y = MyGlobals.rnd.Next(MyGlobals.smallHeight, MyGlobals.Height-MyGlobals.smallHeight-1);
-            } while (!placePiece(position_x, position_y));
+            } while (!placePieceInit(position_x, position_y));
         }
 
 
-        public bool placePiece(int x, int y)
+        public bool placePieceInit(int x, int y)
         {
 
             // if a piece with same coords is already there, return failure
