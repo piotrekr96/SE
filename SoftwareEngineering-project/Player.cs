@@ -231,6 +231,7 @@ namespace SoftwareEngineering_project
 
         // can be placed without checking it is a sham
         // returns true if at (x,y) it was a goal
+        // feedback is returned in discoverGoal()
         public void placePiece(int x, int y)
         {
             // place piece at coords and update attributes
@@ -247,8 +248,16 @@ namespace SoftwareEngineering_project
                 return false;
             }
 
-            // if check passed, place piece and get feedback
+            // if check passed, place piece 
+            bool wasSham = this.carrying.getSham();
             placePiece(x, y);
+
+            // placing a piece which is a sham results in getting no information
+            if (wasSham) {
+                Console.WriteLine("TESTING PURPOSES: The piece was a sham, but the piece has been placed!");
+                return true;
+            }
+            // get feedback
             if (discoverGoal(x, y))
             {
                 Console.WriteLine("There was goal at those coordinates, and the piece has been placed!");
