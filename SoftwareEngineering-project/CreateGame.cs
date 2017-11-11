@@ -83,7 +83,7 @@ namespace SoftwareEngineering_project
                 // test picking a piece, params for board: 10, 3, 5
                 // piece at coords (1,4)
                 // try to pick non-existent piece (in his own location)
-                Console.WriteLine("Non-piece picked (should return false): "+MyGlobals.bluePlayers[0].pickPiece());
+  /*              Console.WriteLine("Non-piece picked (should return false): "+MyGlobals.bluePlayers[0].pickPiece());
                 Console.WriteLine("Move player down to piece");
                 MyGlobals.bluePlayers[0].MoveDown();
                 Console.WriteLine("Current position of player: "+ MyGlobals.bluePlayers[0].getPosX()+" "+MyGlobals.bluePlayers[0].getPosY());
@@ -109,9 +109,12 @@ namespace SoftwareEngineering_project
                 // test placing a piece on at invalid pos (0,0) in red area
                 //Console.WriteLine("Try to place piece carried by blue payer in red goals area, at invalid cell (0,0)");
                 //Console.WriteLine("Success: " + MyGlobals.bluePlayers[0].tryPlacePiece(0, 0));
-
+                */
                 MyGlobals.boardView1.Closed += (s, args) => this.Close();
-                MyGlobals.boardView1.ShowDialog();
+                MyGlobals.boardView1.Show();
+
+                MyGlobals.gameMasterView = new GameMasterView();
+                MyGlobals.gameMasterView.Show();
             }
         }
     }

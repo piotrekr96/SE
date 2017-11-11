@@ -19,5 +19,6 @@ namespace SoftwareEngineering_project
         public static List<Goal> goalsRed = new List<Goal>();
         public static List<Goal> goalsBlue = new List<Goal>();
         public static List<Piece> pieces = new List<Piece>();
+        public static GameMasterView gameMasterView;
     }
 }
