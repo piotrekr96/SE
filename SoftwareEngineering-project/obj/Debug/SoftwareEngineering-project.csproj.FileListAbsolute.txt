@@ -29,3 +29,4 @@ C:\Users\Piotrek\Desktop\SE-Vale\SoftwareEngineering-project\obj\Debug\SoftwareE
 C:\Users\Piotrek\Desktop\SE-Vale\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.csproj.GenerateResource.Cache
 C:\Users\Piotrek\Desktop\SE-Vale\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.exe
 C:\Users\Piotrek\Desktop\SE-Vale\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.pdb
+C:\Users\Piotrek\Desktop\SE-Vale\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.GameMasterView.resources
