@@ -9,7 +9,7 @@ namespace SoftwareEngineering_project
 {
    public class MyGlobals
     {
-        public static Random rnd = new Random();
+        public static Random rnd = new Random(1); // seed used only for testing
         public static Int32 Height;
         public static Int32 smallHeight;
         public static Int32 Width;

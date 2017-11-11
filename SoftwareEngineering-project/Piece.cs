@@ -10,7 +10,7 @@ namespace SoftwareEngineering_project
     {
         protected int position_x, position_y;
         protected bool sham = false;
-
+        protected Player owner = null;
         
         
         public Piece() : base()
@@ -27,8 +27,6 @@ namespace SoftwareEngineering_project
                 position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
                 position_y = MyGlobals.rnd.Next(MyGlobals.smallHeight, MyGlobals.Height-MyGlobals.smallHeight-1);
             } while (!placePiece(position_x, position_y));
-
-
         }
 
 
@@ -49,8 +47,30 @@ namespace SoftwareEngineering_project
             return true;
         }
 
+        // look up the piece in the list
+        public static Piece findPiece(int x, int y) {
+            foreach (Piece item in MyGlobals.pieces) {
+                if (x == item.position_x && y == item.position_y) {
+                    return item;
+                }
+            }
+            return null;
+        }
 
-        // getters
+
+        // setter and getters
+        public void setOwner(Player pl) {
+            this.owner = pl;
+        }
+        public void setPosX(int x) {
+            this.position_x = x;
+        }
+        public void setPosY(int y) {
+            this.position_y = y;
+        }
+        public Player getOwner() {
+            return this.owner;
+        }
         public int getPosX()
         {
             return position_x;

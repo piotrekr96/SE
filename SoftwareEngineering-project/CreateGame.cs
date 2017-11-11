@@ -70,7 +70,7 @@ namespace SoftwareEngineering_project
                 }
 
                 // test pieces
-                int NrPieces = 10;
+                int NrPieces = 6;
                 for (int i = 0; i < NrPieces; i++)
                 {
                     new Piece();
@@ -80,6 +80,20 @@ namespace SoftwareEngineering_project
 
                 }
 
+                // test picking a piece, params for board: 10, 3, 5
+                // piece at coords (1,4)
+                // try to pick non-existent piece (in his own location)
+                Console.WriteLine("Non-piece picked (should return false): "+MyGlobals.bluePlayers[0].pickPiece());
+                Console.WriteLine("Move player down to piece");
+                MyGlobals.bluePlayers[0].MoveDown();
+                Console.WriteLine("Current position of player: "+ MyGlobals.bluePlayers[0].getPosX()+" "+MyGlobals.bluePlayers[0].getPosY());
+                Console.WriteLine("Valid piece picked (should return true): " + MyGlobals.bluePlayers[0].pickPiece());
+                Console.WriteLine("Move player to right (coords of piece carried should change as well)");
+                MyGlobals.bluePlayers[0].MoveRight();
+                Console.WriteLine("Current position of player: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                Console.WriteLine("Position of piece after it was carried by player: "+MyGlobals.bluePlayers[0].getCarrying().getPosX()+" "+ MyGlobals.bluePlayers[0].getCarrying().getPosY());
+
+                // UPDATE BoardView1 to reflect changes, animation
 
 
                 MyGlobals.boardView1.Closed += (s, args) => this.Close();
