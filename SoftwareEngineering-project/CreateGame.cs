@@ -53,27 +53,33 @@ namespace SoftwareEngineering_project
             if (MyGlobals.boardView1 == null)
             {
                 MyGlobals.boardView1 = new BoardView1();
-              /*  Console.WriteLine("BoardView constructor finished");
-                MyGlobals.boardView1.AddPlayers();
-               
+                /*  Console.WriteLine("BoardView constructor finished");
+                  MyGlobals.boardView1.AddPlayers();
+               */
 
-                // test movement
-                Console.WriteLine("Red player pos before moving: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
-                MyGlobals.redPlayers[0].MoveDown();
-                Console.WriteLine("Red player pos after moving down: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
-                MyGlobals.redPlayers[0].MoveLeft();
-                Console.WriteLine("Red player pos after moving left: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
-                MyGlobals.redPlayers[0].MoveRight();
-                Console.WriteLine("Red player pos after moving right: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
+                // test goals
+                int NrGoals = 5;
+                for (int i = 0; i < NrGoals; i++) {
+                    new Goal();
+                }
 
-                Console.WriteLine("Blue player pos before moving: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
-                MyGlobals.bluePlayers[0].MoveUp();
-                Console.WriteLine("Blue player pos after moving up: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
-                MyGlobals.bluePlayers[0].MoveLeft();
-                Console.WriteLine("Blue player pos after moving left: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
-                MyGlobals.bluePlayers[0].MoveRight();
-                Console.WriteLine("Blue player pos after moving right: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
-                */
+                for (int i = 0; i < NrGoals; i++)
+                {
+                    Console.WriteLine("Positions of goal in red area: " + MyGlobals.goalsRed[i].getPosX() + " " + MyGlobals.goalsRed[i].getPosY());
+                    Console.WriteLine("Positions of goal in blue area: "+MyGlobals.goalsBlue[i].getPosX()+" "+ MyGlobals.goalsBlue[i].getPosY());
+                }
+
+                // test pieces
+                int NrPieces = 10;
+                for (int i = 0; i < NrPieces; i++)
+                {
+                    new Piece();
+                }
+                for (int i=0; i<NrPieces; i++) {
+                    Console.WriteLine("Position of piece in task area: " + MyGlobals.pieces[i].getPosX() + " " + MyGlobals.pieces[i].getPosY()+" type: "+MyGlobals.pieces[i].getSham());
+
+                }
+
 
 
                 MyGlobals.boardView1.Closed += (s, args) => this.Close();

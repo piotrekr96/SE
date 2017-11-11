@@ -9,11 +9,15 @@ namespace SoftwareEngineering_project
 {
    public class MyGlobals
     {
+        public static Random rnd = new Random();
         public static Int32 Height;
         public static Int32 smallHeight;
         public static Int32 Width;
         public static BoardView1 boardView1;
         public static List<RedPlayer> redPlayers = new List<RedPlayer>();
         public static List<BluePlayer> bluePlayers = new List<BluePlayer>();
+        public static List<Goal> goalsRed = new List<Goal>();
+        public static List<Goal> goalsBlue = new List<Goal>();
+        public static List<Piece> pieces = new List<Piece>();
     }
 }

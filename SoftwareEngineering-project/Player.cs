@@ -141,11 +141,10 @@ namespace SoftwareEngineering_project
 
     public class BluePlayer : Player
     {
-        Random rnd = new Random();
         public BluePlayer() : base()
         {
-            position_x = rnd.Next(0, MyGlobals.Width);
-            position_y = rnd.Next(MyGlobals.Height - MyGlobals.smallHeight, MyGlobals.Height);
+            position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
+            position_y = MyGlobals.rnd.Next(MyGlobals.Height - MyGlobals.smallHeight, MyGlobals.Height);
             MyGlobals.bluePlayers.Add(this);
             //   bmp = Properties.Resources.test;
         }
@@ -168,11 +167,10 @@ namespace SoftwareEngineering_project
 
     public class RedPlayer : Player
     {
-        Random rnd = new Random();
        public RedPlayer() : base()
         {
-            position_x = rnd.Next(0, MyGlobals.Width);
-            position_y = rnd.Next(0, MyGlobals.smallHeight);
+            position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
+            position_y = MyGlobals.rnd.Next(0, MyGlobals.smallHeight);
             MyGlobals.redPlayers.Add(this);
 
         }
