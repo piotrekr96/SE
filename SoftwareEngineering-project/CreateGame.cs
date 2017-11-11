@@ -53,31 +53,68 @@ namespace SoftwareEngineering_project
             if (MyGlobals.boardView1 == null)
             {
                 MyGlobals.boardView1 = new BoardView1();
-              /*  Console.WriteLine("BoardView constructor finished");
-                MyGlobals.boardView1.AddPlayers();
-               
+                /*  Console.WriteLine("BoardView constructor finished");
+                  MyGlobals.boardView1.AddPlayers();
+               */
 
-                // test movement
-                Console.WriteLine("Red player pos before moving: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
-                MyGlobals.redPlayers[0].MoveDown();
-                Console.WriteLine("Red player pos after moving down: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
-                MyGlobals.redPlayers[0].MoveLeft();
-                Console.WriteLine("Red player pos after moving left: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
-                MyGlobals.redPlayers[0].MoveRight();
-                Console.WriteLine("Red player pos after moving right: " + MyGlobals.redPlayers[0].getPosX() + " " + MyGlobals.redPlayers[0].getPosY());
+                // test goals
+                int NrGoals = 5;
+                for (int i = 0; i < NrGoals; i++) {
+                    new Goal();
+                }
 
-                Console.WriteLine("Blue player pos before moving: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
-                MyGlobals.bluePlayers[0].MoveUp();
-                Console.WriteLine("Blue player pos after moving up: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
-                MyGlobals.bluePlayers[0].MoveLeft();
-                Console.WriteLine("Blue player pos after moving left: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                for (int i = 0; i < NrGoals; i++)
+                {
+                    Console.WriteLine("Positions of goal in red area: " + MyGlobals.goalsRed[i].getPosX() + " " + MyGlobals.goalsRed[i].getPosY());
+                    Console.WriteLine("Positions of goal in blue area: "+MyGlobals.goalsBlue[i].getPosX()+" "+ MyGlobals.goalsBlue[i].getPosY());
+                }
+
+                // test pieces
+                int NrPieces = 6;
+                for (int i = 0; i < NrPieces; i++)
+                {
+                    new Piece();
+                }
+                for (int i=0; i<NrPieces; i++) {
+                    Console.WriteLine("Position of piece in task area: " + MyGlobals.pieces[i].getPosX() + " " + MyGlobals.pieces[i].getPosY()+" type: "+MyGlobals.pieces[i].getSham());
+
+                }
+
+                // test picking a piece, params for board: 10, 3, 5
+                // piece at coords (1,4)
+                // try to pick non-existent piece (in his own location)
+  /*              Console.WriteLine("Non-piece picked (should return false): "+MyGlobals.bluePlayers[0].pickPiece());
+                Console.WriteLine("Move player down to piece");
+                MyGlobals.bluePlayers[0].MoveDown();
+                Console.WriteLine("Current position of player: "+ MyGlobals.bluePlayers[0].getPosX()+" "+MyGlobals.bluePlayers[0].getPosY());
+                Console.WriteLine("Valid piece picked (should return true): " + MyGlobals.bluePlayers[0].pickPiece());
+                Console.WriteLine("Move player to right (coords of piece carried should change as well)");
                 MyGlobals.bluePlayers[0].MoveRight();
-                Console.WriteLine("Blue player pos after moving right: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                Console.WriteLine("Current position of player: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
+                Console.WriteLine("Position of piece after it was carried by player: "+MyGlobals.bluePlayers[0].getCarrying().getPosX()+" "+ MyGlobals.bluePlayers[0].getCarrying().getPosY());
+
+                // UPDATE BoardView1 to reflect changes, animation
+
+
+                // test placing at goal/ non-goal/ other team goal area (run one or the other only)
+                
+                // test placing a piece on goal at pos (2,9) in blue area
+                Console.WriteLine("Try to place piece carried by blue payer in goals area, at valid goal cell (2,9)");
+                Console.WriteLine("Success: "+MyGlobals.bluePlayers[0].tryPlacePiece(2, 9));
+
+                // test placing a piece on non-goal at pos (2,8) in blue area
+                //Console.WriteLine("Try to place piece carried by blue payer in goals area, at non-goal cell (2,8)");
+                //Console.WriteLine("Success: " + MyGlobals.bluePlayers[0].tryPlacePiece(2, 8));
+
+                // test placing a piece on at invalid pos (0,0) in red area
+                //Console.WriteLine("Try to place piece carried by blue payer in red goals area, at invalid cell (0,0)");
+                //Console.WriteLine("Success: " + MyGlobals.bluePlayers[0].tryPlacePiece(0, 0));
                 */
-
-
                 MyGlobals.boardView1.Closed += (s, args) => this.Close();
-                MyGlobals.boardView1.ShowDialog();
+                MyGlobals.boardView1.Show();
+
+                MyGlobals.gameMasterView = new GameMasterView();
+                MyGlobals.gameMasterView.Show();
             }
         }
     }
