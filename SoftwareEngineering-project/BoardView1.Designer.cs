@@ -188,6 +188,7 @@
             this.Name = "BoardView1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BoardView1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoardView1_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

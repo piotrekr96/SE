@@ -53,7 +53,7 @@ namespace SoftwareEngineering_project
             if (MyGlobals.boardView1 == null)
             {
                 MyGlobals.boardView1 = new BoardView1();
-                Console.WriteLine("BoardView constructor finished");
+              /*  Console.WriteLine("BoardView constructor finished");
                 MyGlobals.boardView1.AddPlayers();
                
 
@@ -73,7 +73,7 @@ namespace SoftwareEngineering_project
                 Console.WriteLine("Blue player pos after moving left: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
                 MyGlobals.bluePlayers[0].MoveRight();
                 Console.WriteLine("Blue player pos after moving right: " + MyGlobals.bluePlayers[0].getPosX() + " " + MyGlobals.bluePlayers[0].getPosY());
-
+                */
 
 
                 MyGlobals.boardView1.Closed += (s, args) => this.Close();
