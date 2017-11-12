@@ -18,7 +18,6 @@ namespace SoftwareEngineering_project
 
         public Player()
         {
-            bmp = Properties.Resources.test;
         }
 
         // setters and getters 
@@ -283,9 +282,8 @@ namespace SoftwareEngineering_project
                 position_y = MyGlobals.rnd.Next(MyGlobals.smallHeight, MyGlobals.Height - MyGlobals.smallHeight - 1);
 
             } while (!canPlacePlayer(position_x, position_y));
-
             MyGlobals.bluePlayers.Add(this);
-            //   bmp = Properties.Resources.test;
+            bmp = Properties.Resources.B;
         }
 
         public override Bitmap getBitmap()
@@ -353,7 +351,7 @@ namespace SoftwareEngineering_project
                 position_y = MyGlobals.rnd.Next(MyGlobals.smallHeight, MyGlobals.Height - MyGlobals.smallHeight - 1);
     
             } while(!canPlacePlayer(position_x, position_y));
-
+            bmp = Properties.Resources.R;
             MyGlobals.redPlayers.Add(this);
 
         }

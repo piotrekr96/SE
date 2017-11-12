@@ -107,7 +107,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="test.bmp" />
+    <None Include="icons\G.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\N.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\P.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\R.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\RP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\YG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\BP.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
