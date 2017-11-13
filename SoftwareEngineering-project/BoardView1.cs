@@ -29,6 +29,8 @@ namespace SoftwareEngineering_project
             BoardLayoutPanel.Controls.Clear();
             BoardLayoutPanel.RowStyles.Clear();
             BoardLayoutPanel.ColumnStyles.Clear();
+            BoardLayoutPanel.Margin = new Padding(0);
+            BoardLayoutPanel.Dock = DockStyle.Fill;
             BoardLayoutPanel.RowCount = MyGlobals.Height;
             BoardLayoutPanel.ColumnCount = MyGlobals.Width;
             for(int i=0; i<BoardLayoutPanel.RowCount; i++)
@@ -47,9 +49,9 @@ namespace SoftwareEngineering_project
 
             //Color cells:
             if (e.Row < MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Red, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
             else if (e.Row >= MyGlobals.Height - MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Blue, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
 
 
             //Border:
@@ -74,7 +76,9 @@ namespace SoftwareEngineering_project
 
                 // use graphics mehtods to draw cell's border
                 e.Graphics.DrawRectangle(pen, r);
+
             }
+
 
 
         }
@@ -82,8 +86,9 @@ namespace SoftwareEngineering_project
         public void AddPlayers()
         {
             BluePlayer bp = new BluePlayer();
-           // PictureBox d = new PictureBox();
-            test.BackgroundImage = bp.getBitmap();
+            // PictureBox d = new PictureBox();
+            test.Image = bp.getBitmap();
+            test.Margin = new Padding(0);
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.bluePlayers.Add(bp);
 
