@@ -182,6 +182,7 @@ namespace SoftwareEngineering_project
             bp.MoveLeft();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
 
         void MoveRight()
@@ -190,6 +191,7 @@ namespace SoftwareEngineering_project
             bp.MoveRight();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
 
         void MoveUp()
@@ -198,6 +200,7 @@ namespace SoftwareEngineering_project
             bp.MoveUp();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
 
         void MoveDown()
@@ -206,6 +209,7 @@ namespace SoftwareEngineering_project
             bp.MoveDown();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
     }
 }
