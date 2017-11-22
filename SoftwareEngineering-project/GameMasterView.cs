@@ -26,9 +26,9 @@ namespace SoftwareEngineering_project
         {
             //Color cells:
             if (e.Row < MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Red, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
             else if (e.Row >= MyGlobals.Height - MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Blue, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
 
 
             //Border:
@@ -39,6 +39,7 @@ namespace SoftwareEngineering_project
                 pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
                 // define border style
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+               
 
                 // decrease border rectangle height/width by pen's width for last row/column cell
                 if (e.Row == (BoardLayoutPanel.RowCount - 1))
@@ -85,6 +86,7 @@ namespace SoftwareEngineering_project
         {
             BluePlayer bp = MyGlobals.bluePlayers.First();
             test.Image = bp.getBitmap();
+            test.Margin = new Padding(0);
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
         }
 
