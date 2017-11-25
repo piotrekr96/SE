@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace SoftwareEngineering_project
     {
         protected int position_x, position_y;
         protected bool discovered = false;
+        protected Bitmap bmp;
 
         public Goal () : base()
         {
@@ -19,14 +21,16 @@ namespace SoftwareEngineering_project
                 position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
                 position_y = MyGlobals.rnd.Next(0, MyGlobals.smallHeight);
             } while(!placeGoalInit(position_x, position_y));
-           
-                   
+            bmp = Properties.Resources.G;
+
         }
 
+        // this one used for blue
         public Goal(int x, int y) : base()
         {
             position_x = x;
             position_y = y;
+            bmp = Properties.Resources.G;
         }
 
 
@@ -62,6 +66,17 @@ namespace SoftwareEngineering_project
         // setter for discovered
         public void setDiscovered() {
             this.discovered = true;          
+        }
+
+
+        public Bitmap getBitmap()
+        {
+            return bmp;
+        }
+
+        public Bitmap getDiscoveredBitmap()
+        {
+            return Properties.Resources.YG;
         }
 
     }

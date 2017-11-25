@@ -29,8 +29,9 @@ namespace SoftwareEngineering_project
             bool isNumber = Int32.TryParse(BoardHeightTextBox.Text, out MyGlobals.Height);
             bool isNumber2 = Int32.TryParse(BoardTeamHeightTextBox.Text, out MyGlobals.smallHeight);
             bool isNumber3 = Int32.TryParse(BoardWidthTextBox.Text, out MyGlobals.Width);
+            bool isNumber4 = Int32.TryParse(numberOfGoals.Text, out MyGlobals.nrGoals);
 
-            if (isNumber == false || isNumber2 == false || isNumber3 == false)
+            if (isNumber == false || isNumber2 == false || isNumber3 == false || isNumber4 == false)
             {
                 MessageBox.Show("Input of wrong type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -48,6 +49,11 @@ namespace SoftwareEngineering_project
                 return;
             }
 
+            if (MyGlobals.nrGoals <=0) {
+                MessageBox.Show("The number of goals has to be positive", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             this.Hide();
 
             if (MyGlobals.boardView1 == null)
@@ -57,18 +63,14 @@ namespace SoftwareEngineering_project
                   MyGlobals.boardView1.AddPlayers();
                */
 
-                // test goals
-                int NrGoals = 5;
-                for (int i = 0; i < NrGoals; i++) {
-                    new Goal();
-                }
 
-                for (int i = 0; i < NrGoals; i++)
+                /*
+                for (int i = 0; i < 5; i++)
                 {
                     Console.WriteLine("Positions of goal in red area: " + MyGlobals.goalsRed[i].getPosX() + " " + MyGlobals.goalsRed[i].getPosY());
                     Console.WriteLine("Positions of goal in blue area: "+MyGlobals.goalsBlue[i].getPosX()+" "+ MyGlobals.goalsBlue[i].getPosY());
                 }
-
+                */
                 // test pieces
                 int NrPieces = 6;
                 for (int i = 0; i < NrPieces; i++)
@@ -116,6 +118,21 @@ namespace SoftwareEngineering_project
                 MyGlobals.gameMasterView = new GameMasterView();
                 MyGlobals.gameMasterView.Show();
             }
+        }
+
+        private void BoardHeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelH_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
