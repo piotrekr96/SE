@@ -20,15 +20,18 @@ namespace SoftwareEngineering_project
             CreateBoard();
             PreventFlickering();
             ReadPlayers();
+            CreateGoals(MyGlobals.nrGoals);
+            AddGoals();
+            Console.WriteLine("Added goals");
         }
 
         private void BoardLayoutPanel_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
             //Color cells:
             if (e.Row < MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Red, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
             else if (e.Row >= MyGlobals.Height - MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Blue, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
 
 
             //Border:
@@ -39,6 +42,7 @@ namespace SoftwareEngineering_project
                 pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
                 // define border style
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+               
 
                 // decrease border rectangle height/width by pen's width for last row/column cell
                 if (e.Row == (BoardLayoutPanel.RowCount - 1))
@@ -83,11 +87,78 @@ namespace SoftwareEngineering_project
 
         public void ReadPlayers()
         {
-            BluePlayer bp = MyGlobals.bluePlayers.First();
-            test.Image = bp.getBitmap();
-            BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
+            Player p = MyGlobals.players.First();
+            test.Image = p.getBitmap();
+            test.Margin = new Padding(0);
+
+            // if thre is already a bitmap on the cell, remove it first
+            // then add the player's bitmap
+            Control c = BoardLayoutPanel.GetControlFromPosition(p.getPosX(), p.getPosY());
+            BoardLayoutPanel.Controls.Remove(c);
+            BoardLayoutPanel.Controls.Add(test, p.getPosX(), p.getPosY());
+
         }
 
+        public void CreateGoals(int n) {
+            for (int i = 0; i < n; i++)
+            {
+                new Goal();
+            }
 
+            // test
+            MyGlobals.goalsBlue[0].setDiscovered();
+            MyGlobals.goalsRed[2].setDiscovered();
+        }
+
+        public void AddGoals() {
+            for (int i =0; i< MyGlobals.nrGoals; i++) {
+
+                // retrieve goal and its bitmap (Blue)
+                PictureBox temp;
+                Goal blueG = MyGlobals.goalsBlue[i];
+                temp = new PictureBox();
+                if (blueG.getDiscovered())
+                {
+                    temp.Image = blueG.getDiscoveredBitmap();
+                }
+                else
+                {
+                    temp.Image = blueG.getBitmap();
+                }
+                temp.Margin = new Padding(0);
+                
+                // only add bitmap if table cell is empty
+                Control c = BoardLayoutPanel.GetControlFromPosition(blueG.getPosX(), blueG.getPosY());
+                if (c == null)
+                {
+                    BoardLayoutPanel.Controls.Add(temp, blueG.getPosX(), blueG.getPosY());
+                }
+
+                // retrieve goal and its bitmap (Red)
+                Goal redG = MyGlobals.goalsRed[i];
+                temp = new PictureBox();
+                if (redG.getDiscovered())
+                {
+                    temp.Image = redG.getDiscoveredBitmap();
+                }
+                else {
+                    temp.Image = redG.getBitmap();
+                }
+                temp.Margin = new Padding(0);
+
+                // only add bitmap if table cell is empty
+                c = BoardLayoutPanel.GetControlFromPosition(redG.getPosX(), redG.getPosY());
+                if (c == null)
+                {
+                    BoardLayoutPanel.Controls.Add(temp, redG.getPosX(), redG.getPosY());
+                }
+            }
+
+        }
+
+        private void BoardLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

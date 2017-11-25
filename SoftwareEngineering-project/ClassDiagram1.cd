@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="SoftwareEngineering_project.BoardView1" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwEAAAAEACAAAAAAAACAAEECAgAAQAQIQiCAAAAAIAA=</HashCode>
+      <FileName>BoardView1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.CreateGame" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAAAACAAABQAAACIAAASAAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>CreateGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.GameMasterView" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAAAAAACAAAAAAAACAAAACAgAAQAAIAiAAAAQAAAA=</HashCode>
+      <FileName>GameMasterView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.Goal" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABEAAQAAAAAAAAAAAAAAAAAAAAAAAAAMAABgAAAACAA=</HashCode>
+      <FileName>Goal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.MyGlobals" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFAAAABgAAAABAAAAAAEAAAAAAABAwAAAABBAAAAA=</HashCode>
+      <FileName>MyGlobals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.Piece" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAgAAAAAAAgAAAEAAAAAAAAAAAAgAMAABgMAAGAAA=</HashCode>
+      <FileName>Piece.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.Player" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEggQAAAIAgAMIAAAAAEAAIAAIAAAAMQEBgAAAGAEA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.BluePlayer" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAIAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.RedPlayer" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAIAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.Program" Collapsed="true">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.Properties.Resources" Collapsed="true">
+    <Position X="7.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAIAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareEngineering_project.Properties.Settings" Collapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Forms.Form" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

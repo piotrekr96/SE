@@ -29,6 +29,8 @@ namespace SoftwareEngineering_project
             BoardLayoutPanel.Controls.Clear();
             BoardLayoutPanel.RowStyles.Clear();
             BoardLayoutPanel.ColumnStyles.Clear();
+            BoardLayoutPanel.Margin = new Padding(0);
+            BoardLayoutPanel.Dock = DockStyle.Fill;
             BoardLayoutPanel.RowCount = MyGlobals.Height;
             BoardLayoutPanel.ColumnCount = MyGlobals.Width;
             for(int i=0; i<BoardLayoutPanel.RowCount; i++)
@@ -47,9 +49,9 @@ namespace SoftwareEngineering_project
 
             //Color cells:
             if (e.Row < MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Red, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
             else if (e.Row >= MyGlobals.Height - MyGlobals.smallHeight)
-                e.Graphics.FillRectangle(Brushes.Blue, e.CellBounds);
+                e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
 
 
             //Border:
@@ -74,18 +76,21 @@ namespace SoftwareEngineering_project
 
                 // use graphics mehtods to draw cell's border
                 e.Graphics.DrawRectangle(pen, r);
+
             }
+
 
 
         }
 
         public void AddPlayers()
         {
-            BluePlayer bp = new BluePlayer();
-           // PictureBox d = new PictureBox();
-            test.BackgroundImage = bp.getBitmap();
+            Player bp = new Player(true);
+            // PictureBox d = new PictureBox();
+            test.Image = bp.getBitmap();
+            test.Margin = new Padding(0);
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
-            MyGlobals.bluePlayers.Add(bp);
+            MyGlobals.players.Add(bp);
 
           /*  RedPlayer rp = new RedPlayer();
             PictureBox z = new PictureBox();
@@ -117,21 +122,21 @@ namespace SoftwareEngineering_project
         public bool isFreeOfPlayer(int x, int y) {
 
             // check pos of blue players
-            foreach (BluePlayer item in MyGlobals.bluePlayers) {
+            foreach (Player item in MyGlobals.players) {
                 if (item.getPosX() == x && item.getPosY() == y) {
                     return false;
                 }
             }
 
             // check pos of red players
-            foreach (RedPlayer item in MyGlobals.redPlayers)
+           /* foreach (RedPlayer item in MyGlobals.redPlayers)
             {
                 if (item.getPosX() == x && item.getPosY() == y)
                 {
                     return false;
                 }
             }
-
+            */
             // cell free if no matching pos
             return true;
         }
@@ -173,34 +178,38 @@ namespace SoftwareEngineering_project
 
         public void MoveLeft()
         {
-            BluePlayer bp = MyGlobals.bluePlayers.First();
+            Player bp = MyGlobals.players.First();
             bp.MoveLeft();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
 
         void MoveRight()
         {
-            BluePlayer bp = MyGlobals.bluePlayers.First();
+            Player bp = MyGlobals.players.First();
             bp.MoveRight();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
 
         void MoveUp()
         {
-            BluePlayer bp = MyGlobals.bluePlayers.First();
+            Player bp = MyGlobals.players.First();
             bp.MoveUp();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
 
         void MoveDown()
         {
-            BluePlayer bp = MyGlobals.bluePlayers.First();
+            Player bp = MyGlobals.players.First();
             bp.MoveDown();
             BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
             MyGlobals.gameMasterView.ReadPlayers();
+            MyGlobals.gameMasterView.AddGoals();
         }
     }
 }

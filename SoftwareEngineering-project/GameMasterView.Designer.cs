@@ -158,6 +158,7 @@
             this.BoardLayoutPanel.Size = new System.Drawing.Size(706, 494);
             this.BoardLayoutPanel.TabIndex = 3;
             this.BoardLayoutPanel.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.BoardLayoutPanel_CellPaint);
+            this.BoardLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.BoardLayoutPanel_Paint);
             // 
             // menuStrip1
             // 

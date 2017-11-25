@@ -36,6 +36,7 @@
             // 
             // BoardLayoutPanel
             // 
+            this.BoardLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BoardLayoutPanel.AutoScroll = true;
             this.BoardLayoutPanel.AutoSize = true;
             this.BoardLayoutPanel.ColumnCount = 1;
@@ -139,7 +140,6 @@
             this.BoardLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.BoardLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.BoardLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.BoardLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoardLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.BoardLayoutPanel.Location = new System.Drawing.Point(0, 24);
             this.BoardLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
