@@ -71,16 +71,9 @@ namespace SoftwareEngineering_project
                     Console.WriteLine("Positions of goal in blue area: "+MyGlobals.goalsBlue[i].getPosX()+" "+ MyGlobals.goalsBlue[i].getPosY());
                 }
                 */
-                // test pieces
-                int NrPieces = 6;
-                for (int i = 0; i < NrPieces; i++)
-                {
-                    new Piece();
-                }
-                for (int i=0; i<NrPieces; i++) {
-                    Console.WriteLine("Position of piece in task area: " + MyGlobals.pieces[i].getPosX() + " " + MyGlobals.pieces[i].getPosY()+" type: "+MyGlobals.pieces[i].getSham());
+                
+                
 
-                }
 
                 // test picking a piece, params for board: 10, 3, 5
                 // piece at coords (1,4)
