@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,8 @@ namespace SoftwareEngineering_project
         protected int position_x, position_y;
         protected bool sham = false;
         protected Player owner = null;
-        
+        protected Bitmap bmp;
+        protected bool spent = false;
         
         public Piece() : base()
         {
@@ -84,6 +86,20 @@ namespace SoftwareEngineering_project
             return sham;
         }
 
+        public Bitmap getBitmap()
+        {
+             return Properties.Resources.P;           
+        }
 
+        public void setSpent() {
+            this.spent = true;
+        }
+        public bool getSpent() {
+            return spent;
+        }
+
+        public Bitmap getBmpNonGoal() {
+            return Properties.Resources.N;
+        }
     }
 }

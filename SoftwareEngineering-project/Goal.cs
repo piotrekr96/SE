@@ -11,6 +11,7 @@ namespace SoftwareEngineering_project
     {
         protected int position_x, position_y;
         protected bool discovered = false;
+        protected Player discoveror = null;
         protected Bitmap bmp;
 
         public Goal () : base()
@@ -79,5 +80,21 @@ namespace SoftwareEngineering_project
             return Properties.Resources.YG;
         }
 
+        public void setDiscoveror(Player p) {
+            this.discoveror = p;
+        }
+
+        public Player getDiscoveror() {
+            return this.discoveror;
+        }
+
+        public static bool goalExistsAtCoord(int x, int y, List<Goal> goals) {
+            foreach (Goal g in goals) {
+                if (x == g.getPosX() && y == g.getPosY()) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

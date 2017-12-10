@@ -18,9 +18,12 @@ namespace SoftwareEngineering_project
         // public static List<BluePlayer> bluePlayers = new List<BluePlayer>();
         public static List<Player> players = new List<Player>();
         public static Int32 nrGoals = 5;
+        public static Int32 nrPieces = 2;
         public static List<Goal> goalsRed = new List<Goal>();
         public static List<Goal> goalsBlue = new List<Goal>();
         public static List<Piece> pieces = new List<Piece>();
         public static GameMasterView gameMasterView;
+        public static int[,] seenDistances; 
+        public static int radius = 1;
     }
 }

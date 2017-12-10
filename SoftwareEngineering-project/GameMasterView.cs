@@ -23,6 +23,9 @@ namespace SoftwareEngineering_project
             CreateGoals(MyGlobals.nrGoals);
             AddGoals();
             Console.WriteLine("Added goals");
+            CreatePieces(MyGlobals.nrPieces);
+            AddPieces();
+            Console.WriteLine("Added pieces");
         }
 
         private void BoardLayoutPanel_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
@@ -104,10 +107,18 @@ namespace SoftwareEngineering_project
             {
                 new Goal();
             }
+        }
 
-            // test
-            MyGlobals.goalsBlue[0].setDiscovered();
-            MyGlobals.goalsRed[2].setDiscovered();
+        public void CreatePieces(int n) {
+            for (int i = 0; i < n; i++)
+            {
+                new Piece();
+            }
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine("Position of piece in task area: " + MyGlobals.pieces[i].getPosX() + " " + MyGlobals.pieces[i].getPosY() + " type: " + MyGlobals.pieces[i].getSham());
+
+            }
         }
 
         public void AddGoals() {
@@ -155,6 +166,29 @@ namespace SoftwareEngineering_project
             }
 
         }
+
+        public void AddPieces()
+        {
+            for (int i = 0; i < MyGlobals.nrPieces; i++)
+            {
+
+                // retrieve piece and its bitmap (Blue)
+                PictureBox temp;
+                Piece pi = MyGlobals.pieces[i];
+                temp = new PictureBox(); 
+                temp.Image = pi.getBitmap();
+                temp.Margin = new Padding(0);
+
+                // only add bitmap if table cell is empty
+                Control c = BoardLayoutPanel.GetControlFromPosition(pi.getPosX(), pi.getPosY());
+                if (c == null)
+                {
+                    BoardLayoutPanel.Controls.Add(temp, pi.getPosX(), pi.getPosY());
+                }
+            }
+
+        }
+
 
         private void BoardLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
