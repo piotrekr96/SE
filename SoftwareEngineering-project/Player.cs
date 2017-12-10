@@ -459,6 +459,7 @@ namespace SoftwareEngineering_project
             // iterate through all pieces that are NOT owned by other players, and find the closes one
             foreach (Piece item in MyGlobals.pieces) {
                 if (item.getOwner() == null && item.getSpent() == false) {
+                    // look only at pieces in the task area
                     if (item.getPosY() >= MyGlobals.smallHeight && item.getPosY() <= (MyGlobals.Height - MyGlobals.smallHeight - 1)) {
                         int temp = Math.Abs(this.position_x - item.getPosX()) + Math.Abs(this.position_y - item.getPosY());
                         if (temp < minimumDist)
@@ -470,7 +471,7 @@ namespace SoftwareEngineering_project
                 }
             }
 
-            // for each neighbouring cell of the player
+            // for each neighbouring cell of the player, within a given radius: here includes 8 neighbouring cells
             for (int i =(- MyGlobals.radius); i<=(+ MyGlobals.radius); i++) {
                 for (int j = (- MyGlobals.radius); j <= (+ MyGlobals.radius); j++) {
                     if (withinBoardBounds(this.position_x + i, this.position_y + j)) {
@@ -480,10 +481,12 @@ namespace SoftwareEngineering_project
                             d = -1;
                         }
                         else {
+                            // offset i and j added, because it saves the distance from the player's neighbour to the closest piece
                             d = Math.Abs((this.position_x + i) - closestPiece.getPosX()) + Math.Abs((this.position_y + j) - closestPiece.getPosY());
                         }
                         
-
+                        // update the array of distances at the positions where the neighbours and the player exist on the board
+                        // as player moves and keeps asking, the array will continue to be populated
                         MyGlobals.seenDistances[this.position_x + i, this.position_y + j] = d;
                     }
                                 

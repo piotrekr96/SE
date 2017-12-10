@@ -1,0 +1,10 @@
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Form1.resources
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Properties.Resources.resources
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.GenerateResource.Cache
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
+C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb

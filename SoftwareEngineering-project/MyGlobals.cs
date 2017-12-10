@@ -23,7 +23,7 @@ namespace SoftwareEngineering_project
         public static List<Goal> goalsBlue = new List<Goal>();
         public static List<Piece> pieces = new List<Piece>();
         public static GameMasterView gameMasterView;
-        public static int[,] seenDistances;
+        public static int[,] seenDistances; 
         public static int radius = 1;
     }
 }
