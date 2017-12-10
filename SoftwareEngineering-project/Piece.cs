@@ -23,7 +23,7 @@ namespace SoftwareEngineering_project
                 sham = true;
             }
 
-            // make a piece and plce it if possible
+            // make a piece and place it if possible
             do
             {
                 position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
@@ -84,6 +84,10 @@ namespace SoftwareEngineering_project
         public bool getSham()
         {
             return sham;
+        }
+
+        public void setSham(bool s) {
+            this.sham = s;
         }
 
         public Bitmap getBitmap()

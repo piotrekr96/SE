@@ -116,7 +116,7 @@ namespace SoftwareEngineering_project
             }
             for (int i = 0; i < n; i++)
             {
-                Console.WriteLine("Position of piece in task area: " + MyGlobals.pieces[i].getPosX() + " " + MyGlobals.pieces[i].getPosY() + " type: " + MyGlobals.pieces[i].getSham());
+                Console.WriteLine("Position of piece in task area: " + MyGlobals.pieces[i].getPosX() + " " + MyGlobals.pieces[i].getPosY() + " sham: " + MyGlobals.pieces[i].getSham());
 
             }
         }

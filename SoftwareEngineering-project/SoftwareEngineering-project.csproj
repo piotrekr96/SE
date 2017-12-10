@@ -73,6 +73,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="BoardView1.resx">
       <DependentUpon>BoardView1.cs</DependentUpon>
     </EmbeddedResource>
