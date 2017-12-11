@@ -17,3 +17,13 @@ C:\Users\Piotrek\Desktop\SE-Vale\Client\Client\obj\Debug\Client.csprojResolveAss
 C:\Users\Piotrek\Desktop\SE-Vale\Client\Client\obj\Debug\Client.Form1.resources
 C:\Users\Piotrek\Desktop\SE-Vale\Client\Client\obj\Debug\Client.Properties.Resources.resources
 C:\Users\Piotrek\Desktop\SE-Vale\Client\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\bin\Debug\Client.exe.config
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\bin\Debug\Client.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\bin\Debug\Client.pdb
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.Form1.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.pdb
