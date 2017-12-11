@@ -318,12 +318,16 @@ namespace SoftwareEngineering_project
                         l.Text = MyGlobals.seenDistances[i, j].ToString();
                     }
 
+                    // check if there is something else at that control (empty of containing a number
+                    // if the manhattan distance was previouslyshown)
                     Control c = BoardLayoutPanel.GetControlFromPosition(i, j);
                     foreach (Player item in MyGlobals.players) {
+                        // if the cell is the one on which the player sits, leave it alone
                         if (item.getPosX() == i && item.getPosY() == j)
                         {
                             continue;
                         }
+                        // if the cell contains any other player, remove bitmap
                         if (c != null) {
                             BoardLayoutPanel.Controls.Remove(c);
                         }                  
