@@ -13,7 +13,7 @@ namespace SoftwareEngineering_project.Tests
     public class PlayerTests
     {
         static Player redP, blueP;
-        static Piece piece1;
+        static Piece piece1, piece2;
 
         [ClassInitialize()]
         public static void ClassInit(TestContext context) {
@@ -33,10 +33,12 @@ namespace SoftwareEngineering_project.Tests
             redP = new Player('r');
             blueP = new Player('b');
             piece1 = new Piece();
+            piece2 = new Piece();
 
             //Red player coords: 1,3
             //Blue player coords: 2,9
             //Piece1 coods: 2,5
+            //Piece2 coods: 0,4
         }
 
         [TestCleanup()]
@@ -54,7 +56,8 @@ namespace SoftwareEngineering_project.Tests
             Assert.AreEqual(redP.getColour(), 'r');
             Assert.IsNull(redP.getCarrying());
             Debug.WriteLine("Coords of red player: " + redP.getPosX() + "," + redP.getPosY());
-            Debug.WriteLine("Coords of piece: " + piece1.getPosX() + "," + piece1.getPosY());
+            Debug.WriteLine("Coords of piece1: " + piece1.getPosX() + "," + piece1.getPosY());
+            Debug.WriteLine("Coords of piece2: " + piece2.getPosX() + "," + piece2.getPosY());
         }
 
         [TestMethod()]
@@ -220,7 +223,15 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void getCarryingTest()
         {
-            Assert.Fail();
+            // player does not own a piece
+            Assert.IsNull(redP.getCarrying());
+
+            // move player to cell containing piece and pick it
+            redP.setPosX(2);
+            redP.setPosY(5);
+            redP.pickPiece();
+            Assert.IsNotNull(redP.getCarrying());
+
         }
 
         [TestMethod()]
@@ -238,19 +249,56 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void canPlacePieceTest()
         {
-            Assert.Fail();
+            // move player to cell containing piece and pick it
+            redP.setPosX(2);
+            redP.setPosY(5);
+            redP.pickPiece();
+
+            // try to place piece in a legitimate cell in task area
+            // (without moving the player first)
+            // is this really appl
+            Assert.IsTrue(redP.canPlacePiece(3, 5));
+
+
+            // try to place piece in a legitimate cell in task area
+            // (move player first)
+            redP.MoveUp();
+            Assert.IsTrue(redP.canPlacePiece(redP.getPosX(), redP.getPosY()));
+
+            /*
+            // try to place piece in a non-legitimate cell in task area
+            // ex: placing a piece where there is already a piece (coords 0,4)
+            redP.setPosX(0);
+            redP.setPosY(4);
+            Debug.WriteLine("Coords of piece 2: "+piece2.getPosX() + "," + piece2.getPosY());
+            Assert.IsFalse(redP.canPlacePiece(0, 4));
+            */
         }
 
         [TestMethod()]
         public void placePieceTest()
         {
-            Assert.Fail();
+            // method does not return: will test attributes changed by the method 
+
+            // move player to cell containing piece and pick it
+            redP.setPosX(2);
+            redP.setPosY(5);
+            redP.pickPiece();
+            Assert.IsNotNull(redP.getCarrying());
+            redP.placePiece(redP.getPosX(), redP.getPosY()); //place piece at th same coordinates
+            Assert.IsNull(redP.getCarrying());
         }
 
         [TestMethod()]
         public void tryPlacePieceTest()
         {
-            Assert.Fail();
+            // try to place a piece in the other team's goal area
+            // move player to cell containing piece and pick it
+            redP.setPosX(2);
+            redP.setPosY(5);
+            redP.pickPiece();
+            Assert.IsFalse(redP.tryPlacePiece(2, MyGlobals.Height - 1));
+
         }
 
         [TestMethod()]
