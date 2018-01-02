@@ -30,7 +30,6 @@ namespace CommunicationServer
             while(true)
             {
                 TcpClient client = tcpListnener.AcceptTcpClient();
-                updateUI("Connected");
                 Thread tcpHandlerThread = new Thread(new ParameterizedThreadStart(tcpHandler));
                 tcpHandlerThread.Start(client);
             }
@@ -74,6 +73,55 @@ namespace CommunicationServer
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Send_Click(object sender, EventArgs e)
+        {
+            Thread mThread = new Thread(new ThreadStart(SendAsServer));
+            mThread.Start();
+        }
+
+        private void SendAsServer()
+        {
+            try
+            {
+                TcpClient client = new TcpClient();
+
+                client.Connect(GetLocalIPAddress(), 5005);
+
+                NetworkStream stream = client.GetStream();
+                string s = "Hello from Server\n";
+                byte[] message = Encoding.ASCII.GetBytes(s);
+                stream.Write(message, 0, message.Length);
+                //updateUI("Message send");
+
+
+                stream.Close();
+                client.Close();
+            }
+            catch(Exception e)
+            {
+
+            }
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

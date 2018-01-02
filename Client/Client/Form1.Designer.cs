@@ -28,46 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Box = new System.Windows.Forms.TextBox();
             this.Connect = new System.Windows.Forms.Button();
+            this.Box = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
-            // Box
-            // 
-            this.Box.Location = new System.Drawing.Point(0, 3);
-            this.Box.Name = "Box";
-            this.Box.Size = new System.Drawing.Size(281, 20);
-            this.Box.TabIndex = 0;
             // 
             // Connect
             // 
-            this.Connect.Location = new System.Drawing.Point(83, 113);
+            this.Connect.Location = new System.Drawing.Point(74, 120);
             this.Connect.Name = "Connect";
-            this.Connect.Size = new System.Drawing.Size(115, 23);
+            this.Connect.Size = new System.Drawing.Size(138, 81);
             this.Connect.TabIndex = 1;
             this.Connect.Text = "Connect";
             this.Connect.UseVisualStyleBackColor = true;
             this.Connect.Click += new System.EventHandler(this.Connect_Click);
+            // 
+            // Box
+            // 
+            this.Box.Location = new System.Drawing.Point(13, 3);
+            this.Box.Name = "Box";
+            this.Box.Size = new System.Drawing.Size(259, 99);
+            this.Box.TabIndex = 2;
+            this.Box.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.Connect);
             this.Controls.Add(this.Box);
+            this.Controls.Add(this.Connect);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Client";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing_1);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox Box;
         private System.Windows.Forms.Button Connect;
+        private System.Windows.Forms.RichTextBox Box;
     }
 }
 
