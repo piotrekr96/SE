@@ -13,6 +13,8 @@ namespace SoftwareEngineering_project
         char colour;
         Bitmap bmp;
         Piece carrying = null;
+        List<Goal> discoveredGoals; // what the player discovered/received info from other player
+        List<NonGoal> discoveredNonGoals; // what the player discovered/received info received info from other players
 
         public Player(char _team)
         {
@@ -423,6 +425,7 @@ namespace SoftwareEngineering_project
                     if (item.getPosX() == x && item.getPosY() == y && item.getDiscovered() != true)
                     {
                         item.setDiscovered();
+                        this.addGoal(item.getPosX(), item.getPosY());
                         item.setDiscoveror(this);
                         return true;
                     }
@@ -441,6 +444,7 @@ namespace SoftwareEngineering_project
                     if (item.getPosX() == x && item.getPosY() == y && item.getDiscovered() != true)
                     {
                         item.setDiscovered();
+                        this.addGoal(item.getPosX(), item.getPosY());
                         item.setDiscoveror(this);
                         return true;
                     }
@@ -450,6 +454,20 @@ namespace SoftwareEngineering_project
                 return false;
             }
         }
+
+        // method to use when information about discovered goals is exchanged with other players
+        public void addGoal(int x, int y) {
+            Goal g = new Goal(x,y);
+            discoveredGoals.Add(g);
+        }
+
+        // method to use when information about discovered nongoals is exchanged with other players
+        public void addNonGoal(int x, int y)
+        {
+            NonGoal g = new NonGoal(x, y);
+            discoveredNonGoals.Add(g);
+        }
+
 
         public void computeManDist()
         {

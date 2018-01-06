@@ -22,7 +22,7 @@ namespace SoftwareEngineering_project
             if (r == 1) {               
                 sham = true;
             }
-
+            
             // make a piece and place it if possible
             do
             {
@@ -44,8 +44,7 @@ namespace SoftwareEngineering_project
                 }
             }
 
-            // if there is no duplicate, place the piece and return success
-            MyGlobals.pieces.Add(this);
+            // if there is no duplicate, the piece can be plced           
             return true;
         }
 

@@ -54,6 +54,12 @@ namespace SoftwareEngineering_project
                 return;
             }
 
+            if (MyGlobals.nrGoals > (MyGlobals.smallHeight * MyGlobals.Width))
+            {
+                MessageBox.Show("The number of goals is too large, compared to the Goal area", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             this.Hide();
 
             if (MyGlobals.boardView1 == null)

@@ -61,6 +61,7 @@
     <Compile Include="CreateGame.Designer.cs">
       <DependentUpon>CreateGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameMaster.cs" />
     <Compile Include="GameMasterView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +70,7 @@
     </Compile>
     <Compile Include="Goal.cs" />
     <Compile Include="MyGlobals.cs" />
+    <Compile Include="NonGoal.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
