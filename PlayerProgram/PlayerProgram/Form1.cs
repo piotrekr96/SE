@@ -11,11 +11,15 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Net.Sockets;
+using System.Net;
+using System.Threading;
 
 namespace PlayerProgram
 {
     public partial class Form1 : Form
     {
+        public static Socket master;
         RegisteredGames reg;
         public Form1()
         {
@@ -74,6 +78,42 @@ namespace PlayerProgram
             System.Diagnostics.Debug.WriteLine(newXMLmessage);
 
             // SERVER STUFF
+            A: Console.Clear();
+            Console.Write("Enter host IP address: ");
+            string ip = Console.ReadLine();
+
+            master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+            IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
+
+            try
+            {
+                master.Connect(ipe);
+            }
+            catch
+            {
+                Console.WriteLine("Could not connect");
+                Thread.Sleep(1000);
+                goto A;
+            }
+
+            Console.Clear();
+
+            Thread t = new Thread(DataIn);
+            t.Start();
+
+
+            //string xml is the xml that you are supposed to send to the server, 
+            //just prepare the proper one and remove this dummy variable
+            string xml = "";
+            byte[] toBytes = Encoding.ASCII.GetBytes(xml);
+
+            master.Send(toBytes);
+
+            
+
+
+
 
             // if(confirm)
             //.... 
@@ -92,6 +132,39 @@ namespace PlayerProgram
             BoardView1 boardview = new BoardView1(gamemessage.board.width, gamemessage.board.taskAreaHeight, gamemessage.board.goalAreaHeight);
             this.Hide();
             boardview.Show();
+
+        }
+
+
+        static void DataIn()
+        {
+            byte[] buffer;
+            int readBytes;
+
+            while (true)
+            {
+                try
+                {
+
+
+                    buffer = new byte[master.ReceiveBufferSize];
+                    readBytes = master.Receive(buffer);
+
+                    if (readBytes > 0)
+                    {
+                        //Here you should put handling for incoming messgaes, best option is to make some reading
+                        //function with switch depending on the type of received message.
+                        //Consequently code after "master.Send(toBytes)" should be handled
+                        //in this new handling function.
+                    }
+                }
+                catch
+                { }
+            }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
