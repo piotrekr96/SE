@@ -9,3 +9,14 @@ H:\Windows7\Documents\Visual Studio 2017\Projects\SE-master\PlayerProgram\Player
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.BoardView1.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe.config
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.pdb
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csprojResolveAssemblyReference.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.BoardView1.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Form1.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Properties.Resources.resources
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.GenerateResource.Cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.CoreCompileInputs.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareEngineering_project
 {
-    public class Piece
+    public class Piece : IPiece
     {
         protected int position_x, position_y;
         protected bool sham = false;
@@ -22,17 +22,19 @@ namespace SoftwareEngineering_project
             if (r == 1) {               
                 sham = true;
             }
-            
+            bool rv;
             // make a piece and place it if possible
             do
             {
                 position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
                 position_y = MyGlobals.rnd.Next(MyGlobals.smallHeight, MyGlobals.Height-MyGlobals.smallHeight-1);
-            } while (!placePieceInit(position_x, position_y));
+                rv = placePieceInit(position_x, position_y);
+
+            } while (!rv);
         }
 
 
-        public bool placePieceInit(int x, int y)
+        public virtual bool placePieceInit(int x, int y)
         {
 
             // if a piece with same coords is already there, return failure

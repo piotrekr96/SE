@@ -23,7 +23,13 @@ C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SoftwareEngineering-proje
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.exe.config
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.exe
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\SoftwareEngineering-project.pdb
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering-project.csprojResolveAssemblyReference.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\Castle.Core.dll
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\Moq.dll
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\Castle.Core.xml
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\Moq.pdb
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\Moq.xml
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.BoardView1.resources
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.CreateGame.resources
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-project\obj\Debug\SoftwareEngineering_project.GameMasterView.resources
