@@ -103,10 +103,8 @@ namespace PlayerProgram
             t.Start();
 
 
-            //string xml is the xml that you are supposed to send to the server, 
-            //just prepare the proper one and remove this dummy variable
-            string xml = "";
-            byte[] toBytes = Encoding.ASCII.GetBytes(xml);
+
+            byte[] toBytes = Encoding.ASCII.GetBytes(newXMLmessage);
 
             master.Send(toBytes);
 
