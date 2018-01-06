@@ -12,7 +12,6 @@ H:\Windows7\Documents\Visual Studio 2017\Projects\SE-master\PlayerProgram\Player
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe.config
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.pdb
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csprojResolveAssemblyReference.cache
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.BoardView1.resources
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Form1.resources
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Properties.Resources.resources

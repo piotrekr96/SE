@@ -127,29 +127,6 @@ namespace SoftwareEngineering_project
 
         }
 
-        // check if position is empty of any player
-        public bool isFreeOfPlayer(int x, int y) {
-
-            // check pos of blue players
-            foreach (Player item in MyGlobals.players) {
-                if (item.getPosX() == x && item.getPosY() == y) {
-                    return false;
-                }
-            }
-
-            // check pos of red players
-           /* foreach (RedPlayer item in MyGlobals.redPlayers)
-            {
-                if (item.getPosX() == x && item.getPosY() == y)
-                {
-                    return false;
-                }
-            }
-            */
-            // cell free if no matching pos
-            return true;
-        }
-
         private void BoardLayoutPanel_MouseClick(Object sender, MouseEventArgs e) {
             Console.Write("Clicked");
         }

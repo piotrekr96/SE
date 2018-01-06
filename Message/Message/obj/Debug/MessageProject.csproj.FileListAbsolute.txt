@@ -1,0 +1,5 @@
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\Message\bin\Debug\Message.dll
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\Message\bin\Debug\Message.pdb
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\Message\obj\Debug\MessageProject.csproj.CoreCompileInputs.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\Message\obj\Debug\Message.dll
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\Message\obj\Debug\Message.pdb

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoftwareEngineering_projectTests
+namespace SoftwareEngineering_project.Tests
 {
     public class DeterministicRandom : Random {
 

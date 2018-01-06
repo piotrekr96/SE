@@ -13,8 +13,8 @@ namespace SoftwareEngineering_project
         char colour;
         Bitmap bmp;
         Piece carrying = null;
-        List<Goal> discoveredGoals; // what the player discovered/received info from other player
-        List<NonGoal> discoveredNonGoals; // what the player discovered/received info received info from other players
+        List<Goal> discoveredGoals = new List<Goal>(); // what the player discovered/received info from other player
+        List<NonGoal> discoveredNonGoals = new List<NonGoal>(); // what the player discovered/received info received info from other players
 
         public Player(char _team)
         {
@@ -86,7 +86,8 @@ namespace SoftwareEngineering_project
             {
                 return false;
             }
-            if (!MyGlobals.boardView1.isFreeOfPlayer(x, y))
+
+            if (!isFreeOfPlayer(x, y))
             {
                 return false;
             }
@@ -186,6 +187,23 @@ namespace SoftwareEngineering_project
             // return success
             return true;
         }
+
+
+        // check if position is empty of any player
+        public bool isFreeOfPlayer(int x, int y)
+        {
+
+            // check pos of blue players
+            foreach (Player item in MyGlobals.players)
+            {
+                if (item.getPosX() == x && item.getPosY() == y)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         // check if position is out of the board bounds
         public bool withinBoardBounds(int x, int y)
@@ -364,6 +382,7 @@ namespace SoftwareEngineering_project
             }
         }
 
+        // returns true if the piece was placed 
         public bool tryPlacePiece(int x, int y)
         {
             // trying to place a piece without possessing one
@@ -414,6 +433,11 @@ namespace SoftwareEngineering_project
             return true;
         }
 
+
+        // method returns true if a goal was discovered, false if there wasn't a goal at the position
+        // does NOT return anything if piece was sham
+        // a player can discover a goal by himself if he sits and places a piece at goal location
+        // these checks are made in the functions calling discoverGoal (tryPlacePiece)
         public bool discoverGoal(int x, int y)
         {
             if (colour == 'b')

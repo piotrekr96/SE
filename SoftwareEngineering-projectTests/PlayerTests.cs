@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Run tests one a a time. Since MyGlobals is shared, running tests in parallel will override
+// the random number generator (DeterministicRandom)
+
 namespace SoftwareEngineering_project.Tests
 {
     [TestClass()]
@@ -14,6 +17,7 @@ namespace SoftwareEngineering_project.Tests
     {
         static Player redP, blueP;
         static Piece piece1, piece2;
+        static Goal goal1;
 
         [ClassInitialize()]
         public static void ClassInit(TestContext context) {
@@ -23,22 +27,31 @@ namespace SoftwareEngineering_project.Tests
             MyGlobals.Width = 5;
             MyGlobals.nrGoals = 5;
             MyGlobals.nrPieces = 2;
-            MyGlobals.boardView1 = new BoardView1();
+           
         }
 
         [TestInitialize()]
         public void Initialize() {
-            MyGlobals.rnd = new Random(1);
-            
+            MyGlobals.rnd = new DeterministicRandom(new List<int> { 1, 3, 2, 9}); // overrides Random()
             redP = new Player('r');
             blueP = new Player('b');
-            piece1 = new Piece();
-            piece2 = new Piece();
-
             //Red player coords: 1,3
             //Blue player coords: 2,9
-            //Piece1 coods: 2,5
-            //Piece2 coods: 0,4
+
+
+            MyGlobals.rnd = new DeterministicRandom(new List<int> { 0,2, 5, 1, 0, 4 }); 
+            piece1 = new Piece();
+            piece2 = new Piece();
+            MyGlobals.pieces.Add(piece1);
+            MyGlobals.pieces.Add(piece2);
+            //Piece1 coods: 2,5, not sham
+            //Piece2 coods: 0,4, sham
+
+
+            MyGlobals.rnd = new DeterministicRandom(new List<int> { 0 , 0 });
+            goal1 = new Goal();
+            
+
         }
 
         [TestCleanup()]
@@ -53,6 +66,7 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void PlayerTestRed()
         {
+            // tests constructor 
             Assert.AreEqual(redP.getColour(), 'r');
             Assert.IsNull(redP.getCarrying());
             Debug.WriteLine("Coords of red player: " + redP.getPosX() + "," + redP.getPosY());
@@ -63,6 +77,7 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void PlayerTestBlue()
         {
+            // tests constructor 
             Assert.AreEqual(blueP.getColour(), 'b');
             Assert.IsNull(blueP.getCarrying());
             Debug.WriteLine("Coords of blue player: " + blueP.getPosX() + "," + blueP.getPosY());
@@ -71,6 +86,7 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void getPosXTestRed()
         {
+            // tests constructor 
             Debug.WriteLine("Coords of red player: " + redP.getPosX() + "," + redP.getPosY());
             Assert.IsNotNull(redP.getPosX());
             Assert.AreEqual(1, redP.getPosX());           
@@ -79,6 +95,7 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void getPosYTestRed()
         {
+            // tests constructor 
             Debug.WriteLine("Coords of red player: " + redP.getPosX() + "," + redP.getPosY());
             Assert.IsNotNull(redP.getPosY());
             Assert.AreEqual(3, redP.getPosY());
@@ -87,6 +104,7 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void getPosXTesBlue()
         {
+            // tests constructor
             Debug.WriteLine("Coords of blue player: " + blueP.getPosX() + "," + blueP.getPosY());
             Assert.IsNotNull(blueP.getPosX());
             Assert.AreEqual(2, blueP.getPosX());
@@ -95,31 +113,12 @@ namespace SoftwareEngineering_project.Tests
         [TestMethod()]
         public void getPosYTestBlue()
         {
+            // tests constructor
             Debug.WriteLine("Coords of blue player: " + blueP.getPosX() + "," + blueP.getPosY());
             Assert.IsNotNull(blueP.getPosY());
             Assert.AreEqual(9, blueP.getPosY());
         }
 
-        [TestMethod()]
-        public void setPosXTestRed()
-        {
-            redP.setPosX(0);
-            Assert.AreEqual(0, redP.getPosX());           
-        }
-
-        [TestMethod()]
-        public void setPosYTestRed()
-        {
-            redP.setPosY(0);
-            Assert.AreEqual(0, redP.getPosY());
-        }
-
-        [TestMethod()]
-        public void getColourTest()
-        {
-            Assert.AreEqual(redP.getColour(),'r');
-            Assert.AreNotEqual(redP.getColour(),'b');
-        }
 
         [TestMethod()]
         public void withinBoardBoundsTest()
@@ -220,30 +219,20 @@ namespace SoftwareEngineering_project.Tests
 
         }
 
-        [TestMethod()]
-        public void getCarryingTest()
-        {
-            // player does not own a piece
-            Assert.IsNull(redP.getCarrying());
 
-            // move player to cell containing piece and pick it
-            redP.setPosX(2);
-            redP.setPosY(5);
-            redP.pickPiece();
-            Assert.IsNotNull(redP.getCarrying());
-
-        }
-
-        [TestMethod()]
-        public void getBitmapTest()
-        {
-            Assert.Fail();
-        }
 
         [TestMethod()]
         public void canPlacePlayerTest()
         {
-            Assert.Fail();
+            // try to place red player on blue player
+            Assert.IsFalse(redP.canPlacePlayer(2, 9));
+
+            // try to place red player on a piece
+            Assert.IsFalse(redP.canPlacePlayer(0, 4));
+
+            // try to place red player on empty cell
+            Assert.IsTrue(redP.canPlacePlayer(0, 0));
+
         }
 
         [TestMethod()]
@@ -297,14 +286,18 @@ namespace SoftwareEngineering_project.Tests
             redP.setPosX(2);
             redP.setPosY(5);
             redP.pickPiece();
-            Assert.IsFalse(redP.tryPlacePiece(2, MyGlobals.Height - 1));
+            Assert.IsTrue(redP.tryPlacePiece(2, MyGlobals.Height - 1));
 
         }
 
         [TestMethod()]
         public void discoverGoalTest()
         {
-            Assert.Fail();
+            // try to discover a non goal 
+            Assert.IsFalse(blueP.discoverGoal(blueP.getPosX(), blueP.getPosY()));
+
+            // try to discover a goal without owning a piece
+
         }
 
         [TestMethod()]

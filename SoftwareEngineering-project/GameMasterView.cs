@@ -112,7 +112,8 @@ namespace SoftwareEngineering_project
         public void CreatePieces(int n) {
             for (int i = 0; i < n; i++)
             {
-                new Piece();
+                Piece p = new Piece();
+                MyGlobals.pieces.Add(p);
             }
             for (int i = 0; i < n; i++)
             {

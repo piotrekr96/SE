@@ -1,0 +1,9 @@
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\bin\Debug\ConsoleTest.exe.config
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\bin\Debug\ConsoleTest.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\bin\Debug\ConsoleTest.pdb
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\bin\Debug\Message.dll
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\bin\Debug\Message.pdb
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\obj\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\obj\Debug\ConsoleTest.csproj.CoreCompileInputs.cache
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\obj\Debug\ConsoleTest.exe
+C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Message\ConsoleTest\obj\Debug\ConsoleTest.pdb

@@ -71,6 +71,7 @@
     <Compile Include="CreateGame.Designer.cs">
       <DependentUpon>CreateGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Game.cs" />
     <Compile Include="GameMaster.cs" />
     <Compile Include="GameMasterView.cs">
       <SubType>Form</SubType>

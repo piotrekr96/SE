@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
-using SoftwareEngineering_projectTests;
+
 
 namespace SoftwareEngineering_project.Tests
 {
@@ -22,9 +22,7 @@ namespace SoftwareEngineering_project.Tests
             MyGlobals.smallHeight = 3;
             MyGlobals.Width = 5;
             MyGlobals.nrGoals = 5;
-            MyGlobals.nrPieces = 2;
-            MyGlobals.boardView1 = new BoardView1();
-           
+            MyGlobals.nrPieces = 2;         
         }
 
         
@@ -61,78 +59,6 @@ namespace SoftwareEngineering_project.Tests
             Assert.Fail();
         }
 
-        [TestMethod()]
-        public void setOwnerTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void setPosXTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void setPosYTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void getOwnerTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void getPosXTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void getPosYTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void getShamTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void setShamTest()
-        {
-            Assert.Fail();
-        }
-
-        // not relevant (GUI)
-        [TestMethod()]
-        public void getBitmapTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void setSpentTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void getSpentTest()
-        {
-            Assert.Fail();
-        }
-
-        // not relevant (GUI)
-        [TestMethod()]
-        public void getBmpNonGoalTest()
-        {
-            Assert.Fail();
-        }
+ 
     }
 }
