@@ -20,3 +20,13 @@ C:\Users\KidziaK\Source\Repos\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerPro
 C:\Users\KidziaK\Source\Repos\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.CoreCompileInputs.cache
 C:\Users\KidziaK\Source\Repos\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
 C:\Users\KidziaK\Source\Repos\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe.config
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csprojResolveAssemblyReference.cache
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.BoardView1.resources
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Form1.resources
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Properties.Resources.resources
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.GenerateResource.Cache
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe
+C:\Users\Piotrek\Desktop\SE-master\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.pdb

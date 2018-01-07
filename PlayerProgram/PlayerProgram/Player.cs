@@ -28,27 +28,27 @@ namespace PlayerProgram
             privateGuid = guid;
             role = rol;
 
-            /* if (_team == Team.blue)
+             if (_team == Team.blue)
              {
                  bmp = Properties.Resources.B;
-                 do
+              /*   do
                  {
                        position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
                        position_y = MyGlobals.rnd.Next(MyGlobals.smallHeight, MyGlobals.Height - MyGlobals.smallHeight - 1);
 
 
-                 } while (!canPlacePlayer(position_x, position_y));
+                 } while (!canPlacePlayer(position_x, position_y));*/
              }
              else
              {
                  bmp = Properties.Resources.R;
-                 do
+             /*    do
                  {
                      position_x = MyGlobals.rnd.Next(0, MyGlobals.Width);
                      position_y = MyGlobals.rnd.Next(MyGlobals.smallHeight, MyGlobals.Height - MyGlobals.smallHeight - 1);
 
-                 } while (!canPlacePlayer(position_x, position_y));
-             }*/
+                 } while (!canPlacePlayer(position_x, position_y));*/
+             }
             position_x = 0;
             position_y = 0;
             MyGlobals.players.Add(this);
@@ -94,10 +94,10 @@ namespace PlayerProgram
             {
                 return false;
             }
-            if (!MyGlobals.boardView1.isFreeOfPlayer(x, y))
-            {
-                return false;
-            }
+        //    if (!MyGlobals.boardView1.isFreeOfPlayer(x, y))
+         //   {
+         //       return false;
+          //  }
 
             // if checks passed, it can move
             return true;
