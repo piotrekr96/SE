@@ -4,7 +4,6 @@ C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin\Debug\SoftwareEngineering-projectTests.dll
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin\Debug\SoftwareEngineering-projectTests.pdb
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin\Debug\Castle.Core.dll
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin\Debug\Moq.dll
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin\Debug\SoftwareEngineering-project.exe
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\SoftwareEngineering-projectTests\bin\Debug\System.Threading.Tasks.Extensions.dll

@@ -32,7 +32,15 @@ namespace SoftwareEngineering_project.Tests
             // Set up 
             pieceMock  = new Mock<Piece>();   // mocked piece
         }
-        
+
+        [TestCleanup()]
+        public void Cleanup()
+        {
+            MyGlobals.players.Clear();
+            MyGlobals.pieces.Clear();
+            MyGlobals.goalsBlue.Clear();
+            MyGlobals.goalsRed.Clear();
+        }
 
         [TestMethod()]
         public void PieceTest()

@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Run tests one a a time. Since MyGlobals is shared, running tests in parallel will override
-// the random number generator (DeterministicRandom)
 
 namespace SoftwareEngineering_project.Tests
 {
@@ -61,6 +59,8 @@ namespace SoftwareEngineering_project.Tests
             redP = null;
             blueP = null;
             piece1 = null;
+            MyGlobals.goalsBlue.Clear();
+            MyGlobals.goalsRed.Clear();
         }
 
         [TestMethod()]
