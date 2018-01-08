@@ -1,0 +1,6 @@
+C:\Users\KidziaK\source\repos\CommunicationServer\Data\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\KidziaK\source\repos\CommunicationServer\Data\obj\Debug\Data.exe
+C:\Users\KidziaK\source\repos\CommunicationServer\Data\obj\Debug\Data.pdb
+C:\Users\KidziaK\source\repos\CommunicationServer\Data\bin\Debug\Data.exe.config
+C:\Users\KidziaK\source\repos\CommunicationServer\Data\bin\Debug\Data.exe
+C:\Users\KidziaK\source\repos\CommunicationServer\Data\bin\Debug\Data.pdb

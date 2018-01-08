@@ -1,29 +1,17 @@
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Form1.resources
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Properties.Resources.resources
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.GenerateResource.Cache
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
-C:\Users\Valentina\Desktop\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Form1.resources
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Properties.Resources.resources
-C:\Users\Piotrek\Desktop\SE-Vale\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.GenerateResource.Cache
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Form1.resources
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.Properties.Resources.resources
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.GenerateResource.Cache
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
-C:\Users\Valentina\Desktop\Soft Eng\Code\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
+c:\users\kidziak\source\repos\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
+c:\users\kidziak\source\repos\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
+c:\users\kidziak\source\repos\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
+c:\users\kidziak\source\repos\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
+c:\users\kidziak\source\repos\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
+c:\users\kidziak\source\repos\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
+c:\users\kidziak\source\repos\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
+C:\Users\KidziaK\source\repos\CommunicationServer\CommunicationServer\bin\Debug\Data.exe
+C:\Users\KidziaK\source\repos\CommunicationServer\CommunicationServer\bin\Debug\Data.pdb
+C:\Users\KidziaK\source\repos\CommunicationServer\CommunicationServer\bin\Debug\Data.exe.config
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb

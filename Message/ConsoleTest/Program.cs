@@ -14,7 +14,7 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            JoinGame newJoin = new JoinGame("Default game", Role.leader, Team.red);
+            JoinGame newJoin = new JoinGame(1, Role.leader, Team.red);
             string information = newJoin.messageIntoXML(newJoin);
             Console.Write(information);
             
@@ -23,10 +23,10 @@ namespace ConsoleTest
             Console.WriteLine();
 
             List<GameInfo> newList = new List<GameInfo>();
-            newList.Add(new GameInfo("Game 1", 5, 5));
-            newList.Add(new GameInfo("Game 2", 10, 10));
-            newList.Add(new GameInfo("Game 3", 3, 3));
-            newList.Add(new GameInfo("Game 4", 2, 8));
+            newList.Add(new GameInfo(1, 5, 5));
+            newList.Add(new GameInfo(2, 10, 10));
+            newList.Add(new GameInfo(3, 3, 3));
+            newList.Add(new GameInfo(4, 2, 8));
 
             RegisteredGames reg = new RegisteredGames(newList);
             Console.Write(reg.messageIntoXML(reg));
@@ -45,7 +45,7 @@ namespace ConsoleTest
             Type typer = tempMessage.GetType();
             dynamic newMessage = Convert.ChangeType(tempMessage, typer);
             
-            Console.Write("Name: " + newMessage.name + " and role: " + newMessage.preferredRole + " and team: " + newMessage.preferredTeam);
+            Console.Write("Game ID: " + newMessage.gameID + " and role: " + newMessage.preferredRole + " and team: " + newMessage.preferredTeam);
             
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
@@ -53,8 +53,12 @@ namespace ConsoleTest
 
         static public Message xmlToMessage(String mess)
         {
-            XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), new Type[] {typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
-            typeof(GameMessage),typeof(GetGames),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame)});
+            Type[] messageTypesList = new Type[]{typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
+            typeof(GameMessage),typeof(GetGamesList),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame),
+            typeof(DropPiece),typeof(DroppingResult),typeof(GetManhattanDistance),typeof(ManhattanResult),typeof(Move),typeof(MoveResponse),
+            typeof(PickPiece),typeof(PiecePicked),typeof(TestingResult),typeof(TestPiece)};
+
+            XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), messageTypesList);
 
             StringReader textReader = new StringReader(mess);
             Message message = (Message) xmlSerial.Deserialize(textReader);

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MessageProject
 {
-    public class GetGames : Message
+    public class GetGamesList : Message
     {
-        public GetGames(){}
+        public GetGamesList(){}
     }
 }

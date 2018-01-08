@@ -11,15 +11,19 @@ namespace MessageProject
 {
     public abstract class Message
     {
+        Type[] messageTypesList = new Type[]{typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
+            typeof(GameMessage),typeof(GetGamesList),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame),
+            typeof(DropPiece),typeof(DroppingResult),typeof(GetManhattanDistance),typeof(ManhattanResult),typeof(Move),typeof(MoveResponse),
+            typeof(PickPiece),typeof(PiecePicked),typeof(TestingResult),typeof(TestPiece)};
+
         [XmlInclude(typeof(JoinGame))]
         [XmlInclude(typeof(RegisteredGames))]
         [XmlInclude(typeof(ConfirmGameRegistration))]
         //Function messageIntoXML and xmlIntoMessage are supposed to be cutted and pasted into player, master and server project files.
+
         public string messageIntoXML(Message mess)
         {
-            XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), new Type[] {typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
-            typeof(GameMessage),typeof(GetGames),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame)});
-            //XmlSerializer xmlSerial = new XmlSerializer(mess.GetType());
+            XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), messageTypesList);
 
             StringWriter textWriter = new StringWriter();
             xmlSerial.Serialize(textWriter, mess);
@@ -29,8 +33,7 @@ namespace MessageProject
 
         public Message xmlIntoMessage(String mess)
         {
-            XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), new Type[] {typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
-            typeof(GameMessage),typeof(GetGames),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame)});
+            XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), messageTypesList);
 
             StringReader textReader = new StringReader(mess);
             Message message = (Message)xmlSerial.Deserialize(textReader);
@@ -51,17 +54,25 @@ namespace MessageProject
         red
     }
 
+    public enum MovementDirection
+    {
+        up,
+        down,
+        left,
+        right
+    }
+
     public class GameInfo
     {
-        public string name { get; set; }
+        public int gameID { get; set; }
         public int blueTeamPlayers { get; set; }
         public int redTeamPlayers { get; set; }
 
         public GameInfo() { }
 
-        public GameInfo(String Name, int blue, int red)
+        public GameInfo(int gID, int blue, int red)
         {
-            name = Name;
+            gameID = gID;
             blueTeamPlayers = blue;
             redTeamPlayers = red;
         }
@@ -111,6 +122,23 @@ namespace MessageProject
             x = xx;
             y = yy;
         }
+    }
+
+    public class Area
+    {
+        public int x { get; set; }
+        public int y { get; set; }
+        public int distance { get; set; }
+
+        public Area() { }
+
+        public Area(int xx, int yy, int dist)
+        {
+            x = xx;
+            y = yy;
+            distance = dist;
+        }
+
     }
 
 }
