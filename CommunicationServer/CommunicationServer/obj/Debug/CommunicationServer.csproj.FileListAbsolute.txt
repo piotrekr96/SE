@@ -15,3 +15,5 @@ C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Deb
 C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
 C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
 C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.dll
+C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.pdb

@@ -11,7 +11,7 @@ namespace MessageProject
 {
     public abstract class Message
     {
-        Type[] messageTypesList = new Type[]{typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
+        static Type[] messageTypesList = new Type[]{typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
             typeof(GameMessage),typeof(GetGamesList),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame),
             typeof(DropPiece),typeof(DroppingResult),typeof(GetManhattanDistance),typeof(ManhattanResult),typeof(Move),typeof(MoveResponse),
             typeof(PickPiece),typeof(PiecePicked),typeof(TestingResult),typeof(TestPiece)};
@@ -21,7 +21,7 @@ namespace MessageProject
         [XmlInclude(typeof(ConfirmGameRegistration))]
         //Function messageIntoXML and xmlIntoMessage are supposed to be cutted and pasted into player, master and server project files.
 
-        public string messageIntoXML(Message mess)
+        public static string messageIntoXML(Message mess)
         {
             XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), messageTypesList);
 
@@ -31,7 +31,7 @@ namespace MessageProject
             return textWriter.ToString();
         }
 
-        public Message xmlIntoMessage(String mess)
+        public static Message xmlIntoMessage(String mess)
         {
             XmlSerializer xmlSerial = new XmlSerializer(typeof(Message), messageTypesList);
 
