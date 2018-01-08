@@ -15,6 +15,7 @@ namespace PlayerProgram
     public partial class BoardView1 : Form
     {
         int myHeight, myWidth, smallHeight;
+        Player player;
         PictureBox test = new PictureBox();
      /*   public BoardView1()
         {
@@ -26,16 +27,18 @@ namespace PlayerProgram
             PreventFlickering();
         }
         */
-        public BoardView1(int width, int tasksHeight, int goalsHeight)
+        public BoardView1(int width, int tasksHeight, int goalsHeight, Player p)
         {
             myHeight = 2 * goalsHeight + tasksHeight;
             myWidth = width;
             smallHeight = goalsHeight;
+            player = p;
             InitializeComponent();
             CreateBoard();
             AddPlayers();
             ShowPlayerGoals();
             PreventFlickering();
+           // Console.WriteLine(p.colour +" " + p.getPosX()+ " " + p.getPosY());
         }
 
         public void CreateBoard()
@@ -107,12 +110,12 @@ namespace PlayerProgram
 
         public void AddPlayers()
         {
-            Player bp = MyGlobals.players.First();
+         
             // PictureBox d = new PictureBox();
-            test.Image = bp.getBitmap();
+            test.Image = player.getBitmap();
             test.Margin = new Padding(0);
-            BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
-            MyGlobals.players.Add(bp);
+            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
+           // MyGlobals.players.Add(bp);
 
           /*  RedPlayer rp = new RedPlayer();
             PictureBox z = new PictureBox();
@@ -144,12 +147,12 @@ namespace PlayerProgram
         public bool isFreeOfPlayer(int x, int y) {
 
             // check pos of blue players
-            foreach (Player item in MyGlobals.players) {
+        /*    foreach (Player item in MyGlobals.players) {
                 if (item.getPosX() == x && item.getPosY() == y) {
                     return false;
                 }
             }
-
+*/
             // check pos of red players
            /* foreach (RedPlayer item in MyGlobals.redPlayers)
             {
@@ -212,9 +215,8 @@ namespace PlayerProgram
                         break;
                     }
                 case Keys.D:
-                    {
-                        Player bp = MyGlobals.players.First();
-                        bp.tryPlacePiece(bp.getPosX(),bp.getPosY());
+                    {  
+                        player.tryPlacePiece(player.position_x,player.position_y);
                         break;
                     }
                 case Keys.M:
@@ -233,14 +235,14 @@ namespace PlayerProgram
 
         public void MoveLeft()
         {
-            Player bp = MyGlobals.players.First();
-            bp.MoveLeft();
+           // MESSAGE, REQUEST A MOVE
+            player.MoveLeft();
 
             //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(bp.getPosX(), bp.getPosY());
+            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
             BoardLayoutPanel.Controls.Remove(c);
 
-            BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
+            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
             //bp.testDistConsole(); // just for checking
             ShowManhattanDistance();
             ShowPlayerGoals();
@@ -248,14 +250,14 @@ namespace PlayerProgram
 
         void MoveRight()
         {
-            Player bp = MyGlobals.players.First();
-            bp.MoveRight();
+            //MESSAGE, REQUEST A MOVE
+            player.MoveRight();
 
             //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(bp.getPosX(), bp.getPosY());
+            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
             BoardLayoutPanel.Controls.Remove(c);
 
-            BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
+            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
             //bp.testDistConsole(); // just for checking
             ShowManhattanDistance();
             ShowPlayerGoals();
@@ -263,14 +265,13 @@ namespace PlayerProgram
 
         void MoveUp()
         {
-            Player bp = MyGlobals.players.First();
-            bp.MoveUp();
-
+            //MESSAGE, REQUEST A MOVE
+            player.MoveUp();
             //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(bp.getPosX(), bp.getPosY());
+            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
             BoardLayoutPanel.Controls.Remove(c);
 
-            BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
+            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
             //bp.testDistConsole(); // just for checking
             ShowManhattanDistance();
             ShowPlayerGoals();
@@ -278,14 +279,13 @@ namespace PlayerProgram
 
         void MoveDown()
         {
-            Player bp = MyGlobals.players.First();
-            bp.MoveDown();
-
+            //MESSAGE, REQUEST A MOVE
+            player.MoveDown();
             //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(bp.getPosX(), bp.getPosY());
+            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
             BoardLayoutPanel.Controls.Remove(c);
 
-            BoardLayoutPanel.Controls.Add(test, bp.getPosX(), bp.getPosY());
+            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
             //bp.testDistConsole(); // just for checking
             ShowManhattanDistance();
             ShowPlayerGoals();
@@ -293,7 +293,7 @@ namespace PlayerProgram
 
         public void ShowManhattanDistance()
         {
-            Player p = MyGlobals.players.First();
+            Player p = player;
 
                 //p.computeManDist();
                 for (int i =0; i < MyGlobals.seenDistances.GetLength(0); i++)
@@ -320,7 +320,7 @@ namespace PlayerProgram
                     }
 
                     Control c = BoardLayoutPanel.GetControlFromPosition(i, j);
-                    foreach (Player item in MyGlobals.players) {
+                   /* foreach (Player item in MyGlobals.players) {
                         if (item.getPosX() == i && item.getPosY() == j)
                         {
                             continue;
@@ -330,7 +330,7 @@ namespace PlayerProgram
                         }                  
                         BoardLayoutPanel.Controls.Add(l, i, j);
                     }
-
+                    */
                 }
                 }
 
@@ -342,9 +342,9 @@ namespace PlayerProgram
         public void ShowPlayerGoals()
         {
 
-            Player p = MyGlobals.players.First();
+            //Player p = MyGlobals.players.First();
             List<Goal> myGoals;
-            if (p.colour == MessageProject.Team.blue)
+            if (player.colour == MessageProject.Team.blue)
             {
                 myGoals = MyGlobals.goalsBlue;
             }
@@ -353,7 +353,7 @@ namespace PlayerProgram
             }
 
             foreach (Goal g in myGoals) {
-                if (g.getDiscoveror() == p) {
+                if (g.getDiscoveror() == player) {
                     
                     // retrieve goal and its bitmap 
                     PictureBox temp;
