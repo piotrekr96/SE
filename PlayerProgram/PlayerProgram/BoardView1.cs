@@ -33,7 +33,7 @@ namespace PlayerProgram
             smallHeight = goalsHeight;
             InitializeComponent();
             CreateBoard();
-            //AddPlayers();
+            AddPlayers();
             ShowPlayerGoals();
             PreventFlickering();
         }
@@ -105,9 +105,9 @@ namespace PlayerProgram
 
         }
 
-      /*  public void AddPlayers()
+        public void AddPlayers()
         {
-            Player bp = new Player(MessageProject.Team.blue);
+            Player bp = MyGlobals.players.First();
             // PictureBox d = new PictureBox();
             test.Image = bp.getBitmap();
             test.Margin = new Padding(0);
@@ -119,8 +119,8 @@ namespace PlayerProgram
             z.Image = rp.getBitmap();
             BoardLayoutPanel.Controls.Add(z, rp.getPosX(), rp.getPosY());
             MyGlobals.redPlayers.Add(rp);
-           
-        } */
+           */
+        } 
 
         public void PreventFlickering()
         {
