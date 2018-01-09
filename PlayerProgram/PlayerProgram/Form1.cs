@@ -78,7 +78,7 @@ namespace PlayerProgram
             System.Diagnostics.Debug.WriteLine(newXMLmessage);
 
             // SERVER STUFF
-         /*   A: Console.Clear();
+            A: Console.Clear();
             Console.Write("Enter host IP address: ");
             string ip = Console.ReadLine();
 
@@ -108,8 +108,8 @@ namespace PlayerProgram
 
             master.Send(toBytes);
 
-            */
-
+            
+    
 
 
 
@@ -124,10 +124,11 @@ namespace PlayerProgram
             playerList.Add(newPlayer);
             Board board = new Board(12, 3, 5);
             PlayerLocation pl = new PlayerLocation(0, 0);
-         
+            //else 
+
             GameMessage gamemessage = new GameMessage(p.ID, playerList, board, pl);
-            MyGlobals.players.Add(p);
-            BoardView1 boardview = new BoardView1(gamemessage.board.width, gamemessage.board.taskAreaHeight, gamemessage.board.goalAreaHeight);
+
+            BoardView1 boardview = new BoardView1(gamemessage.board.width, gamemessage.board.taskAreaHeight, gamemessage.board.goalAreaHeight, p);
             this.Hide();
             boardview.Show();
 
