@@ -27,3 +27,6 @@ C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.cspro
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.exe
 C:\Users\Valentina\Desktop\Soft Eng\Code\SE\Client\Client\obj\Debug\Client.pdb
+C:\Users\MS\Documents\SE\Client\Client\bin\Debug\Client.exe.config
+C:\Users\MS\Documents\SE\Client\Client\obj\Debug\Client.exe
+C:\Users\MS\Documents\SE\Client\Client\obj\Debug\Client.pdb

@@ -1,0 +1,7 @@
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\bin\Debug\GameMaster.exe.config
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\bin\Debug\GameMaster.exe
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\bin\Debug\GameMaster.pdb
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.csproj.CoreCompileInputs.cache
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.exe
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.pdb
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.csprojResolveAssemblyReference.cache

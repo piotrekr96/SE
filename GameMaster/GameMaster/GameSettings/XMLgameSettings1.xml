@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<game>
+  <name>Game2</name>
+  <name>Game1</name>
+  <board_width>5</board_width>
+  <task_len>5</task_len>
+  <goal_len>2</goal_len>
+  <initial_pieces>5</initial_pieces>
+  <players_per_team>2</players_per_team>
+
+  <delay_move>300</delay_move>
+  <delay_pick>200</delay_pick>
+  <delay_drop>100</delay_drop>
+
+</game>
+
+<!-- TO DO: change logical attributes/elements -->
+<!-- TO DO: add namesapce (whatever the fuck it does) -->
+<!-- TO DO: add schema for correctness verification -->
