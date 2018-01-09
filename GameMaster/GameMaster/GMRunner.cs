@@ -17,7 +17,7 @@ namespace GM
 
             GameMaster gm = new GameMaster();
 
-            gm.ReadGameinfo("..\\..\\GameSettings\\XMLgameSettings1.xml");
+            gm.MakeGame("..\\..\\GameSettings\\XMLgameSettings1.xml");
 
             Console.ReadLine();
 

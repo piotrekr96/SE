@@ -9,15 +9,17 @@ namespace GM
 
    
 
-        public void MakeGame(DataGame data)
+        public void MakeGame(string path)
         {
             
-            game = new Game(data);
+            game = new Game(ReadGameinfo(path));
+            Console.WriteLine(game.settings.ToString());
+            
 
         }
 
 
-        public void ReadGameinfo(string fileName)
+        public DataGame ReadGameinfo(string fileName)
         {
             XmlDocument doc = new XmlDocument();
             
@@ -35,7 +37,8 @@ namespace GM
             settings.DelayMove = Int64.Parse(root.SelectSingleNode("delay_move").InnerXml);
             settings.DelayPick = Int64.Parse(root.SelectSingleNode("delay_pick").InnerXml);
             settings.DelayDrop = Int64.Parse(root.SelectSingleNode("delay_drop").InnerXml);
-            
+
+            return settings;
         }
 
         
