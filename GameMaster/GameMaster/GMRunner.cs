@@ -11,6 +11,7 @@ namespace GM
     {
         static void Main(string[] args)
         {
+            // Test
             Console.WriteLine("Hello GM!");
             Console.WriteLine("Fancy");
             int[,] ta = new int[2, 2]; // rows first!
