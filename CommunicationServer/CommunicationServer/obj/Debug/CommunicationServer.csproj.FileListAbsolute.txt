@@ -17,3 +17,12 @@ C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Deb
 C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
 C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.dll
 C:\Users\KidziaK\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.pdb
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.dll
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.pdb
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
+C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
