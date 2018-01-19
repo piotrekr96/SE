@@ -14,9 +14,9 @@ namespace GM
 {
     public class Field
     {
-        int pieceID;
-        int playerID;
-        int goalID;
+        public int pieceID;
+        public int playerID;
+        public int goalID;
 
         public Field()
         {
