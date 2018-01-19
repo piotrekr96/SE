@@ -30,3 +30,16 @@ C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SE-master\PlayerProgram\P
 C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Form1.resources
 C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Properties.Resources.resources
 C:\Users\Piotrek\Documents\Visual Studio 2015\Projects\SE-master\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.GenerateResource.Cache
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csprojResolveAssemblyReference.cache
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.BoardView1.resources
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Form1.resources
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Properties.Resources.resources
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.GenerateResource.Cache
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.CoreCompileInputs.cache
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe.config
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.pdb
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\Message.dll
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\Message.pdb

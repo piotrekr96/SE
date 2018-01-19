@@ -61,15 +61,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Goal.cs" />
-    <Compile Include="Messages\ConfirmGameRegistration.cs" />
-    <Compile Include="Messages\ConfirmJoiningGame.cs" />
-    <Compile Include="Messages\GameMessage.cs" />
-    <Compile Include="Messages\GetGames.cs" />
-    <Compile Include="Messages\JoinGame.cs" />
-    <Compile Include="Messages\MessageProject.cs" />
-    <Compile Include="Messages\RegisteredGames.cs" />
-    <Compile Include="Messages\RegisterGame.cs" />
-    <Compile Include="Messages\RejectJoiningGame.cs" />
     <Compile Include="MyGlobals.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Player.cs" />
@@ -127,6 +118,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\YG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Message\Message\MessageProject.csproj">
+      <Project>{47c8bca2-06a5-4a20-b0c1-66ee2ee0d00d}</Project>
+      <Name>MessageProject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
