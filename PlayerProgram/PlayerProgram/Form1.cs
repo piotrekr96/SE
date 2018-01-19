@@ -192,10 +192,10 @@ namespace PlayerProgram
 
                     playerID = msg.playerID;
                     gameID = msg.gameID;
-                    playerRole = msg.role;
-                    playerTeam = msg.Team;
+                    //playerRole = msg.role;
+                    //playerTeam = msg.Team;
 
-                    Console.Write("Player id " + playerID + " gameID " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
+                    System.Diagnostics.Debug.Write("Player id " + playerID + " gameID " + gameID );
                     break;
                 case 2:
 
