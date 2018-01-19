@@ -12,6 +12,8 @@ namespace CommunicationServer
 {
     class Server
     {
+        
+
         static Dictionary<Type, int> typeDict = new Dictionary<Type, int>
         {
             {typeof(ConfirmGameRegistration),0},
@@ -24,6 +26,7 @@ namespace CommunicationServer
             {typeof(RegisterGame),7}
         };
 
+        static int gmID;
         static Socket listenerSocket;
         static List<ClientData> clients;
 
@@ -101,13 +104,38 @@ namespace CommunicationServer
                 case 0:
                     
                     break;
+
                 case 1:
                     
                     break;
-                case 2:
-                    
+
+                case 3:
+                    Player newPlayer = new Player();
+                    newPlayer.role = Role.leader;
+                    newPlayer.team = Team.blue;
+                    ConfirmJoiningGame confirmJoining = new ConfirmJoiningGame(10, 10, "", newPlayer);
+                    string confirmJoiningString = Message.messageIntoXML(confirmJoining);
+
+
+                    byte[] sendJoin = Encoding.ASCII.GetBytes(confirmJoiningString);
+                    client.clientSocket.Send(sendJoin);
                     break;
+
+                case 5:
+                    int id = msg.gameID();
+                    gmID = id;
+                    client.id = id;
+
+                    ConfirmGameRegistration confirmation = new ConfirmGameRegistration(id);
+                    string conf = Message.messageIntoXML(confirmation);
+
+                    byte[] toSend = Encoding.ASCII.GetBytes(conf);
+                    client.clientSocket.Send(toSend);
+                    break;
+
                 default:
+                    byte[] sendEmpty = Encoding.ASCII.GetBytes("");
+                    client.clientSocket.Send(sendEmpty);
                     break;
             }
 
@@ -119,18 +147,18 @@ namespace CommunicationServer
     {
         public Socket clientSocket;
         public Thread clientThread;
-        public string id;
+        public int id;
 
         public ClientData()
         {
-            id = Guid.NewGuid().ToString();
+            // id = Guid.NewGuid();
             clientThread = new Thread(Server.DataIn);
             clientThread.Start(this);
         }
         public ClientData(Socket clientSocket)
         {
             this.clientSocket = clientSocket;
-            id = Guid.NewGuid().ToString();
+            //id = Guid.NewGuid();
             clientThread = new Thread(Server.DataIn);
             clientThread.Start(this);
         }
