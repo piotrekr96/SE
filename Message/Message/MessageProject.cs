@@ -19,6 +19,21 @@ namespace MessageProject
         [XmlInclude(typeof(JoinGame))]
         [XmlInclude(typeof(RegisteredGames))]
         [XmlInclude(typeof(ConfirmGameRegistration))]
+        [XmlInclude(typeof(ConfirmJoiningGame))]
+        [XmlInclude(typeof(GameMessage))]
+        [XmlInclude(typeof(GetGamesList))]
+        [XmlInclude(typeof(RegisterGame))]
+        [XmlInclude(typeof(RejectJoiningGame))]
+        [XmlInclude(typeof(DropPiece))]
+        [XmlInclude(typeof(DroppingResult))]
+        [XmlInclude(typeof(GetManhattanDistance))]
+        [XmlInclude(typeof(ManhattanResult))]
+        [XmlInclude(typeof(Move))]
+        [XmlInclude(typeof(MoveResponse))]
+        [XmlInclude(typeof(PickPiece))]
+        [XmlInclude(typeof(PiecePicked))]
+        [XmlInclude(typeof(TestingResult))]
+        [XmlInclude(typeof(TestPiece))]
         //Function messageIntoXML and xmlIntoMessage are supposed to be cutted and pasted into player, master and server project files.
 
         public static string messageIntoXML(Message mess)

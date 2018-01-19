@@ -10,18 +10,16 @@ namespace MessageProject
     {
         public int gameID { get; set; }
         public int playerID { get; set; }
-        public string privateGUID { get; set; }
         public Player player { get; set; }
 
         public ConfirmJoiningGame() { }
 
-        public ConfirmJoiningGame(int gID, int pID, string privID, Player pla)
+        public ConfirmJoiningGame(int gID, int pID, Player pla)
         {
             player = new Player();
 
             gameID = gID;
             playerID = pID;
-            privateGUID = privID;
             player.playerID = pla.playerID;
             player.role = pla.role;
             player.team = pla.team;

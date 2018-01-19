@@ -9,15 +9,15 @@ namespace MessageProject
     public class RegisterGame : Message
     {
 
-        public string name { get; set; }
+        public int gameID { get; set; }
         public int blueTeamPlayers { get; set; }
         public int redTeamPlayers { get; set; }
 
         public RegisterGame() { }
 
-        public RegisterGame(String Name, int blue, int red)
+        public RegisterGame(int gID, int blue, int red)
         {
-            name = Name;
+            gameID = gID;
             blueTeamPlayers = blue;
             redTeamPlayers = red;
         }
