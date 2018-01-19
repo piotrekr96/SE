@@ -21,30 +21,32 @@ namespace GM
 
             gm.MakeGame("..\\..\\GameSettings\\XMLgameSettings1.xml");
 
+
+
             // dir = 1 -> left
-            for(int i=0; i < 5; i++)
-            {
-                gm.game.HandleMoveRequest(1, 1);
+            //for(int i=0; i < 5; i++)
+            //{
+            //    gm.game.HandleMoveRequest(1, 1);
 
-            }
-            // dir = 2 -> up 
-            // player 1 is blue, so he's bottom!
-            for (int i = 0; i < 5; i++)
-            {
-                gm.game.HandleMoveRequest(1, 2);
+            //}
+            //// dir = 2 -> up 
+            //// player 1 is blue, so he's bottom!
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    gm.game.HandleMoveRequest(1, 2);
 
-            }
+            //}
 
-            Console.WriteLine();
+            //Console.WriteLine();
             
-            // dir = 3 -> more right
-            gm.game.HandleMoveRequest(2, 3);
+            //// dir = 3 -> more right
+            //gm.game.HandleMoveRequest(2, 3);
 
-            for (int i = 0; i < 10; i++)
-            {
-                gm.game.HandleMoveRequest(2, 2);
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    gm.game.HandleMoveRequest(2, 2);
 
-            }
+            //}
 
             Console.ReadLine();
 

@@ -66,7 +66,7 @@ namespace GM
             else { return "blue"; }
         }
 
-        private Tuple<int> MakePlayer(string preferredTeam)
+        public Tuple<int> MakePlayer(string preferredTeam)
         {
             // Returns new ID associated with player created
             // NOTE: Deserializer should check if all fields are in correct format! team only blue/red

@@ -9,7 +9,7 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
-
+using System.Text;
 
 namespace GM
 {
@@ -49,44 +49,75 @@ namespace GM
 
         public void MakeGame(string path)
         {
-            
+            Socket csSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint ip = new IPEndPoint(IPAddress.Parse(GetIP4Address()), 4242);
+            csSocket.Bind(ip);
+
             Game newGame = new Game(ReadGameinfo(path));
             Console.WriteLine(game.settings.ToString());
             int newGameID = gamesDictionary.Count + 1; // Possibly predefined gameid's ?
             gamesDictionary.Add(newGameID, newGame);
 
             string makeGameResponse = MakeGameCreationResponse(newGameID);
+
+            byte[] toBytes = Encoding.ASCII.GetBytes(makeGameResponse);
+
+            csSocket.Send(toBytes);
             // send 
-            
+
 
         }
 
-        public void HandleRequest(object socket)
+        
+        public void HandleRequest(object cs)
         {
             // Already in new thread, ThreadStart starting mathed here !!!
             // Deserialize message
             // If message P2P - handle it here, else delegate to specific game.handleMoveReq/...
             // Decide upon move/pick/drop - message type
             // formulate response, type defined by message type from input and return values
-
-            // get message from socket
-
-            Message tempMessage = Messages.Message.xmlIntoMessage(messageString);
-            Type typer = tempMessage.GetType();
-            dynamic newMessage = Convert.ChangeType(tempMessage, typer);
-            // Selecting action on message type
-            int gameID = -1, playerID = -1;
-            switch(newMessage) // c# 7.0 -> switch on type
+            Socket clientSocket = (Socket)cs;
+            byte[] buffer;
+            int readBytes;
+            try
             {
-                case Move msg1:
-                    gameID = msg1.gameID;
-                    Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
-                    string response = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
-                    // send response
-                    break;
-                case JoinGame msg2:
-                    gameID = msg2.gameID;
-                    break;
+                buffer = new byte[clientSocket.SendBufferSize];
+                readBytes = clientSocket.Receive(buffer);
+
+                if (readBytes > 0) // assume all is read at once
+                {
+                    string messageString = Encoding.ASCII.GetString(buffer);
+
+
+                    // get message from socket
+
+                    Message tempMessage = Messages.Message.xmlIntoMessage(messageString);
+                    Type typer = tempMessage.GetType();
+                    dynamic newMessage = Convert.ChangeType(tempMessage, typer);
+                    // Selecting action on message type
+                    int gameID = -1, playerID = -1;
+                    switch(newMessage) // c# 7.0 -> switch on type
+                    {
+                        case Move msg1:
+                            gameID = msg1.gameID;
+                            Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
+                            string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
+                            // send response
+                            break;
+                        case JoinGame msg2:
+                            gameID = msg2.gameID;
+                            Tuple<int> newPlayerID = gamesDictionary[msg2.gameID].MakePlayer((msg2.preferredTeam.ToString()));
+                            string response2 = MakeJoinGameResponse(newPlayerID);
+                            break;
+
+                    }
+
+
+                }
+            }
+
+            catch
+            {
 
             }
         }
@@ -102,6 +133,11 @@ namespace GM
             RegisterGame responseObj = new RegisterGame(gamesDictionary[gameID].gameName, gamesDictionary[gameID].settings.PlayersPerTeam, gamesDictionary[gameID].settings.PlayersPerTeam);
             // The same ammount of players in both teams atm!
             return Messages.Message.messageIntoXML(responseObj);
+        }
+
+        private string MakeJoinGameResponse(Tuple<int> playerID)
+        {
+            return "";
         }
 
         static public DataGame ReadGameinfo(string fileName)

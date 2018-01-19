@@ -50,8 +50,8 @@ namespace Messages
 
     public enum Team
     {
-        blue,
-        red
+        blue = 1,
+        red = 2
     }
 
     public enum MovementDirection
