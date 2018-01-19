@@ -4,6 +4,12 @@ using Messages;
 using System.IO;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Net.Sockets;
+using System.Net;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
+
 
 namespace GM
 {
@@ -16,10 +22,29 @@ namespace GM
 
         public void launch()
         {
+            // set threadpool initial params
+            TcpListener listener = new TcpListener(IPAddress.Parse(GetIP4Address()), 4240);
+            listener.Start();
             while(true)
             {
                 // Gets socket, aunches thread with it as param and HandleRequest
+                // read until delimiter
+                Socket s = listener.AcceptSocket();
+                ThreadPool.QueueUserWorkItem(HandleRequest, s);
+
             }
+        }
+
+        public static string GetIP4Address()
+        {
+            IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
+
+            foreach (IPAddress i in ips)
+            {
+                if (i.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) return i.ToString();
+            }
+
+            return "";
         }
 
         public void MakeGame(string path)
@@ -30,18 +55,22 @@ namespace GM
             int newGameID = gamesDictionary.Count + 1; // Possibly predefined gameid's ?
             gamesDictionary.Add(newGameID, newGame);
 
-
+            string makeGameResponse = MakeGameCreationResponse(newGameID);
+            // send 
             
 
         }
 
-        public void HandleRequest(string socket, string messageString)
+        public void HandleRequest(object socket)
         {
             // Already in new thread, ThreadStart starting mathed here !!!
             // Deserialize message
             // If message P2P - handle it here, else delegate to specific game.handleMoveReq/...
             // Decide upon move/pick/drop - message type
             // formulate response, type defined by message type from input and return values
+
+            // get message from socket
+
             Message tempMessage = Messages.Message.xmlIntoMessage(messageString);
             Type typer = tempMessage.GetType();
             dynamic newMessage = Convert.ChangeType(tempMessage, typer);
@@ -68,6 +97,12 @@ namespace GM
             return Messages.Message.messageIntoXML(responseObj);
         }
 
+        private string MakeGameCreationResponse(int gameID)
+        {
+            RegisterGame responseObj = new RegisterGame(gamesDictionary[gameID].gameName, gamesDictionary[gameID].settings.PlayersPerTeam, gamesDictionary[gameID].settings.PlayersPerTeam);
+            // The same ammount of players in both teams atm!
+            return Messages.Message.messageIntoXML(responseObj);
+        }
 
         static public DataGame ReadGameinfo(string fileName)
         {

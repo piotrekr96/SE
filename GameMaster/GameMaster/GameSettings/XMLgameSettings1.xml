@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <game>
-  <name>Game2</name>
   <name>Game1</name>
   <board_width>5</board_width>
   <task_len>5</task_len>
