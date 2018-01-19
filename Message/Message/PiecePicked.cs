@@ -9,11 +9,13 @@ namespace MessageProject
     public class PiecePicked : Message
     {
         public int playerID { get; set; }
+        public bool isPiecePicked { get; set; }
 
         public PiecePicked() { }
-        public PiecePicked(int pID)
+        public PiecePicked(int pID, bool ifPicked)
         {
             playerID = pID;
+            isPiecePicked = ifPicked;
         }
 
     }

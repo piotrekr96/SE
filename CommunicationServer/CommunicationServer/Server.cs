@@ -115,7 +115,7 @@ namespace CommunicationServer
                     Player newPlayer = new Player();
                     newPlayer.role = Role.leader;
                     newPlayer.team = Team.blue;
-                    ConfirmJoiningGame confirmJoining = new ConfirmJoiningGame(10, 10, "", newPlayer);
+                    ConfirmJoiningGame confirmJoining = new ConfirmJoiningGame(10, 10, newPlayer);
                     string confirmJoiningString = Message.messageIntoXML(confirmJoining);
 
 
