@@ -9,6 +9,7 @@ namespace GM
     public class Game
     {
         public DataGame settings;
+        public string gameName;
         public Field[,] board;
         Dictionary<int, Player> playersDictionary; // Fast mapping from XML message player ID to actual object
         List<int> redTeam;
@@ -23,6 +24,7 @@ namespace GM
             playersDictionary = new Dictionary<int, Player>(2*settings.PlayersPerTeam);
             redTeam = new List<int>(settings.PlayersPerTeam); // used for broadcast ip reference, fast lookup without plDict iterating
             blueTeam = new List<int>(settings.PlayersPerTeam);
+            gameName = settings.Name;
 
 
             // Only when board is ready and set up with fields, start adding players
@@ -64,7 +66,7 @@ namespace GM
             else { return "blue"; }
         }
 
-        private Tuple<int> MakePlayer(string preferredTeam)
+        public Tuple<int> MakePlayer(string preferredTeam)
         {
             // Returns new ID associated with player created
             // NOTE: Deserializer should check if all fields are in correct format! team only blue/red
