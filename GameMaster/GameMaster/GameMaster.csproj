@@ -57,34 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages\ConfirmGameRegistration.cs" />
-    <Compile Include="Messages\ConfirmJoiningGame.cs" />
     <Compile Include="DataGame.cs" />
-    <Compile Include="Messages\DropPiece.cs" />
-    <Compile Include="Messages\DroppingResult.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameMaster.cs" />
-    <Compile Include="Messages\GameMessage.cs" />
-    <Compile Include="Messages\GetGamesList.cs" />
-    <Compile Include="Messages\GetManhattanDistance.cs" />
     <Compile Include="GMRunner.cs" />
     <Compile Include="Goal.cs" />
-    <Compile Include="Messages\JoinGame.cs" />
-    <Compile Include="Messages\ManhattanResult.cs" />
-    <Compile Include="Messages\MessageProject.cs" />
-    <Compile Include="Messages\Move.cs" />
-    <Compile Include="Messages\MoveResponse.cs" />
-    <Compile Include="Messages\PickPiece.cs" />
     <Compile Include="Piece.cs" />
-    <Compile Include="Messages\PiecePicked.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Messages\RegisteredGames.cs" />
-    <Compile Include="Messages\RegisterGame.cs" />
-    <Compile Include="Messages\RejectJoiningGame.cs" />
-    <Compile Include="Messages\TestingResult.cs" />
-    <Compile Include="Messages\TestPiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -118,6 +99,12 @@
   <ItemGroup>
     <Folder Include="bin\Release\" />
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Message\Message\MessageProject.csproj">
+      <Project>{47c8bca2-06a5-4a20-b0c1-66ee2ee0d00d}</Project>
+      <Name>MessageProject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -66,9 +66,9 @@ namespace GM
             else { return "blue"; }
         }
 
-        public Tuple<int> MakePlayer(string preferredTeam)
+        public Tuple<int, string> MakePlayer(string preferredTeam)
         {
-            // Returns new ID associated with player created
+            // Returns new ID associated with player created, his team
             // NOTE: Deserializer should check if all fields are in correct format! team only blue/red
             if(playersDictionary.Count() >= 2*settings.PlayersPerTeam)
             {
@@ -85,10 +85,11 @@ namespace GM
             string teamToAdd = CheckTeamPreference(preferredTeam);
             if(teamToAdd.Equals("red")) { redTeam.Add(newPlayerID); }
             else { blueTeam.Add(newPlayerID); }
-            
+
+            newPlayer.team = teamToAdd;
             // Add PosX, PosY, randomize, update both playerobj and field containing player info
             // Global update when dict full, just before sending Game message to start it
-            return Tuple.Create(newPlayerID);
+            return Tuple.Create(newPlayerID, teamToAdd);
         }
 
         // Board restrictions check (board size, team restrictions) - edge cases? 

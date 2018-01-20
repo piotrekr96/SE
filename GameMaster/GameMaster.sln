@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameMaster", "GameMaster\GameMaster.csproj", "{072BAB4E-EB62-4735-ACE9-74EE94933890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProject", "..\Message\Message\MessageProject.csproj", "{47C8BCA2-06A5-4A20-B0C1-66EE2EE0D00D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{072BAB4E-EB62-4735-ACE9-74EE94933890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{072BAB4E-EB62-4735-ACE9-74EE94933890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{072BAB4E-EB62-4735-ACE9-74EE94933890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47C8BCA2-06A5-4A20-B0C1-66EE2EE0D00D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C8BCA2-06A5-4A20-B0C1-66EE2EE0D00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C8BCA2-06A5-4A20-B0C1-66EE2EE0D00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C8BCA2-06A5-4A20-B0C1-66EE2EE0D00D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

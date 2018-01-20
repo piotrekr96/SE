@@ -1,6 +1,5 @@
 using System;
 using System.Xml;
-using Messages;
 using System.IO;
 using System.Xml.Serialization;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Text;
+using MessageProject;
 
 namespace GM
 {
@@ -23,6 +23,7 @@ namespace GM
         public void launch()
         {
             // set threadpool initial params
+
             TcpListener listener = new TcpListener(IPAddress.Parse(GetIP4Address()), 4240);
             listener.Start();
             while(true)
@@ -91,7 +92,7 @@ namespace GM
 
                     // get message from socket
 
-                    Message tempMessage = Messages.Message.xmlIntoMessage(messageString);
+                    Message tempMessage = MessageProject.Message.xmlIntoMessage(messageString);
                     Type typer = tempMessage.GetType();
                     dynamic newMessage = Convert.ChangeType(tempMessage, typer);
                     // Selecting action on message type
@@ -106,8 +107,8 @@ namespace GM
                             break;
                         case JoinGame msg2:
                             gameID = msg2.gameID;
-                            Tuple<int> newPlayerID = gamesDictionary[msg2.gameID].MakePlayer((msg2.preferredTeam.ToString()));
-                            string response2 = MakeJoinGameResponse(newPlayerID);
+                            Tuple<int, string> newPlayer = gamesDictionary[msg2.gameID].MakePlayer((msg2.preferredTeam.ToString()));
+                            string response2 = MakeJoinGameResponse(newPlayer);
                             break;
 
                     }
@@ -125,18 +126,19 @@ namespace GM
         private string MakeMoveResponse(int playerID, Tuple<int, int> coordinates)
         {
             MoveResponse responseObj = new MoveResponse(playerID, new PlayerLocation(coordinates.Item2, coordinates.Item1)); // tupple in array format Y, X
-            return Messages.Message.messageIntoXML(responseObj);
+            return MessageProject.Message.messageIntoXML(responseObj);
         }
 
         private string MakeGameCreationResponse(int gameID)
         {
-            RegisterGame responseObj = new RegisterGame(gamesDictionary[gameID].gameName, gamesDictionary[gameID].settings.PlayersPerTeam, gamesDictionary[gameID].settings.PlayersPerTeam);
+            RegisterGame responseObj = new RegisterGame(gamesDictionary[gameID].settings.PlayersPerTeam, gamesDictionary[gameID].settings.PlayersPerTeam);
             // The same ammount of players in both teams atm!
-            return Messages.Message.messageIntoXML(responseObj);
+            return MessageProject.Message.messageIntoXML(responseObj);
         }
 
-        private string MakeJoinGameResponse(Tuple<int> playerID)
+        private string MakeJoinGameResponse(Tuple<int, string> newPlayer)
         {
+            
             return "";
         }
 
