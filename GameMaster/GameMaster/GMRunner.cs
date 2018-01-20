@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using Messages;
+using MessageProject;
 
 namespace GM
 {
@@ -14,12 +14,13 @@ namespace GM
         {            
             // Test
             Console.WriteLine("Hello GM!");
-            Console.WriteLine("Fancy");
-            int[,] ta = new int[2, 2]; // rows first!
 
             GameMaster gm = new GameMaster();
 
-            gm.MakeGame("..\\..\\GameSettings\\XMLgameSettings1.xml");
+
+
+
+            gm.launch();
 
 
 

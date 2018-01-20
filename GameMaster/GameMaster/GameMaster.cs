@@ -15,24 +15,38 @@ namespace GM
 {
     class GameMaster
     {
-        public Game game; // later into list / dic with ID's
-        // public only for now, later Game object actions will be handled inside by threads
-        // If multiple games will be handled - thread start method must be here sincce game ID has to be extracted prior to delegating to specific game object
-        public Dictionary<int, Game> gamesDictionary;
+        private class GameState
+        {
+            public bool gameStarted;
+            public bool gameEnded;
+        }
+
+        public Game game;       
+        int listenerPortNumber = 5000;
+        public string serverIp;
+        public int serverPort = 5100;
+        GameState gameState;
 
         public void launch()
         {
+            serverIp = GetIP4Address();
             // set threadpool initial params
+            ThreadPool.SetMinThreads(3, 3);
+            ThreadPool.SetMaxThreads(10, 10);
 
-            TcpListener listener = new TcpListener(IPAddress.Parse(GetIP4Address()), 4240);
+            MakeGame("..\\..\\GameSettings\\XMLgameSettings1.xml");
+
+            RegisterGame();
+
+            // Start listening for Game related connections (assumes game was registered)
+            Console.WriteLine("GM started listening...");
+            TcpListener listener = new TcpListener(IPAddress.Parse(GetIP4Address()), listenerPortNumber);
             listener.Start();
             while(true)
             {
-                // Gets socket, aunches thread with it as param and HandleRequest
-                // read until delimiter
-                Socket s = listener.AcceptSocket();
-                ThreadPool.QueueUserWorkItem(HandleRequest, s);
-
+                // Gets socket, launches thread with it as param and HandleRequest which deserializes it
+                Socket newConnectionSocket = listener.AcceptSocket();
+                ThreadPool.QueueUserWorkItem(HandleRequest, newConnectionSocket);
             }
         }
 
@@ -50,26 +64,69 @@ namespace GM
 
         public void MakeGame(string path)
         {
-            Socket csSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint ip = new IPEndPoint(IPAddress.Parse(GetIP4Address()), 4242);
-            csSocket.Bind(ip);
+            // Responsible for initializing the only game that GM can have with passed config file and ID 1
 
-            Game newGame = new Game(ReadGameinfo(path));
+
+            // Only 1 game at once
+            game = new Game(ReadGameInfo(path));
             Console.WriteLine(game.settings.ToString());
-            int newGameID = gamesDictionary.Count + 1; // Possibly predefined gameid's ?
-            gamesDictionary.Add(newGameID, newGame);
 
-            string makeGameResponse = MakeGameCreationResponse(newGameID);
+            int newGameID = 1;
+            game.gameId = newGameID;
 
-            byte[] toBytes = Encoding.ASCII.GetBytes(makeGameResponse);
-
-            csSocket.Send(toBytes);
-            // send 
-
-
+            gameState = new GameState();
+            gameState.gameStarted = false;
+            gameState.gameEnded = false;
+           
         }
 
-        
+        public void RegisterGame()
+        {
+            // Registers game to the CS
+            string registrationXml = MakeGameCreationMessage();
+            Socket gmSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            byte[] buffer = new byte[gmSock.SendBufferSize];
+            buffer = Encoding.ASCII.GetBytes(registrationXml);
+
+            IPEndPoint localIp = new IPEndPoint(IPAddress.Parse(GetIP4Address()), listenerPortNumber); // thats local port
+            IPEndPoint remote = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
+            gmSock.Bind(localIp);
+            gmSock.Connect(remote);
+            gmSock.Send(buffer);
+
+            while (true)
+            {
+                // read single response message
+                byte[] bufferIn = new byte[gmSock.SendBufferSize];
+                int readbytes = gmSock.Receive(bufferIn); 
+
+
+                if (readbytes > 0)
+                {
+                    string messageString = Encoding.ASCII.GetString(bufferIn);
+                    Message tempMessage = MessageProject.Message.xmlIntoMessage(messageString);
+                    Type typer = tempMessage.GetType();
+                    dynamic newMessage = Convert.ChangeType(tempMessage, typer);
+
+                    if(newMessage.GetType().ToString().Equals("MessageProject.ConfirmGameRegistration"))
+                    {
+                        Console.WriteLine("Response message type correct! game registered with id: {0}", ((ConfirmGameRegistration)newMessage).gameID);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Message received(response): {0}", messageString);
+                        Console.WriteLine(newMessage.GetType().ToString());
+                        Console.WriteLine("Response type incompatible!");
+                    }
+
+                    break;
+                }
+            }
+            // The same port and IP will be reused in main listener
+            gmSock.Disconnect(false);
+            gmSock.Close();
+        }
+
         public void HandleRequest(object cs)
         {
             // Already in new thread, ThreadStart starting mathed here !!!
@@ -101,14 +158,14 @@ namespace GM
                     {
                         case Move msg1:
                             gameID = msg1.gameID;
-                            Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
-                            string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
+                            // Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
+                            // string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
                             // send response
                             break;
                         case JoinGame msg2:
                             gameID = msg2.gameID;
-                            Tuple<int, string> newPlayer = gamesDictionary[msg2.gameID].MakePlayer((msg2.preferredTeam.ToString()));
-                            string response2 = MakeJoinGameResponse(newPlayer);
+                            // Tuple<int, string> newPlayer = gamesDictionary[msg2.gameID].MakePlayer((msg2.preferredTeam.ToString()));
+                            // string response2 = MakeJoinGameResponse(newPlayer);
                             break;
 
                     }
@@ -127,11 +184,13 @@ namespace GM
         {
             MoveResponse responseObj = new MoveResponse(playerID, new PlayerLocation(coordinates.Item2, coordinates.Item1)); // tupple in array format Y, X
             return MessageProject.Message.messageIntoXML(responseObj);
+
         }
 
-        private string MakeGameCreationResponse(int gameID)
+        private string MakeGameCreationMessage()
         {
-            RegisterGame responseObj = new RegisterGame(gamesDictionary[gameID].settings.PlayersPerTeam, gamesDictionary[gameID].settings.PlayersPerTeam);
+            // for main game only
+            RegisterGame responseObj = new RegisterGame(game.gameId, game.settings.PlayersPerTeam, game.settings.PlayersPerTeam);
             // The same ammount of players in both teams atm!
             return MessageProject.Message.messageIntoXML(responseObj);
         }
@@ -142,8 +201,9 @@ namespace GM
             return "";
         }
 
-        static public DataGame ReadGameinfo(string fileName)
+        static public DataGame ReadGameInfo(string fileName)
         {
+            // Deserializes XML with game config
             XmlDocument doc = new XmlDocument();
             
             doc.Load(fileName);

@@ -5,3 +5,5 @@ C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.csproj.CoreC
 C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.exe
 C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.pdb
 C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.csprojResolveAssemblyReference.cache
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\bin\Debug\Message.dll
+C:\Users\MS\Documents\SE\GameMaster\GameMaster\bin\Debug\Message.pdb

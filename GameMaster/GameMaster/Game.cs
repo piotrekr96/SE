@@ -10,6 +10,7 @@ namespace GM
     {
         public DataGame settings;
         public string gameName;
+        public int gameId;
         public Field[,] board;
         Dictionary<int, Player> playersDictionary; // Fast mapping from XML message player ID to actual object
         List<int> redTeam;

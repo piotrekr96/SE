@@ -26,9 +26,9 @@ namespace GM
 
         public override string ToString()
         {
-            
 
-            return "Name: " + Name + " BoardWidth: " + BoardWidth.ToString() + " TaskLen: " + TaskLen.ToString() + " GoalLen: " + GoalLen.ToString() + " InitialPieces: " + InitialPieces.ToString() + 
+
+            return "Name: " + Name  + " BoardWidth: " + BoardWidth.ToString() + " TaskLen: " + TaskLen.ToString() + " GoalLen: " + GoalLen.ToString() + " InitialPieces: " + InitialPieces.ToString() + 
                 " PlayersPerTeam: " + PlayersPerTeam.ToString() + " DelayMove: " + DelayMove.ToString() + " DelayPick: " + DelayPick.ToString() + " DelayDrop: " + DelayDrop.ToString();
         }
 
