@@ -26,3 +26,12 @@ C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug
 C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
 C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
 C:\Users\stecm\Source\Repos\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.dll
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.pdb
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
+H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb

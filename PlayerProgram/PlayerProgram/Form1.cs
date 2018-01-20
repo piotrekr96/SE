@@ -44,7 +44,7 @@ namespace PlayerProgram
         private void GetGamesButton_Click(object sender, EventArgs e)
         {
             GetGamesList getgames = new GetGamesList();
-            string XMLmessage = messageIntoXML(getgames);
+            string XMLmessage = MessageProject.Message.messageIntoXML(getgames);
             // SERVER STUFF
 
             List<GameInfo> newList = new List<GameInfo>();
@@ -62,34 +62,12 @@ namespace PlayerProgram
             }
         }
 
-        public string messageIntoXML(MessageProject.Message mess)
-        {
-            XmlSerializer xmlSerial = new XmlSerializer(typeof(MessageProject.Message), new Type[] {typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
-            typeof(GameMessage),typeof(GetGamesList),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame)});
-            //XmlSerializer xmlSerial = new XmlSerializer(mess.GetType());
-
-            StringWriter textWriter = new StringWriter();
-            xmlSerial.Serialize(textWriter, mess);
-
-            return textWriter.ToString();
-        }
-
-        public MessageProject.Message xmlIntoMessage(String mess)
-        {
-            XmlSerializer xmlSerial = new XmlSerializer(typeof(MessageProject.Message), new Type[] {typeof(JoinGame),typeof(ConfirmGameRegistration),typeof(ConfirmJoiningGame),
-            typeof(GameMessage),typeof(GetGamesList),typeof(RegisteredGames),typeof(RegisterGame),typeof(RejectJoiningGame)});
-
-            StringReader textReader = new StringReader(mess);
-            MessageProject.Message message = (MessageProject.Message)xmlSerial.Deserialize(textReader);
-
-            return message;
-        }
 
         private void JoinButton_Click(object sender, EventArgs e)
         {
            // int index = GetGamesBOX.SelectedIndex;
             JoinGame joingame = new JoinGame(2,Role.leader,Team.red);
-            string newXMLmessage = messageIntoXML(joingame);
+            string newXMLmessage = MessageProject.Message.messageIntoXML(joingame);
           //  System.Diagnostics.Debug.WriteLine(newXMLmessage);
 
             // SERVER STUFF
@@ -192,10 +170,17 @@ namespace PlayerProgram
 
                     playerID = msg.playerID;
                     gameID = msg.gameID;
-                    playerRole = msg.role;
-                    playerTeam = msg.Team;
+                    try
+                    {
+                        playerRole = msg.player.role;
+                        playerTeam = msg.player.team;
+                    }
+                    catch
+                    {
+                        Console.Write("Fuck you");
+                    }
 
-                    Console.Write("Player id " + playerID + " gameID " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
+                    System.Diagnostics.Debug.Write("Player id " + playerID + " gameID " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
                     break;
                 case 2:
 

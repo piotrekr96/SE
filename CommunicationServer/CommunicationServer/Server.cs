@@ -54,6 +54,8 @@ namespace CommunicationServer
 
         public static void DataIn(object clientData)
         {
+            Console.Write("Connection Established \n");
+
             ClientData client = (ClientData)clientData;
             Socket clientSocket = client.clientSocket;
 
