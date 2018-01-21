@@ -162,11 +162,11 @@ namespace GM
                             buffer = Encoding.ASCII.GetBytes(response2);
                             gmSocket.Send(buffer);
 
-                            // After reject/confirm was sent, verify if the game has just been started (code -999 as player ID)
-                            //if(newPlayer.Item1 == -999)
+                            //After reject/ confirm was sent, verify if the game has just been started(code - 999 as player ID)
+                            //if (null == newPlayer)
                             //{
                             //    // Game just started!
-                            //   
+
                             //    ThreadPool.QueueUserWorkItem(StartGame, 100); // random object passed
                             //}
                             break;
@@ -208,6 +208,7 @@ namespace GM
             }
             else
             {
+                // or null
                 // negative value as newPlayerId -> failure of player making, teams full
                 RejectJoiningGame responseObj = new RejectJoiningGame(game.gameId);
                 return MessageProject.Message.messageIntoXML(responseObj);
@@ -220,9 +221,24 @@ namespace GM
             {
                 lock(game.board)
                 {
-                    for (int i=1; i<game.playersDictionary.Count(); i++)
-                    {
+                    Random rand = new Random();
+                    List<Tuple<int, int>> coordinates = new List<Tuple<int, int>>(); // Y, X pairs
 
+                    for(int y = game.settings.GoalLen; y<game.settings.TaskLen + game.settings.GoalLen; y++)
+                    {
+                        for(int x=0; x< game.settings.BoardWidth; x++)
+                        {
+                            Tuple<int, int> newCoord = new Tuple<int, int>(y, x);
+                            coordinates.Add(newCoord);
+                        }
+                    }
+                    // Fix players positions
+                    for (int i=1; i<=game.playersDictionary.Count(); i++)
+                    {
+                        int indexToPop = GetRandomValue(coordinates.Count(), rand);
+                        Tuple<int, int> randCoordinate = coordinates.ElementAt(indexToPop);
+                        coordinates.RemoveAt(indexToPop);
+                        Console.WriteLine("Coordinate picked: Y={0}, X={1}", randCoordinate.Item1, randCoordinate.Item2);
                     }
                 }
                 // Make all players positions, fields & goals
