@@ -123,11 +123,12 @@ namespace GM
                 if (playersDictionary.Count() >= 2 * settings.PlayersPerTeam)
                 {
                     Console.WriteLine("Reached players limit. Starting the game.");
-                    lock(gameState)
-                    {
-                        gameState.gameStarted = true;
-                    }
+                    //lock(gameState)
+                    //{
+                    //    gameState.gameStarted = true;
+                    //}
                     // Send reject joining game (with no ID associated to player!)
+                    // Game astate change will occur only after the game has been created aso
                     return null;
                 }
                 // Now spot is guaranteed, whether as preferred or not
