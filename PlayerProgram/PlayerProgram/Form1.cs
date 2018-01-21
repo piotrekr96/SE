@@ -30,7 +30,7 @@ namespace PlayerProgram
             {typeof(RegisterGame),7}
         };
         Board b = new Board();
-        List<Player> listOfPlayers = new List<Player>();
+        List<MessageProject.Player> listOfPlayers = new List<MessageProject.Player>();
         PlayerLocation coordinates;
         int gameID, playerID;
         Team playerTeam;
@@ -189,18 +189,28 @@ namespace PlayerProgram
                     break;
 
                 case 4:
-                 /*   b = msg.board;
-                    listOfPlayers = msg.playerList;
+                    b = msg.board;
+                    try
+                    {
+                        listOfPlayers = msg.playerList;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     coordinates = msg.coordinates;
-                    Player p = new Player(playerTeam, playerID, gameID,);
+                    Player p = new Player(playerTeam, playerID, gameID,playerRole);
+                    p.position_x = coordinates.x;
+                    p.position_y = coordinates.y;
                     if (InvokeRequired)
                     {
-                        this.Invoke(new Action(() => CreateBoard(b,)));
+                        this.Invoke(new Action(() => CreateBoard(b.width,b.taskAreaHeight,b.goalAreaHeight,p)));
                         return;
                     }
-                    //Console.WriteLine("Goal area height: " + b.goalAreaHeight + "2: " + b.taskAreaHeight + "Width: " + b.goalAreaHeight);
+                    Console.WriteLine("Goal area height: " + b.goalAreaHeight + "tasj area h: " + b.taskAreaHeight + "Width: " + b.goalAreaHeight);
+                    Console.WriteLine("Coordinates: " + coordinates.x + "y: " + coordinates.y);
                     break;
-                    */
+                    
                 case 5:
                     gameInfoList.Clear();
                     foreach (GameInfo g in msg.gameInfoList)
@@ -238,6 +248,11 @@ namespace PlayerProgram
             GetGamesBOX.Items.Add(s);
         }
 
+        private void CreateBoard(int width, int task, int goal, Player p)
+        {
+            BoardView1 boardView1 = new BoardView1(width, task, goal, p);
+            boardView1.Show();
+        }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {

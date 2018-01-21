@@ -143,7 +143,6 @@ namespace CommunicationServer
                     byte[] sendJoin = Encoding.ASCII.GetBytes(join);
                     try
                     {
-                        Console.Write("EEE");
                         gmSocket.Send(sendJoin);
                     }
                     catch(Exception e)

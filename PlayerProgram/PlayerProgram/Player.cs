@@ -12,7 +12,7 @@ namespace PlayerProgram
     {
         public int ID { get; set; }
         public int GameID { get; set; }
-        public Guid privateGuid { get; set; }
+
         public int position_x { get; set; }
         public int position_y { get; set; }
         public Team colour { get; set; }
@@ -20,13 +20,13 @@ namespace PlayerProgram
         Bitmap bmp;
         Piece carrying = null;
 
-        public Player(Team _team, int id, int gameID, Guid guid, Role rol)
+        public Player(Team _team, int id, int gameID, Role rol)
         {
 
             colour = _team;
             ID = id;
             GameID = gameID;
-            privateGuid = guid;
+
             role = rol;
 
             if (_team == Team.blue)
