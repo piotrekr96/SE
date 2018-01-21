@@ -20,6 +20,7 @@ namespace GM
         int listenerPortNumber = 5000;
         public string serverIp;
         public int serverPort = 4242;
+        public Socket gmSocketGlobal;
 
         public void launch()
         {
@@ -34,12 +35,13 @@ namespace GM
 
             // Start listening for Game related connections (assumes game was registered)
             Console.WriteLine("GM started listening...");
-            TcpListener listener = new TcpListener(IPAddress.Parse(GetIP4Address()), listenerPortNumber);
-            listener.Start();
+            //TcpListener listener = new TcpListener(IPAddress.Parse(GetIP4Address()), listenerPortNumber);
+            //listener.Start();
             while(true)
             {
                 // Gets socket, launches thread with it as param and HandleRequest which deserializes it
-                Socket newConnectionSocket = listener.AcceptSocket();
+                //Socket newConnectionSocket = listener.AcceptSocket();
+                Socket newConnectionSocket = gmSocketGlobal.Accept();
                 ThreadPool.QueueUserWorkItem(HandleRequest, newConnectionSocket);
             }
         }
@@ -74,21 +76,27 @@ namespace GM
         {
             // Registers game to the CS
             string registrationXml = MakeGameCreationMessage();
-            Socket gmSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            byte[] buffer = new byte[gmSock.SendBufferSize];
+            //Socket gmSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            gmSocketGlobal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            byte[] buffer = new byte[gmSocketGlobal.SendBufferSize];
             buffer = Encoding.ASCII.GetBytes(registrationXml);
 
             IPEndPoint localIp = new IPEndPoint(IPAddress.Parse(GetIP4Address()), listenerPortNumber); // thats local port
             IPEndPoint remote = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
-            gmSock.Bind(localIp);
-            gmSock.Connect(remote);
-            gmSock.Send(buffer);
+            //gmSock.Bind(localIp);
+            //gmSock.Connect(remote);
+            //gmSock.Send(buffer);
+            gmSocketGlobal.Bind(localIp);
+            gmSocketGlobal.Connect(remote);
+            gmSocketGlobal.Send(buffer);
 
             while (true)
             {
                 // read single response message
-                byte[] bufferIn = new byte[gmSock.SendBufferSize];
-                int readbytes = gmSock.Receive(bufferIn); 
+                //byte[] bufferIn = new byte[gmSock.SendBufferSize];
+                //int readbytes = gmSock.Receive(bufferIn); 
+                byte[] bufferIn = new byte[gmSocketGlobal.SendBufferSize];
+                int readbytes = gmSocketGlobal.Receive(bufferIn);
 
 
                 if (readbytes > 0)
@@ -113,8 +121,8 @@ namespace GM
                 }
             }
             // The same port and IP will be reused in main listener
-            gmSock.Disconnect(false);
-            gmSock.Close();
+            //gmSock.Disconnect(false);
+            //gmSock.Close();
         }
 
         public void HandleRequest(object cs)
