@@ -194,6 +194,7 @@ namespace CommunicationServer
                     break;
 
                 case 8:
+                    Console.WriteLine("ZLAPALEM CIE");
                     string move = Message.messageIntoXML(msg);
                     byte[] sendMove = Encoding.ASCII.GetBytes(move);
                     try
@@ -207,6 +208,7 @@ namespace CommunicationServer
                     break;
 
                 case 9:
+                    Console.WriteLine("Response from GM");
                     foreach (ClientData c in clients)
                     {
                         if (c.id == msg.playerID)

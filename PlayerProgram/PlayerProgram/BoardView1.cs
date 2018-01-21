@@ -265,44 +265,84 @@ namespace PlayerProgram
         void MoveRight()
         {
             //MESSAGE, REQUEST A MOVE
-            player.MoveRight();
+            MessageProject.Move move = new Move(player.GameID, player.ID, MovementDirection.right);
 
-            //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
-            BoardLayoutPanel.Controls.Remove(c);
+            string MoveMessage = MessageProject.Message.messageIntoXML(move);
+            byte[] toBytes = Encoding.ASCII.GetBytes(MoveMessage);
+            try
+            {
+                Form1.master.Send(toBytes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
-            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
-            //bp.testDistConsole(); // just for checking
-            ShowManhattanDistance();
-            ShowPlayerGoals();
+            /*  player.MoveRight();
+
+              //remove previous label
+              Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
+              BoardLayoutPanel.Controls.Remove(c);
+
+              BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
+              //bp.testDistConsole(); // just for checking
+              ShowManhattanDistance();
+              ShowPlayerGoals();*/
         }
 
         void MoveUp()
         {
             //MESSAGE, REQUEST A MOVE
-            player.MoveUp();
-            //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
-            BoardLayoutPanel.Controls.Remove(c);
+            MessageProject.Move move = new Move(player.GameID, player.ID, MovementDirection.up);
 
-            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
-            //bp.testDistConsole(); // just for checking
-            ShowManhattanDistance();
-            ShowPlayerGoals();
+            string MoveMessage = MessageProject.Message.messageIntoXML(move);
+            byte[] toBytes = Encoding.ASCII.GetBytes(MoveMessage);
+            try
+            {
+                Form1.master.Send(toBytes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            /*  player.MoveUp();
+              //remove previous label
+              Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
+              BoardLayoutPanel.Controls.Remove(c);
+
+              BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
+              //bp.testDistConsole(); // just for checking
+              ShowManhattanDistance();
+              ShowPlayerGoals();*/
         }
 
         void MoveDown()
         {
             //MESSAGE, REQUEST A MOVE
-            player.MoveDown();
-            //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
-            BoardLayoutPanel.Controls.Remove(c);
+            MessageProject.Move move = new Move(player.GameID, player.ID, MovementDirection.down);
 
-            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
-            //bp.testDistConsole(); // just for checking
-            ShowManhattanDistance();
-            ShowPlayerGoals();
+            string MoveMessage = MessageProject.Message.messageIntoXML(move);
+            byte[] toBytes = Encoding.ASCII.GetBytes(MoveMessage);
+            try
+            {
+                Form1.master.Send(toBytes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            /* player.MoveDown();
+             //remove previous label
+             Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
+             BoardLayoutPanel.Controls.Remove(c);
+
+             BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
+             //bp.testDistConsole(); // just for checking
+             ShowManhattanDistance();
+             ShowPlayerGoals();
+             */
         }
 
         public void ShowManhattanDistance()
