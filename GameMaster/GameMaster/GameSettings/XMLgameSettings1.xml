@@ -2,10 +2,10 @@
 <game>
   <name>Game1</name>
   <board_width>5</board_width>
-  <task_len>5</task_len>
+  <task_len>6</task_len>
   <goal_len>2</goal_len>
   <initial_pieces>5</initial_pieces>
-  <players_per_team>2</players_per_team>
+  <players_per_team>1</players_per_team>
 
   <delay_move>300</delay_move>
   <delay_pick>200</delay_pick>

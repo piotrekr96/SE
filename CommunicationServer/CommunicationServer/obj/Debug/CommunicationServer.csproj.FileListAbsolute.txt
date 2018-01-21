@@ -44,3 +44,12 @@ C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\De
 C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
 C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
 C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.dll
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\bin\Debug\Message.pdb
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
+C:\Users\MS\Documents\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb

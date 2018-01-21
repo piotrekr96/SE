@@ -45,7 +45,7 @@ namespace GM
                 //Socket newConnectionSocket = listener.AcceptSocket();
                 // Socket newConnectionSocket = gmSocketGlobal.Accept();
                 byte[] bufferIn = new byte[gmSocketGlobal.SendBufferSize];
-                int readbytes = gmSocketGlobal.Receive(bufferIn);
+                int readbytes = gmSocketGlobal.Receive(bufferIn); // blocks untill there's something to read
                 ThreadPool.QueueUserWorkItem(HandleRequest,bufferIn);
             }
         }
@@ -129,17 +129,11 @@ namespace GM
             //gmSock.Close();
         }
 
-        public void HandleRequest(object bufforIn)
+        public void HandleRequest(object bufferIn)
         {
-            // Already in new thread, ThreadStart starting mathed here !!!
-            // Deserialize message
-            // If message P2P - handle it here, else delegate to specific game.handleMoveReq/...
-            // Decide upon move/pick/drop - message type
-            // formulate response, type defined by message type from input and return values
-           // Socket gmSocket = (Socket)cs;
+            
             byte[] buffer = new byte[gmSocketGlobal.SendBufferSize];
-            buffer = (byte[])bufforIn;
-           // int readBytes;
+            buffer = (byte[])bufferIn;
             try
             {
                 //buffer = new byte[gmSocketGlobal.SendBufferSize];
@@ -147,44 +141,42 @@ namespace GM
 
                // if (readBytes > 0) // assume all is read at once
                // {
-                    string messageString = Encoding.ASCII.GetString(buffer);
-                    
-                    // get message from socket
+                string messageString = Encoding.ASCII.GetString(buffer);
+                // Deserialize message content   
+                Message tempMessage = MessageProject.Message.xmlIntoMessage(messageString);
+                Type typer = tempMessage.GetType();
+                dynamic newMessage = Convert.ChangeType(tempMessage, typer);
+                Console.WriteLine("Received message of type: {0}, from remote end point: {1}", newMessage.GetType(), gmSocketGlobal.RemoteEndPoint);
+                // Selecting action on message type
 
-                    Message tempMessage = MessageProject.Message.xmlIntoMessage(messageString);
-                    Type typer = tempMessage.GetType();
-                    dynamic newMessage = Convert.ChangeType(tempMessage, typer);
-                    Console.WriteLine("Received message of type: {0}", newMessage.GetType());
-                    // Selecting action on message type
-
-                    switch(newMessage) // c# 7.0 -> switch on type
-                    {
-                        case Move msg1:
+                switch(newMessage) // c# 7.0 -> switch on type
+                {
+                    case Move msg1:
                             
-                            // Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
-                            // string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
-                            // send response
-                            break;
+                        // Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
+                        // string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
+                        // send response
+                        break;
 
-                        case JoinGame msg2:
-                            Console.WriteLine("Parsing game join request!");
-                            // player can join only a agame he sees, hence gameId = 1
-                            Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer = game.MakePlayer(msg2.preferredRole, msg2.preferredTeam, msg2.playerID);
-                            string response2 = MakeJoinGameResponse(msg2.playerID, newPlayer); // assume playerID is always correct
-                            Console.WriteLine("Response being sent: {0}", response2);
-                            buffer = Encoding.ASCII.GetBytes(response2);
-                            gmSocketGlobal.Send(buffer);
+                    case JoinGame msg2:
+                        Console.WriteLine("Parsing game join request!");
+                        // player can join only a agame he sees, hence gameId = 1
+                        Tuple<int, MessageProject.Team, MessageProject.Role, bool> newPlayer = game.MakePlayer(msg2.preferredRole, msg2.preferredTeam, msg2.playerID);
+                        string response2 = MakeJoinGameResponse(msg2.playerID, newPlayer); // assume playerID is always correct
+                        Console.WriteLine("Response being sent: {0}", response2);
+                        buffer = Encoding.ASCII.GetBytes(response2);
+                        gmSocketGlobal.Send(buffer);
 
-                            //After reject/ confirm was sent, verify if the game has just been started(code - 999 as player ID)
-                            //if (null == newPlayer)
-                            //{
-                            //    // Game just started!
+                        //After reject/ confirm was sent, verify if the game has just been started(code - 999 as player ID)
+                        if (newPlayer.Item4)
+                        {
+                            // Game just started!
 
-                            //    ThreadPool.QueueUserWorkItem(StartGame, 100); // random object passed
-                            //}
-                            break;
+                            ThreadPool.QueueUserWorkItem(StartGame, 100); // random object passed
+                        }
+                        break;
 
-                    }
+                }
 
 
               //  }
@@ -212,7 +204,7 @@ namespace GM
             return MessageProject.Message.messageIntoXML(responseObj);
         }
 
-        private string MakeJoinGameResponse(int playerID, Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer)
+        private string MakeJoinGameResponse(int playerID, Tuple<int, MessageProject.Team, MessageProject.Role, bool> newPlayer)
         {
             if(null == newPlayer || newPlayer.Item1 < 0)
             {

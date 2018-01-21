@@ -115,7 +115,7 @@ namespace CommunicationServer
                         {
                             string confirmJoining = Message.messageIntoXML(msg);
                             byte[] sendConfirmJoining = Encoding.ASCII.GetBytes(confirmJoining);
-                            gmSocket.Send(sendConfirmJoining);
+                            c.clientSocket.Send(sendConfirmJoining);
                         }
                     }
 
@@ -128,7 +128,7 @@ namespace CommunicationServer
                         {
                             string reject = Message.messageIntoXML(msg);
                             byte[] sendReject = Encoding.ASCII.GetBytes(reject);
-                            gmSocket.Send(sendReject);
+                            c.clientSocket.Send(sendReject);
                         }
                     }
                     break;

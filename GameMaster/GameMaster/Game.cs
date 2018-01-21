@@ -107,7 +107,7 @@ namespace GM
             }
         }
 
-        public Tuple<int, MessageProject.Team, MessageProject.Role> MakePlayer(MessageProject.Role preferredRole, MessageProject.Team preferredTeam, int playerID)
+        public Tuple<int, MessageProject.Team, MessageProject.Role, bool> MakePlayer(MessageProject.Role preferredRole, MessageProject.Team preferredTeam, int playerID)
         {
             // Returns new ID associated with player created, his team, his final role
             lock(gameState)
@@ -115,22 +115,12 @@ namespace GM
                 if(gameState.gameStarted)
                 {
                     Console.WriteLine("Rejecting game join since game has already started!");
-                    return new Tuple<int, MessageProject.Team, MessageProject.Role>(-999, MessageProject.Team.red , MessageProject.Role.member);
+                    return new Tuple<int, MessageProject.Team, MessageProject.Role, bool>(-999, MessageProject.Team.red , MessageProject.Role.member, false);
                 }
             }
             lock (playersDictionary) // to avoid overwriting adds and current ammount read
             {
-                if (playersDictionary.Count() >= 2 * settings.PlayersPerTeam)
-                {
-                    Console.WriteLine("Reached players limit. Starting the game.");
-                    //lock(gameState)
-                    //{
-                    //    gameState.gameStarted = true;
-                    //}
-                    // Send reject joining game (with no ID associated to player!)
-                    // Game astate change will occur only after the game has been created aso
-                    return null;
-                }
+                
                 // Now spot is guaranteed, whether as preferred or not
                 // Make returned structure equivalent to response message
                 Player newPlayer = new Player();
@@ -151,7 +141,9 @@ namespace GM
                 newPlayer.role = roleToGive;
                 // Add PosX, PosY, randomize, update both playerobj and field containing player info
                 // Global update when dict full, just before sending Game message to start it
-                return Tuple.Create(newPlayerID, teamToAdd, roleToGive);
+                bool gameJustStarted = false;
+                if(playersDictionary.Count() >= 2*settings.PlayersPerTeam) { gameJustStarted = true; }
+                return Tuple.Create(newPlayerID, teamToAdd, roleToGive, gameJustStarted);
             }
         }
 
