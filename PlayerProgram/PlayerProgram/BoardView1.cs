@@ -42,6 +42,12 @@ namespace PlayerProgram
            // Console.WriteLine(p.colour +" " + p.getPosX()+ " " + p.getPosY());
         }
 
+        public void UpdateBoard()
+        {
+            test.Image = player.getBitmap();
+            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
+        }
+
         public void CreateBoard()
         {
             BoardLayoutPanel.Controls.Clear();

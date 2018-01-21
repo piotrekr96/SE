@@ -238,12 +238,22 @@ namespace PlayerProgram
                      {
                          Console.WriteLine(e);
                      }*/
-                    if (InvokeRequired)
+                    try
                     {
-                        this.Invoke(new Action(() => UpdateBoard(msg.playerLocation.x, msg.playerLocation.y)));
-                        return;
+                        if (InvokeRequired)
+                        {
+                            this.Invoke(new Action(() => UpdateBoard(msg.playerLocation.x, msg.playerLocation.y)));
+                            return;
+                        }
                     }
-                    break;
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+
+                        break;
+                    
+                    
 
                 default:
                     break;
@@ -267,6 +277,7 @@ namespace PlayerProgram
         {
             boardView1.player.position_x = x;
             boardView1.player.position_y = y;
+            boardView1.UpdateBoard();
             boardView1.Refresh();
         }
 
