@@ -185,7 +185,7 @@ namespace PlayerProgram
                         Console.Write("Fuck you");
                     }
 
-                    System.Diagnostics.Debug.Write("Player id " + playerID + " gameID " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
+                    Console.WriteLine("Player id: " + playerID + " gameID: " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
                     break;
 
                 case 4:
@@ -210,7 +210,7 @@ namespace PlayerProgram
                         {
                             gameInfoList.Add(g);
                             string s = "ID: " + g.gameID.ToString() + " Blue: " + g.blueTeamPlayers.ToString() + " Red: " + g.redTeamPlayers.ToString();
-                            Console.Write(s);
+                            Console.WriteLine(s);
 
                             if (InvokeRequired)
                             {
