@@ -194,7 +194,6 @@ namespace CommunicationServer
                     break;
 
                 case 8:
-                    Console.WriteLine("ZLAPALEM CIE");
                     string move = Message.messageIntoXML(msg);
                     byte[] sendMove = Encoding.ASCII.GetBytes(move);
                     try

@@ -161,7 +161,7 @@ namespace PlayerProgram
                     }
                     catch
                     {
-                        Console.Write("Fuck you");
+                        Console.Write("ERR");
                     }
 
                     Console.WriteLine("Player id: " + playerID + " gameID: " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
