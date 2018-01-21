@@ -159,6 +159,7 @@ namespace GM
 
         private bool CheckMovementBoardBoundaries(int playerID, MessageProject.MovementDirection direction)
         {
+            // note that board is numerated (0,0) in upper left corner, image coords!
             // Board width restriction
             // Team wise restriction
             // Dir: 1=left, 2=top, 3=right, 4=down
@@ -167,19 +168,20 @@ namespace GM
             {
                 if(player.team.Equals(MessageProject.Team.blue))
                 {
-                    // First neg row is GAlen + TAlen 
-                    if(player.posY + 1 >= settings.GoalLen + settings.TaskLen)
+                    // First neg row is GAlen -1
+                    if (player.posY <= settings.GoalLen)
                     {
-                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Red area starts.", player.posY, player.posY + 1);
+                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Red area starts", player.posY, player.posY - 1);
                         return false;
                     }
+                   
                 }
                 else if(player.team.Equals(MessageProject.Team.red))
                 {
-                    // First neg row is 2*GAlen + TAlen 
-                    if (player.posY + 1 >= 2*settings.GoalLen + settings.TaskLen)
+                    // First neg row is -1
+                    if (player.posY <= 0)
                     {
-                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Board ends.", player.posY, player.posY + 1);
+                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Border end top.", player.posY, player.posY - 1);
                         return false;
                     }
                 }
@@ -188,21 +190,22 @@ namespace GM
             {
                 if (player.team.Equals(MessageProject.Team.blue))
                 {
-                    // First neg row is -1
-                    if (player.posY <= 0)
+                    // First neg row is 2*ga + ta
+                    if (player.posY + 1 >= 2 * settings.GoalLen + settings.TaskLen)
                     {
-                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Board ends", player.posY, player.posY - 1);
+                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Board ends", player.posY, player.posY + 1);
                         return false;
                     }
                 }
                 else if (player.team.Equals(MessageProject.Team.red))
                 {
-                    // First neg row is GAlen - 1 
-                    if (player.posY <= settings.GoalLen)
+                    if (player.posY + 1 >= settings.GoalLen + settings.TaskLen)
                     {
-                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Blue area starts", player.posY, player.posY - 1);
+                        Console.WriteLine("Move from Y: {0} to {1} forbidden. Blue area starts.", player.posY, player.posY + 1);
                         return false;
                     }
+                    // First neg row is GAlen - 1 
+                    
                 }
             }
             else if(direction.Equals(MessageProject.MovementDirection.left))
@@ -297,9 +300,9 @@ namespace GM
             Console.WriteLine("Current pos: X:{0}, Y:{1}", playersDictionary[playerID].posX, playersDictionary[playerID].posY);
             // lock on cur pos and left pos
             // NOTE: to avoid deadlocks keep the order of locking the same everywhere!
-            lock (board[posY + 1, posX])
+            lock (board[posY - 1, posX])
             {
-                if (board[posY + 1, posX].playerID != -1)
+                if (board[posY - 1, posX].playerID != -1)
                 {
                     Console.WriteLine("Field up occupied by another player!");
                     // Destination occupied by another player
@@ -310,8 +313,8 @@ namespace GM
                 {
                     // Both spots free to modify
                     board[posY, posX].playerID = -1;
-                    board[posY + 1, posX].playerID = playerID;
-                    playersDictionary[playerID].posY += 1;
+                    board[posY - 1, posX].playerID = playerID;
+                    playersDictionary[playerID].posY -= 1;
                 }
             }
             // update player coords and game field
@@ -327,9 +330,9 @@ namespace GM
             Console.WriteLine("Current pos: X:{0}, Y:{1}", playersDictionary[playerID].posX, playersDictionary[playerID].posY);
             // lock on cur pos and left pos
             // NOTE: to avoid deadlocks keep the order of locking the same everywhere!
-            lock (board[posY - 1, posX])
+            lock (board[posY + 1, posX])
             {
-                if (board[posY - 1, posX].playerID != -1)
+                if (board[posY+- 1, posX].playerID != -1)
                 {
                     Console.WriteLine("Field down occupied by another player!");
                     // Destination occupied by another player
@@ -340,8 +343,8 @@ namespace GM
                 {
                     // Both spots free to modify
                     board[posY, posX].playerID = -1;
-                    board[posY - 1, posX].playerID = playerID;
-                    playersDictionary[playerID].posY -= 1;
+                    board[posY + 1, posX].playerID = playerID;
+                    playersDictionary[playerID].posY += 1;
                 }
             }
             // update player coords and game field
