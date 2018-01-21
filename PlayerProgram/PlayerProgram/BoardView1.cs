@@ -16,7 +16,7 @@ namespace PlayerProgram
     public partial class BoardView1 : Form
     {
         int myHeight, myWidth, smallHeight;
-        Player player;
+        public Player player;
         PictureBox test = new PictureBox();
      /*   public BoardView1()
         {
@@ -37,7 +37,7 @@ namespace PlayerProgram
             InitializeComponent();
             CreateBoard();
             AddPlayers();
-            ShowPlayerGoals();
+           // ShowPlayerGoals();
             PreventFlickering();
            // Console.WriteLine(p.colour +" " + p.getPosX()+ " " + p.getPosY());
         }

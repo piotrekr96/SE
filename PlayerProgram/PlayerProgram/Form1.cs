@@ -27,9 +27,11 @@ namespace PlayerProgram
             {typeof(GameMessage),4},
             {typeof(RegisteredGames),5},
             {typeof(GetGamesList),6},
-            {typeof(RegisterGame),7}
+            {typeof(RegisterGame),7},
+            {typeof(MoveResponse),8 }
 
         };
+        BoardView1 boardView1;
         Board b = new Board();
         List<MessageProject.Player> listOfPlayers = new List<MessageProject.Player>();
         PlayerLocation coordinates;
@@ -213,6 +215,36 @@ namespace PlayerProgram
                     }
                     break;
 
+                case 8:
+                    Console.WriteLine("OK");
+                    try
+                    {
+                         Console.WriteLine("New player location: X:" + msg.playerLocation.x + "Y: "+msg.playerLocation.y);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    //Console.WriteLine("X: "+ msg.coordinates.x);
+
+                    /* try
+                     {
+
+                         boardView1.player.position_x = coordinates.x;
+                         boardView1.player.position_y = coordinates.y;
+                         boardView1.Refresh();
+                     }
+                     catch (Exception e)
+                     {
+                         Console.WriteLine(e);
+                     }*/
+                    if (InvokeRequired)
+                    {
+                        this.Invoke(new Action(() => UpdateBoard(msg.playerLocation.x, msg.playerLocation.y)));
+                        return;
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -227,9 +259,15 @@ namespace PlayerProgram
 
         private void CreateBoard(int width, int task, int goal, Player p)
         {
-            BoardView1 boardView1 = new BoardView1(width, task, goal, p);
+            boardView1 = new BoardView1(width, task, goal, p);
             boardView1.Show();
             this.Hide();
+        }
+        private void UpdateBoard(int x, int y)
+        {
+            boardView1.player.position_x = x;
+            boardView1.player.position_y = y;
+            boardView1.Refresh();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
