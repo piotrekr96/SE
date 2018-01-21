@@ -332,7 +332,7 @@ namespace GM
             // NOTE: to avoid deadlocks keep the order of locking the same everywhere!
             lock (board[posY + 1, posX])
             {
-                if (board[posY+- 1, posX].playerID != -1)
+                if (board[posY + 1, posX].playerID != -1)
                 {
                     Console.WriteLine("Field down occupied by another player!");
                     // Destination occupied by another player
