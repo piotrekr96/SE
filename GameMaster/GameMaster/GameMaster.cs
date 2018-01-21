@@ -44,6 +44,7 @@ namespace GM
                 // Gets socket, launches thread with it as param and HandleRequest which deserializes it
                 //Socket newConnectionSocket = listener.AcceptSocket();
                 // Socket newConnectionSocket = gmSocketGlobal.Accept();
+                Console.WriteLine("Listening in while...");
                 byte[] bufferIn = new byte[gmSocketGlobal.SendBufferSize];
                 int readbytes = gmSocketGlobal.Receive(bufferIn); // blocks untill there's something to read
                 ThreadPool.QueueUserWorkItem(HandleRequest,bufferIn);
@@ -171,7 +172,7 @@ namespace GM
                         if (newPlayer.Item4)
                         {
                             // Game just started!
-
+                            Console.WriteLine("Game starts!");
                             ThreadPool.QueueUserWorkItem(StartGame, 100); // random object passed
                         }
                         break;
@@ -226,38 +227,77 @@ namespace GM
         {
             lock(game.playersDictionary)
             {
-                lock(game.board)
+                lock (game.board)
                 {
                     Random rand = new Random();
                     List<Tuple<int, int>> coordinates = new List<Tuple<int, int>>(); // Y, X pairs
 
-                    for(int y = game.settings.GoalLen; y<game.settings.TaskLen + game.settings.GoalLen; y++)
+                    for (int y = game.settings.GoalLen; y < game.settings.TaskLen + game.settings.GoalLen; y++)
                     {
-                        for(int x=0; x< game.settings.BoardWidth; x++)
+                        for (int x = 0; x < game.settings.BoardWidth; x++)
                         {
                             Tuple<int, int> newCoord = new Tuple<int, int>(y, x);
                             coordinates.Add(newCoord);
                         }
                     }
                     // Fix players positions
-                    for (int i=1; i<=game.playersDictionary.Count(); i++)
+                    foreach(int i in game.playersDictionary.Keys)
                     {
                         int indexToPop = GetRandomValue(coordinates.Count(), rand);
                         Tuple<int, int> randCoordinate = coordinates.ElementAt(indexToPop);
                         coordinates.RemoveAt(indexToPop);
                         Console.WriteLine("Coordinate picked: Y={0}, X={1}", randCoordinate.Item1, randCoordinate.Item2);
+                        game.playersDictionary[i].posX = randCoordinate.Item2;
+                        game.playersDictionary[i].posY = randCoordinate.Item1;
+                        game.board[randCoordinate.Item1, randCoordinate.Item2].playerID = i; // assign players ID to board field
                     }
+
+                    List<MessageProject.Player> formattedPlayersList = new List<MessageProject.Player>();
+
+                    foreach (int j in game.playersDictionary.Keys)
+                    {
+                        Console.WriteLine("Player check: ID: {0}, posY: {1}, posX: {2}, team: {3}, role: {4}", j ,game.playersDictionary[j].posY, game.playersDictionary[j].posX, game.playersDictionary[j].team, game.playersDictionary[j].role);
+                        Console.WriteLine("Associated field check: at pos {0}, {1}, playerID: {2}", game.playersDictionary[j].posY, game.playersDictionary[j].posX, game.board[game.playersDictionary[j].posY, game.playersDictionary[j].posX].playerID);
+                        MessageProject.Player nextPlayer = new MessageProject.Player(j, game.playersDictionary[j].team, game.playersDictionary[j].role);
+                        formattedPlayersList.Add(nextPlayer);
+                    }
+                    // Make all players positions, fields & goals
+
+                    // Send the same message to all players
+                    BroadcastGameMessage(formattedPlayersList);
+
+
+                    lock (game.gameState)
+                    {
+                        game.gameState.gameStarted = true;
+                    }
+
                 }
-                // Make all players positions, fields & goals
-
-                // Send the same message to all players
-
             }
+            Console.WriteLine("Game start finished!");
         }
 
         private static int GetRandomValue(int range, Random random)
         {
             return random.Next(range); // <0, range)
+        }
+
+        private void BroadcastGameMessage(List<MessageProject.Player> formattedPlayersList)
+        {
+            foreach(int playerId in game.playersDictionary.Keys)
+            {
+                string message = MakeGameMessage(playerId, game.playersDictionary[playerId].posY, game.playersDictionary[playerId].posX, game.playersDictionary.Keys.ToList(), formattedPlayersList);
+                Console.WriteLine("Message created: {0}", message);
+                byte[] buffer = new byte[gmSocketGlobal.SendBufferSize];
+                buffer = Encoding.ASCII.GetBytes(message);
+                gmSocketGlobal.Send(buffer);
+            }
+        }
+
+        private string MakeGameMessage(int playerId, int posY, int posX, List<int> playerKeys, List<MessageProject.Player> formattedPlayersList)
+        {
+            GameMessage message = new GameMessage(playerId, formattedPlayersList, new MessageProject.Board(game.settings.BoardWidth, game.settings.GoalLen, game.settings.TaskLen), new PlayerLocation(posX, posY) );
+            return MessageProject.Message.messageIntoXML(message);
         }
 
         static public DataGame ReadGameInfo(string fileName)

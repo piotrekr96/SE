@@ -32,6 +32,14 @@ namespace GM
             settings = data;
 
             board = new Field[2 * settings.GoalLen + settings.TaskLen, settings.BoardWidth];
+            for(int y=0; y< 2 * settings.GoalLen + settings.TaskLen; y++)
+            {
+                for (int x=0; x<settings.BoardWidth; x++)
+                {
+                    board[y, x] = new Field();
+                   
+                }
+            }
             playersDictionary = new Dictionary<int, Player>(2*settings.PlayersPerTeam);
             redTeam = new List<int>(settings.PlayersPerTeam); // used for broadcast ip reference, fast lookup without plDict iterating
             blueTeam = new List<int>(settings.PlayersPerTeam);
@@ -126,7 +134,7 @@ namespace GM
                 Player newPlayer = new Player();
                 int newPlayerID = playerID; // acts as GUID since 1 game atm, increasing order
                 playersDictionary.Add(newPlayerID, newPlayer);
-
+                Console.WriteLine("Added new player ID: {0}", newPlayerID);
                 MessageProject.Team teamToAdd = CheckTeamPreference(preferredTeam);
                 newPlayer.team = teamToAdd;
                 if (teamToAdd.Equals(MessageProject.Team.red)) { redTeam.Add(newPlayerID); }

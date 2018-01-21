@@ -157,11 +157,12 @@ namespace CommunicationServer
                 case 4:
                     string game = Message.messageIntoXML(msg);
                     byte[] sendGame = Encoding.ASCII.GetBytes(game);
-
+                    Console.WriteLine();
                     foreach (ClientData c in clients)
                     {
                         if (c.id == msg.playerID)
                         {
+                            Console.WriteLine("Received GameMessage! Sending to playerID: {0}", msg.playerID);
                             c.clientSocket.Send(sendGame);
                         }
                     }

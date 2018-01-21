@@ -56,3 +56,16 @@ C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerPr
 C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.CoreCompileInputs.cache
 C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
 C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe.config
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.pdb
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\bin\Debug\Message.dll
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\bin\Debug\Message.pdb
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csprojResolveAssemblyReference.cache
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.BoardView1.resources
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Form1.resources
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Properties.Resources.resources
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.GenerateResource.Cache
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.CoreCompileInputs.cache
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
+C:\Users\MS\Documents\SE\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb
