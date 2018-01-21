@@ -52,8 +52,8 @@ namespace PlayerProgram
 
             A: Console.Clear();
             Console.Write("Enter host IP address: ");
-            //string ip = Console.ReadLine();
-            string ip = "192.168.43.72";
+            string ip = Console.ReadLine();
+          //  string ip = "192.168.43.72";
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
