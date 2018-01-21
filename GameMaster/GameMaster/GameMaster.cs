@@ -30,19 +30,23 @@ namespace GM
             ThreadPool.SetMaxThreads(10, 10);
 
             MakeGame("..\\..\\GameSettings\\XMLgameSettings1.xml");
-
+            gmSocketGlobal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             RegisterGame();
 
             // Start listening for Game related connections (assumes game was registered)
             Console.WriteLine("GM started listening...");
             //TcpListener listener = new TcpListener(IPAddress.Parse(GetIP4Address()), listenerPortNumber);
             //listener.Start();
+           
             while(true)
             {
+                //gmSocketGlobal.Listen(0);
                 // Gets socket, launches thread with it as param and HandleRequest which deserializes it
                 //Socket newConnectionSocket = listener.AcceptSocket();
-                Socket newConnectionSocket = gmSocketGlobal.Accept();
-                ThreadPool.QueueUserWorkItem(HandleRequest, newConnectionSocket);
+                // Socket newConnectionSocket = gmSocketGlobal.Accept();
+                byte[] bufferIn = new byte[gmSocketGlobal.SendBufferSize];
+                int readbytes = gmSocketGlobal.Receive(bufferIn);
+                ThreadPool.QueueUserWorkItem(HandleRequest,bufferIn);
             }
         }
 
@@ -77,7 +81,7 @@ namespace GM
             // Registers game to the CS
             string registrationXml = MakeGameCreationMessage();
             //Socket gmSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            gmSocketGlobal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+          //  gmSocketGlobal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             byte[] buffer = new byte[gmSocketGlobal.SendBufferSize];
             buffer = Encoding.ASCII.GetBytes(registrationXml);
 
@@ -125,23 +129,24 @@ namespace GM
             //gmSock.Close();
         }
 
-        public void HandleRequest(object cs)
+        public void HandleRequest(object bufforIn)
         {
             // Already in new thread, ThreadStart starting mathed here !!!
             // Deserialize message
             // If message P2P - handle it here, else delegate to specific game.handleMoveReq/...
             // Decide upon move/pick/drop - message type
             // formulate response, type defined by message type from input and return values
-            Socket gmSocket = (Socket)cs;
-            byte[] buffer = new byte[gmSocket.SendBufferSize];
-            int readBytes;
+           // Socket gmSocket = (Socket)cs;
+            byte[] buffer = new byte[gmSocketGlobal.SendBufferSize];
+            buffer = (byte[])bufforIn;
+           // int readBytes;
             try
             {
-                buffer = new byte[gmSocket.SendBufferSize];
-                readBytes = gmSocket.Receive(buffer);
+                //buffer = new byte[gmSocketGlobal.SendBufferSize];
+               // readBytes = gmSocketGlobal.Receive(buffer);
 
-                if (readBytes > 0) // assume all is read at once
-                {
+               // if (readBytes > 0) // assume all is read at once
+               // {
                     string messageString = Encoding.ASCII.GetString(buffer);
                     
                     // get message from socket
@@ -168,7 +173,7 @@ namespace GM
                             string response2 = MakeJoinGameResponse(msg2.playerID, newPlayer); // assume playerID is always correct
                             Console.WriteLine("Response being sent: {0}", response2);
                             buffer = Encoding.ASCII.GetBytes(response2);
-                            gmSocket.Send(buffer);
+                            gmSocketGlobal.Send(buffer);
 
                             //After reject/ confirm was sent, verify if the game has just been started(code - 999 as player ID)
                             //if (null == newPlayer)
@@ -182,7 +187,7 @@ namespace GM
                     }
 
 
-                }
+              //  }
             }
 
             catch

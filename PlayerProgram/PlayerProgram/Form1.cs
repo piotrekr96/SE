@@ -27,10 +27,11 @@ namespace PlayerProgram
             {typeof(GameMessage),4},
             {typeof(RegisteredGames),5},
             {typeof(GetGamesList),6},
-            {typeof(RegisterGame),7},
-            {typeof(GameMessage),8 }
+            {typeof(RegisterGame),7}
         };
-
+        Board b = new Board();
+        List<Player> listOfPlayers = new List<Player>();
+        PlayerLocation coordinates;
         int gameID, playerID;
         Team playerTeam;
         Role playerRole;
@@ -182,6 +183,20 @@ namespace PlayerProgram
 
                     System.Diagnostics.Debug.Write("Player id " + playerID + " gameID " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
                     break;
+
+                case 4:
+                 /*   b = msg.board;
+                    listOfPlayers = msg.playerList;
+                    coordinates = msg.coordinates;
+                    Player p = new Player(playerTeam, playerID, gameID,);
+                    if (InvokeRequired)
+                    {
+                        this.Invoke(new Action(() => CreateBoard(b,)));
+                        return;
+                    }
+                    //Console.WriteLine("Goal area height: " + b.goalAreaHeight + "2: " + b.taskAreaHeight + "Width: " + b.goalAreaHeight);
+                    break;
+                    */
                 case 5:
                     gameInfoList.Clear();
                     foreach (GameInfo g in msg.gameInfoList)
@@ -205,10 +220,6 @@ namespace PlayerProgram
                             Console.WriteLine(e);
                         }
                     }
-                    break;
-
-                case 8:
-
                     break;
 
                 default:

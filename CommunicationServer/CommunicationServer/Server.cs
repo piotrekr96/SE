@@ -12,8 +12,6 @@ namespace CommunicationServer
 {
     class Server
     {
-        
-
         static Dictionary<Type, int> typeDict = new Dictionary<Type, int>
         {
             {typeof(ConfirmGameRegistration),0},
@@ -135,18 +133,40 @@ namespace CommunicationServer
                     }
                     break;
 
-                case 3:                   
+                case 3:
+               
                     client.id = counter;
                     msg.playerID = counter;
                     counter++;
 
                     string join = Message.messageIntoXML(msg);
                     byte[] sendJoin = Encoding.ASCII.GetBytes(join);
-                    gmSocket.Send(sendJoin);
+                    try
+                    {
+                        Console.Write("EEE");
+                        gmSocket.Send(sendJoin);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.Write(e);
+                    }
 
 
                     break;
 
+                case 4:
+                    string game = Message.messageIntoXML(msg);
+                    byte[] sendGame = Encoding.ASCII.GetBytes(game);
+
+                    foreach (ClientData c in clients)
+                    {
+                        if (c.id == msg.playerID)
+                        {
+                            c.clientSocket.Send(sendGame);
+                        }
+                    }
+
+                    break;
                 case 5:
                     GameInfo info = new GameInfo(msg.gameID, msg.blueTeamPlayers, msg.redTeamPlayers);
                     gameList.Add(info);
