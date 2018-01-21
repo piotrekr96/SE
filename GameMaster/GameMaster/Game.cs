@@ -205,11 +205,19 @@ namespace GM
                     }
                 }
             }
-            else if(direction.Equals(MessageProject.MovementDirection.left) || direction.Equals(MessageProject.MovementDirection.right))
+            else if(direction.Equals(MessageProject.MovementDirection.left))
             {
-                if(player.posX - 1 < 0 || player.posX + 1 >= settings.BoardWidth)
+                if(player.posX - 1 < 0)
                 {
-                    Console.WriteLine("Move from X: {0} forbidden. Board width.", player.posX);
+                    Console.WriteLine("Move from X: {0} forbidden. Board width left edge.", player.posX);
+                    return false;
+                }
+            }
+            else if(direction.Equals(MessageProject.MovementDirection.right))
+            {
+                if(player.posX + 1 >= settings.BoardWidth)
+                {
+                    Console.WriteLine("Move from X: {0} forbidden. Board width right edge.", player.posX);
                     return false;
                 }
             }
@@ -234,6 +242,7 @@ namespace GM
             {
                 if(board[posY, posX -1].playerID != -1)
                 {
+                    Console.WriteLine("Field left occupied by another player!");
                     // Destination occupied by another player
                     // Return current position anyway in the response message
                     return;
@@ -262,6 +271,7 @@ namespace GM
             {
                 if (board[posY, posX + 1].playerID != -1)
                 {
+                    Console.WriteLine("Field right occupied by another player!");
                     // Destination occupied by another player
                     // Return current position anyway in the response message
                     return;
@@ -291,6 +301,7 @@ namespace GM
             {
                 if (board[posY + 1, posX].playerID != -1)
                 {
+                    Console.WriteLine("Field up occupied by another player!");
                     // Destination occupied by another player
                     // Return current position anyway in the response message
                     return;
@@ -320,6 +331,7 @@ namespace GM
             {
                 if (board[posY - 1, posX].playerID != -1)
                 {
+                    Console.WriteLine("Field down occupied by another player!");
                     // Destination occupied by another player
                     // Return current position anyway in the response message
                     return;
