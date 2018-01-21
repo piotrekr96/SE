@@ -149,14 +149,16 @@ namespace GM
                 dynamic newMessage = Convert.ChangeType(tempMessage, typer);
                 Console.WriteLine("Received message of type: {0}, from remote end point: {1}", newMessage.GetType(), gmSocketGlobal.RemoteEndPoint);
                 // Selecting action on message type
+                buffer = new byte[gmSocketGlobal.SendBufferSize]; // flush?
 
                 switch(newMessage) // c# 7.0 -> switch on type
                 {
                     case Move msg1:
-                            
-                        // Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
-                        // string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
-                        // send response
+                        Console.WriteLine("Parsing game movement request!");
+                        Tuple <int, int> coordinatesMsg1 = game.HandleMoveRequest(msg1.playerID, msg1.direction); // Y, X either new or old depending on action result
+                        string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
+                        buffer = Encoding.ASCII.GetBytes(response1);
+                        gmSocketGlobal.Send(buffer);
                         break;
 
                     case JoinGame msg2:

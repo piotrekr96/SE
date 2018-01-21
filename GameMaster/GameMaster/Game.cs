@@ -157,13 +157,13 @@ namespace GM
 
         // Board restrictions check (board size, team restrictions) - edge cases? 
 
-        private bool CheckMovementBoardBoundaries(int playerID, int direction)
+        private bool CheckMovementBoardBoundaries(int playerID, MessageProject.MovementDirection direction)
         {
             // Board width restriction
             // Team wise restriction
             // Dir: 1=left, 2=top, 3=right, 4=down
             Player player = playersDictionary[playerID]; // Refer to the player object
-            if(direction == 2) // move up
+            if(direction.Equals(MessageProject.MovementDirection.up)) // move up
             {
                 if(player.team.Equals(MessageProject.Team.blue))
                 {
@@ -184,7 +184,7 @@ namespace GM
                     }
                 }
             }
-            else if(direction == 4) // move down
+            else if(direction.Equals(MessageProject.MovementDirection.down)) // move down
             {
                 if (player.team.Equals(MessageProject.Team.blue))
                 {
@@ -205,7 +205,7 @@ namespace GM
                     }
                 }
             }
-            else if(direction == 1 || direction == 3)
+            else if(direction.Equals(MessageProject.MovementDirection.left) || direction.Equals(MessageProject.MovementDirection.right))
             {
                 if(player.posX - 1 < 0 || player.posX + 1 >= settings.BoardWidth)
                 {
@@ -339,10 +339,17 @@ namespace GM
 
         
 
-        public Tuple<int, int> HandleMoveRequest(int playerID, int direction) // pass 
+        public Tuple<int, int> HandleMoveRequest(int playerID, MessageProject.MovementDirection direction)
         {
             // Waiting from settings
-
+            lock(gameState)
+            {
+                // If game hs not started, return invalid Y, X coords to client
+                if(gameState.gameStarted == false)
+                {
+                    return Tuple.Create(-1, -1);
+                }
+            }
             if (!CheckMovementBoardBoundaries(playerID, direction))
             {
                 Console.WriteLine("Invalid move {0} from position: x:{1}, y:{2}", playersDictionary[playerID].posX, playersDictionary[playerID].posY);
@@ -357,27 +364,27 @@ namespace GM
             {
                 switch (direction)
                 {
-                    case 1:
+                    case MessageProject.MovementDirection.left:
                         Console.WriteLine("Left switch");
                         MoveLeft(playerID);
                         // In general the result is not interesting. In either case - send new/old == current, coordinates
                         break;
-                    case 2:
+                    case MessageProject.MovementDirection.up:
                         Console.WriteLine("Top switch!");
                         MoveUp(playerID);
                         break;
-                    case 3:
+                    case MessageProject.MovementDirection.right:
                         Console.WriteLine("Right switch!");
                         MoveRight(playerID);
                         break;
-                    case 4:
+                    case MessageProject.MovementDirection.down:
                         Console.WriteLine("Down switch!");
                         MoveDown(playerID);
                         break;
                 }
             }
 
-            return Tuple.Create(playersDictionary[playerID].posY, playersDictionary[playerID].posY);
+            return Tuple.Create(playersDictionary[playerID].posY, playersDictionary[playerID].posX);
 
         }
 
