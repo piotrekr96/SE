@@ -166,7 +166,8 @@ namespace GM
                             //if(newPlayer.Item1 == -999)
                             //{
                             //    // Game just started!
-                            //    ThreadPool.QueueUserWorkItem(BroadcastGameMessage, 100); // random object passed
+                            //   
+                            //    ThreadPool.QueueUserWorkItem(StartGame, 100); // random object passed
                             //}
                             break;
 
@@ -208,18 +209,32 @@ namespace GM
             else
             {
                 // negative value as newPlayerId -> failure of player making, teams full
-                RejectJoiningGame responseObj = new RejectJoiningGame(game.gameId, -1);
+                RejectJoiningGame responseObj = new RejectJoiningGame(game.gameId);
                 return MessageProject.Message.messageIntoXML(responseObj);
             }
         }
 
-        private void BroadcastGameMessage(object smth)
+        private void StartGame(object smth)
         {
             lock(game.playersDictionary)
             {
+                lock(game.board)
+                {
+                    for (int i=1; i<game.playersDictionary.Count(); i++)
+                    {
+
+                    }
+                }
+                // Make all players positions, fields & goals
+
                 // Send the same message to all players
 
             }
+        }
+
+        private static int GetRandomValue(int range, Random random)
+        {
+            return random.Next(range); // <0, range)
         }
 
         static public DataGame ReadGameInfo(string fileName)

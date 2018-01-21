@@ -9,14 +9,12 @@ namespace MessageProject
     public class RejectJoiningGame : Message
     {
         public int gameID { get; set; }
-        public int playerID { get; set; }
 
         public RejectJoiningGame() { }
 
-        public RejectJoiningGame(int gID, int pID) 
+        public RejectJoiningGame(int gID) 
         {
             gameID = gID;
-            playerID = pID;
         }
     }
 }
