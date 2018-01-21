@@ -107,7 +107,7 @@ namespace GM
             }
         }
 
-        public Tuple<int, MessageProject.Team, MessageProject.Role> MakePlayer(MessageProject.Role preferredRole, MessageProject.Team preferredTeam)
+        public Tuple<int, MessageProject.Team, MessageProject.Role> MakePlayer(MessageProject.Role preferredRole, MessageProject.Team preferredTeam, int playerID)
         {
             // Returns new ID associated with player created, his team, his final role
             lock(gameState)
@@ -134,7 +134,7 @@ namespace GM
                 // Now spot is guaranteed, whether as preferred or not
                 // Make returned structure equivalent to response message
                 Player newPlayer = new Player();
-                int newPlayerID = playersDictionary.Keys.Count() + 1; // acts as GUID since 1 game atm, increasing order
+                int newPlayerID = playerID; // acts as GUID since 1 game atm, increasing order
                 playersDictionary.Add(newPlayerID, newPlayer);
 
                 MessageProject.Team teamToAdd = CheckTeamPreference(preferredTeam);

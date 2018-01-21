@@ -156,8 +156,8 @@ namespace GM
                         case JoinGame msg2:
                             Console.WriteLine("Parsing game join request!");
                             // player can join only a agame he sees, hence gameId = 1
-                            Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer = game.MakePlayer(msg2.preferredRole, msg2.preferredTeam);
-                            string response2 = MakeJoinGameResponse(newPlayer);
+                            Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer = game.MakePlayer(msg2.preferredRole, msg2.preferredTeam, msg2.playerID);
+                            string response2 = MakeJoinGameResponse(msg2.playerID, newPlayer); // assume playerID is always correct
                             Console.WriteLine("Response being sent: {0}", response2);
                             buffer = Encoding.ASCII.GetBytes(response2);
                             gmSocket.Send(buffer);
@@ -199,20 +199,22 @@ namespace GM
             return MessageProject.Message.messageIntoXML(responseObj);
         }
 
-        private string MakeJoinGameResponse(Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer)
+        private string MakeJoinGameResponse(int playerID, Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer)
         {
-            if(newPlayer.Item1 >= 0)
-            {
-                ConfirmJoiningGame responseObj = new ConfirmJoiningGame(game.gameId, newPlayer.Item1, new MessageProject.Player(newPlayer.Item1, newPlayer.Item2, newPlayer.Item3));
-                return MessageProject.Message.messageIntoXML(responseObj);
-            }
-            else
+            if(null == newPlayer || newPlayer.Item1 < 0)
             {
                 // or null
                 // negative value as newPlayerId -> failure of player making, teams full
                 RejectJoiningGame responseObj = new RejectJoiningGame(game.gameId);
+                responseObj.playerID = playerID;
                 return MessageProject.Message.messageIntoXML(responseObj);
             }
+            else //if(newPlayer.Item1 >= 0)
+            {
+                ConfirmJoiningGame responseObj = new ConfirmJoiningGame(game.gameId, newPlayer.Item1, new MessageProject.Player(playerID, newPlayer.Item2, newPlayer.Item3));
+                return MessageProject.Message.messageIntoXML(responseObj);
+            }
+            
         }
 
         private void StartGame(object smth)
