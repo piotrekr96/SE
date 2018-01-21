@@ -15,17 +15,11 @@ namespace GM
 {
     class GameMaster
     {
-        private class GameState
-        {
-            public bool gameStarted;
-            public bool gameEnded;
-        }
 
         public Game game;       
         int listenerPortNumber = 5000;
         public string serverIp;
         public int serverPort = 5100;
-        GameState gameState;
 
         public void launch()
         {
@@ -73,10 +67,6 @@ namespace GM
 
             int newGameID = 1;
             game.gameId = newGameID;
-
-            gameState = new GameState();
-            gameState.gameStarted = false;
-            gameState.gameEnded = false;
            
         }
 
@@ -134,38 +124,50 @@ namespace GM
             // If message P2P - handle it here, else delegate to specific game.handleMoveReq/...
             // Decide upon move/pick/drop - message type
             // formulate response, type defined by message type from input and return values
-            Socket clientSocket = (Socket)cs;
-            byte[] buffer;
+            Socket gmSocket = (Socket)cs;
+            byte[] buffer = new byte[gmSocket.SendBufferSize];
             int readBytes;
             try
             {
-                buffer = new byte[clientSocket.SendBufferSize];
-                readBytes = clientSocket.Receive(buffer);
+                buffer = new byte[gmSocket.SendBufferSize];
+                readBytes = gmSocket.Receive(buffer);
 
                 if (readBytes > 0) // assume all is read at once
                 {
                     string messageString = Encoding.ASCII.GetString(buffer);
-
-
+                    
                     // get message from socket
 
                     Message tempMessage = MessageProject.Message.xmlIntoMessage(messageString);
                     Type typer = tempMessage.GetType();
                     dynamic newMessage = Convert.ChangeType(tempMessage, typer);
+                    Console.WriteLine("Received message of type: {0}", newMessage.GetType());
                     // Selecting action on message type
-                    int gameID = -1, playerID = -1;
+
                     switch(newMessage) // c# 7.0 -> switch on type
                     {
                         case Move msg1:
-                            gameID = msg1.gameID;
+                            
                             // Tuple <int, int> coordinatesMsg1 = gamesDictionary[gameID].HandleMoveRequest(msg1.playerID, (int)msg1.direction); // int by enum assigned values, internal switch
                             // string response1 = MakeMoveResponse(msg1.playerID, coordinatesMsg1);
                             // send response
                             break;
+
                         case JoinGame msg2:
-                            gameID = msg2.gameID;
-                            // Tuple<int, string> newPlayer = gamesDictionary[msg2.gameID].MakePlayer((msg2.preferredTeam.ToString()));
-                            // string response2 = MakeJoinGameResponse(newPlayer);
+                            Console.WriteLine("Parsing game join request!");
+                            // player can join only a agame he sees, hence gameId = 1
+                            Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer = game.MakePlayer(msg2.preferredRole, msg2.preferredTeam);
+                            string response2 = MakeJoinGameResponse(newPlayer);
+                            Console.WriteLine("Response being sent: {0}", response2);
+                            buffer = Encoding.ASCII.GetBytes(response2);
+                            gmSocket.Send(buffer);
+
+                            // After reject/confirm was sent, verify if the game has just been started (code -999 as player ID)
+                            //if(newPlayer.Item1 == -999)
+                            //{
+                            //    // Game just started!
+                            //    ThreadPool.QueueUserWorkItem(BroadcastGameMessage, 100); // random object passed
+                            //}
                             break;
 
                     }
@@ -179,6 +181,7 @@ namespace GM
 
             }
         }
+
 
         private string MakeMoveResponse(int playerID, Tuple<int, int> coordinates)
         {
@@ -195,10 +198,28 @@ namespace GM
             return MessageProject.Message.messageIntoXML(responseObj);
         }
 
-        private string MakeJoinGameResponse(Tuple<int, string> newPlayer)
+        private string MakeJoinGameResponse(Tuple<int, MessageProject.Team, MessageProject.Role> newPlayer)
         {
-            
-            return "";
+            if(newPlayer.Item1 >= 0)
+            {
+                ConfirmJoiningGame responseObj = new ConfirmJoiningGame(game.gameId, newPlayer.Item1, new MessageProject.Player(newPlayer.Item1, newPlayer.Item2, newPlayer.Item3));
+                return MessageProject.Message.messageIntoXML(responseObj);
+            }
+            else
+            {
+                // negative value as newPlayerId -> failure of player making, teams full
+                RejectJoiningGame responseObj = new RejectJoiningGame(game.gameId, -1);
+                return MessageProject.Message.messageIntoXML(responseObj);
+            }
+        }
+
+        private void BroadcastGameMessage(object smth)
+        {
+            lock(game.playersDictionary)
+            {
+                // Send the same message to all players
+
+            }
         }
 
         static public DataGame ReadGameInfo(string fileName)

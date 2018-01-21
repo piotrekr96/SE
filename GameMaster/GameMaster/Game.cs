@@ -8,16 +8,26 @@ namespace GM
 {
     public class Game
     {
+        public class GameState
+        {
+            public bool gameStarted;
+            public bool gameEnded;
+        }
+
+        public GameState gameState;
         public DataGame settings;
         public string gameName;
         public int gameId;
         public Field[,] board;
-        Dictionary<int, Player> playersDictionary; // Fast mapping from XML message player ID to actual object
-        List<int> redTeam;
-        List<int> blueTeam;
+        public Dictionary<int, Player> playersDictionary; // Fast mapping from XML message player ID to actual object
+        public List<int> redTeam;
+        public List<int> blueTeam;
+        public int redLeaderId;
+        public int blueLeaderId;
 
         public Game(DataGame data)
         {
+            InitializeNulls();
             // Make new game with config
             settings = data;
 
@@ -33,22 +43,25 @@ namespace GM
             piece1.pos_x = 0;
             piece1.pos_y = 4;
 
-            Player player1 = new Player();
-            player1.posX = 3;
-            player1.posY = 3;
-            player1.team = "blue"; // down
-            playersDictionary.Add(1, player1); // To DO: reconsider ID inside player (any use?)
-            blueTeam.Add(1);
 
-            Player player2 = new Player();
-            player2.team = "red";
-            player2.posY = 2;
-            player2.posX = 1;
-            playersDictionary.Add(2, player2); // make an add player method to make sure XY generated are correct, + that he's added to dictionary!!!
-            redTeam.Add(2);
 
             Console.WriteLine("Rows:{0}, Cols:{1}", board.GetLength(0), board.GetLength(1));
 
+        }
+
+        private void InitializeNulls()
+        {
+            gameName = "";
+            gameId = -1;
+            board = null;
+            playersDictionary = new Dictionary<int, Player>();
+            redTeam = new List<int>();
+            blueTeam = new List<int>();
+            redLeaderId = -1;
+            blueLeaderId = -1;
+            gameState = new GameState();
+            gameState.gameEnded = false;
+            gameState.gameStarted = false;
         }
 
        
@@ -60,37 +73,85 @@ namespace GM
 
         }
 
-        private string CheckTeamPreference(string preferredTeam)
+        private MessageProject.Team CheckTeamPreference(MessageProject.Team preferredTeam)
         {
             // Checks which team to add player to, assumes correct data options
-            if ( (preferredTeam.Equals("red") && redTeam.Count() < settings.PlayersPerTeam) || (preferredTeam.Equals("blue") && blueTeam.Count() >= settings.PlayersPerTeam) ) { return "red"; }
-            else { return "blue"; }
+            if ( (preferredTeam.Equals(MessageProject.Team.red) && redTeam.Count() < settings.PlayersPerTeam) || 
+                (preferredTeam.Equals(MessageProject.Team.blue) && blueTeam.Count() >= settings.PlayersPerTeam) ) { return MessageProject.Team.red; }
+            else { return MessageProject.Team.blue; }
         }
 
-        public Tuple<int, string> MakePlayer(string preferredTeam)
+        private MessageProject.Role CheckRolePreference(MessageProject.Team teamToAdd, MessageProject.Role preferredRole)
         {
-            // Returns new ID associated with player created, his team
-            // NOTE: Deserializer should check if all fields are in correct format! team only blue/red
-            if(playersDictionary.Count() >= 2*settings.PlayersPerTeam)
+            if (teamToAdd.Equals(MessageProject.Team.blue))
             {
-                Console.WriteLine("Reached players limit.");
-                // Send reject joining game (with no ID associated to player!)
-                return null;
+                if(preferredRole.Equals(MessageProject.Role.leader) && blueLeaderId == -1)
+                {
+                    return MessageProject.Role.leader;
+                }
+                else
+                {
+                    return MessageProject.Role.member;
+                }
             }
-            // Now spot is guaranteed, whether as preferred or not
-            // Make returned structure equivalent to response message
-            Player newPlayer = new Player();           
-            int newPlayerID = playersDictionary.Keys.Count() + 1; // acts as GUID since 1 game atm, increasing order
-            playersDictionary.Add(newPlayerID, newPlayer);
+            else
+            {
+                if (preferredRole.Equals(MessageProject.Role.member) && redLeaderId == -1)
+                {
+                    return MessageProject.Role.leader;
+                }
+                else
+                {
+                    return MessageProject.Role.member;
+                }
+            }
+        }
 
-            string teamToAdd = CheckTeamPreference(preferredTeam);
-            if(teamToAdd.Equals("red")) { redTeam.Add(newPlayerID); }
-            else { blueTeam.Add(newPlayerID); }
+        public Tuple<int, MessageProject.Team, MessageProject.Role> MakePlayer(MessageProject.Role preferredRole, MessageProject.Team preferredTeam)
+        {
+            // Returns new ID associated with player created, his team, his final role
+            lock(gameState)
+            {
+                if(gameState.gameStarted)
+                {
+                    Console.WriteLine("Rejecting game join since game has already started!");
+                    return new Tuple<int, MessageProject.Team, MessageProject.Role>(-999, MessageProject.Team.red , MessageProject.Role.member);
+                }
+            }
+            lock (playersDictionary) // to avoid overwriting adds and current ammount read
+            {
+                if (playersDictionary.Count() >= 2 * settings.PlayersPerTeam)
+                {
+                    Console.WriteLine("Reached players limit. Starting the game.");
+                    lock(gameState)
+                    {
+                        gameState.gameStarted = true;
+                    }
+                    // Send reject joining game (with no ID associated to player!)
+                    return null;
+                }
+                // Now spot is guaranteed, whether as preferred or not
+                // Make returned structure equivalent to response message
+                Player newPlayer = new Player();
+                int newPlayerID = playersDictionary.Keys.Count() + 1; // acts as GUID since 1 game atm, increasing order
+                playersDictionary.Add(newPlayerID, newPlayer);
 
-            newPlayer.team = teamToAdd;
-            // Add PosX, PosY, randomize, update both playerobj and field containing player info
-            // Global update when dict full, just before sending Game message to start it
-            return Tuple.Create(newPlayerID, teamToAdd);
+                MessageProject.Team teamToAdd = CheckTeamPreference(preferredTeam);
+                newPlayer.team = teamToAdd;
+                if (teamToAdd.Equals(MessageProject.Team.red)) { redTeam.Add(newPlayerID); }
+                else { blueTeam.Add(newPlayerID); }
+
+                MessageProject.Role roleToGive = CheckRolePreference(teamToAdd, preferredRole);
+                if(roleToGive.Equals(MessageProject.Role.leader))
+                {
+                    if(teamToAdd.Equals(MessageProject.Team.blue)) { blueLeaderId = newPlayerID; }
+                    else { redLeaderId = newPlayerID; }
+                }
+                newPlayer.role = roleToGive;
+                // Add PosX, PosY, randomize, update both playerobj and field containing player info
+                // Global update when dict full, just before sending Game message to start it
+                return Tuple.Create(newPlayerID, teamToAdd, roleToGive);
+            }
         }
 
         // Board restrictions check (board size, team restrictions) - edge cases? 
@@ -103,7 +164,7 @@ namespace GM
             Player player = playersDictionary[playerID]; // Refer to the player object
             if(direction == 2) // move up
             {
-                if(player.team.Equals("blue"))
+                if(player.team.Equals(MessageProject.Team.blue))
                 {
                     // First neg row is GAlen + TAlen 
                     if(player.posY + 1 >= settings.GoalLen + settings.TaskLen)
@@ -112,7 +173,7 @@ namespace GM
                         return false;
                     }
                 }
-                else if(player.team.Equals("red"))
+                else if(player.team.Equals(MessageProject.Team.red))
                 {
                     // First neg row is 2*GAlen + TAlen 
                     if (player.posY + 1 >= 2*settings.GoalLen + settings.TaskLen)
@@ -124,7 +185,7 @@ namespace GM
             }
             else if(direction == 4) // move down
             {
-                if (player.team.Equals("blue"))
+                if (player.team.Equals(MessageProject.Team.blue))
                 {
                     // First neg row is -1
                     if (player.posY <= 0)
@@ -133,7 +194,7 @@ namespace GM
                         return false;
                     }
                 }
-                else if (player.team.Equals("red"))
+                else if (player.team.Equals(MessageProject.Team.red))
                 {
                     // First neg row is GAlen - 1 
                     if (player.posY <= settings.GoalLen)

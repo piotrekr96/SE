@@ -11,7 +11,8 @@ namespace GM
         public int posX;
         public int posY;
         public Piece piece = null;
-        public string team;
+        public MessageProject.Team team;
+        public MessageProject.Role role;
 
         public Player()
         {
