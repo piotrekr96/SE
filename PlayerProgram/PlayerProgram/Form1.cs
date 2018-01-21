@@ -48,15 +48,19 @@ namespace PlayerProgram
 
             GetGamesList getgames = new GetGamesList();
             string XMLmessage = MessageProject.Message.messageIntoXML(getgames);
+
             // SERVER STUFF
 
             A: Console.Clear();
             Console.Write("Enter host IP address: ");
             string ip = Console.ReadLine();
-          //  string ip = "192.168.43.72";
+
+            Console.Write("Enter port: ");
+            Int32 portValue = Convert.ToInt32(Console.ReadLine());
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
+            //IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
+            IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), portValue);
 
             try
             {
@@ -230,6 +234,7 @@ namespace PlayerProgram
 
         private void RefreshList(string s)
         {
+            GetGamesBOX.Items.Clear();
             GetGamesBOX.Items.Add(s);
         }
 
