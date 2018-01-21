@@ -35,3 +35,12 @@ H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\Communi
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe.config
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.exe
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\bin\Debug\CommunicationServer.pdb
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\bin\Debug\Message.dll
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\bin\Debug\Message.pdb
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csprojResolveAssemblyReference.cache
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.csproj.CoreCompileInputs.cache
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.exe
+C:\Users\Piotrek\Source\Repos\SE2\CommunicationServer\CommunicationServer\obj\Debug\CommunicationServer.pdb

@@ -20,15 +20,17 @@ namespace CommunicationServer
             {typeof(ConfirmJoiningGame),1},
             {typeof(RejectJoiningGame),2},
             {typeof(JoinGame),3},
-            {typeof(GameMessage),4},
-            {typeof(RegisteredGames),5},
+            {typeof(GameMessage),4},           
+            {typeof(RegisterGame),5},
             {typeof(GetGamesList),6},
-            {typeof(RegisterGame),7}
+            {typeof(RegisteredGames),7}
         };
 
-        static int gmID;
+        static int gmID, counter = 0;
         static Socket listenerSocket;
+        static List<GameInfo> gameList = new List<GameInfo>();
         static List<ClientData> clients;
+        static Socket gmSocket;
 
         static void Main(string[] args)
         {
@@ -108,25 +110,51 @@ namespace CommunicationServer
                     break;
 
                 case 1:
-                    
+
+                    foreach(ClientData c in clients)
+                    {
+                        if(c.id == msg.playerID)
+                        {
+                            string confirmJoining = Message.messageIntoXML(msg);
+                            byte[] sendConfirmJoining = Encoding.ASCII.GetBytes(confirmJoining);
+                            gmSocket.Send(sendConfirmJoining);
+                        }
+                    }
+
                     break;
 
-                case 3:
-                    Player newPlayer = new Player();
-                    newPlayer.role = Role.leader;
-                    newPlayer.team = Team.blue;
-                    ConfirmJoiningGame confirmJoining = new ConfirmJoiningGame(10, 10, newPlayer);
-                    string confirmJoiningString = Message.messageIntoXML(confirmJoining);
+                case 2:
+                    foreach (ClientData c in clients)
+                    {
+                        if (c.id == msg.playerID)
+                        {
+                            string reject = Message.messageIntoXML(msg);
+                            byte[] sendReject = Encoding.ASCII.GetBytes(reject);
+                            gmSocket.Send(sendReject);
+                        }
+                    }
+                    break;
+
+                case 3:                   
+                    client.id = counter;
+                    msg.playerID = counter;
+                    counter++;
+
+                    string join = Message.messageIntoXML(msg);
+                    byte[] sendJoin = Encoding.ASCII.GetBytes(join);
+                    gmSocket.Send(sendJoin);
 
 
-                    byte[] sendJoin = Encoding.ASCII.GetBytes(confirmJoiningString);
-                    client.clientSocket.Send(sendJoin);
                     break;
 
                 case 5:
-                    int id = msg.gameID();
-                    gmID = id;
-                    client.id = id;
+                    GameInfo info = new GameInfo(msg.gameID, msg.blueTeamPlayers, msg.redTeamPlayers);
+                    gameList.Add(info);
+                    int id = msg.gameID;
+                    gmID = counter;
+                    client.id = counter;
+                    gmSocket = client.clientSocket;
+                    counter++;
 
                     ConfirmGameRegistration confirmation = new ConfirmGameRegistration(id);
                     string conf = Message.messageIntoXML(confirmation);
@@ -135,7 +163,15 @@ namespace CommunicationServer
                     client.clientSocket.Send(toSend);
                     break;
 
+                case 6:
+                    RegisteredGames registered = new RegisteredGames(gameList);
+                    string registeredSend = Message.messageIntoXML(registered);
+
+                    byte[] registeredToSend = Encoding.ASCII.GetBytes(registeredSend);
+                    client.clientSocket.Send(registeredToSend);
+                    break;
                 default:
+                    Console.Write("dostalem cos");
                     byte[] sendEmpty = Encoding.ASCII.GetBytes("");
                     client.clientSocket.Send(sendEmpty);
                     break;

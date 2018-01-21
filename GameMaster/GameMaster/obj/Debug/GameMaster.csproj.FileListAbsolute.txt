@@ -7,3 +7,12 @@ C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.pdb
 C:\Users\MS\Documents\SE\GameMaster\GameMaster\obj\Debug\GameMaster.csprojResolveAssemblyReference.cache
 C:\Users\MS\Documents\SE\GameMaster\GameMaster\bin\Debug\Message.dll
 C:\Users\MS\Documents\SE\GameMaster\GameMaster\bin\Debug\Message.pdb
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\bin\Debug\GameMaster.exe.config
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\bin\Debug\GameMaster.exe
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\bin\Debug\GameMaster.pdb
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\bin\Debug\Message.dll
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\bin\Debug\Message.pdb
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\obj\Debug\GameMaster.csprojResolveAssemblyReference.cache
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\obj\Debug\GameMaster.csproj.CoreCompileInputs.cache
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\obj\Debug\GameMaster.exe
+C:\Users\Piotrek\Source\Repos\SE2\GameMaster\GameMaster\obj\Debug\GameMaster.pdb

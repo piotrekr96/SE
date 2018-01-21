@@ -27,15 +27,15 @@ namespace PlayerProgram
             {typeof(GameMessage),4},
             {typeof(RegisteredGames),5},
             {typeof(GetGamesList),6},
-            {typeof(RegisterGame),7}
+            {typeof(RegisterGame),7},
+            {typeof(GameMessage),8 }
         };
 
         int gameID, playerID;
         Team playerTeam;
         Role playerRole;
-
+        List<GameInfo> gameInfoList = new List<GameInfo>();
         public static Socket master;
-        RegisteredGames reg;
         public Form1()
         {
             InitializeComponent();
@@ -43,38 +43,16 @@ namespace PlayerProgram
 
         private void GetGamesButton_Click(object sender, EventArgs e)
         {
+
+
             GetGamesList getgames = new GetGamesList();
             string XMLmessage = MessageProject.Message.messageIntoXML(getgames);
             // SERVER STUFF
 
-            List<GameInfo> newList = new List<GameInfo>();
-          /*  newList.Add(new GameInfo("Game 1", 5, 5));
-            newList.Add(new GameInfo("Game 2", 10, 10));
-            newList.Add(new GameInfo("Game 3", 3, 3));
-            newList.Add(new GameInfo("Game 4", 2, 8));
-            */
-            reg = new RegisteredGames(newList);
-
-            foreach (GameInfo gameinfo in reg.gameInfoList)
-            {
-                string s = "ID: " + gameinfo.gameID + " Blue: " + gameinfo.blueTeamPlayers + " Red: " + gameinfo.redTeamPlayers.ToString();
-                GetGamesBOX.Items.Add(s);
-            }
-        }
-
-
-        private void JoinButton_Click(object sender, EventArgs e)
-        {
-           // int index = GetGamesBOX.SelectedIndex;
-            JoinGame joingame = new JoinGame(2,Role.leader,Team.red);
-            string newXMLmessage = MessageProject.Message.messageIntoXML(joingame);
-          //  System.Diagnostics.Debug.WriteLine(newXMLmessage);
-
-            // SERVER STUFF
             A: Console.Clear();
             Console.Write("Enter host IP address: ");
-            string ip = Console.ReadLine();
-
+            //string ip = Console.ReadLine();
+            string ip = "192.168.43.72";
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
@@ -97,33 +75,55 @@ namespace PlayerProgram
 
 
 
+            byte[] toBytes = Encoding.ASCII.GetBytes(XMLmessage);
+
+            master.Send(toBytes);
+
+
+
+
+
+
+        }
+
+
+        private void JoinButton_Click(object sender, EventArgs e)
+        {
+            // int index = GetGamesBOX.SelectedIndex;
+            
+            JoinGame joingame = new JoinGame(1, Role.leader, Team.red);
+            string newXMLmessage = MessageProject.Message.messageIntoXML(joingame);
+            //  System.Diagnostics.Debug.WriteLine(newXMLmessage);
+
+            // SERVER STUFF
+
             byte[] toBytes = Encoding.ASCII.GetBytes(newXMLmessage);
 
             master.Send(toBytes);
 
-            
-    
 
-            
+
+
+
 
             // if(confirm)
             //.... 
-           /* MessageProject.Player newPlayer = new MessageProject.Player(23, Team.red, Role.member);
-            ConfirmJoiningGame confirmation = new ConfirmJoiningGame(1, 23, Guid.NewGuid(), newPlayer);
+            /* MessageProject.Player newPlayer = new MessageProject.Player(23, Team.red, Role.member);
+             ConfirmJoiningGame confirmation = new ConfirmJoiningGame(1, 23, Guid.NewGuid(), newPlayer);
 
-            Player p = new Player(confirmation.player.team, confirmation.playerID, confirmation.gameID, confirmation.privateGUID, confirmation.player.role);
-            // BoardView1 boardView1 = new BoardView1(); 
-            List<MessageProject.Player> playerList = new List<MessageProject.Player>();
-            playerList.Add(newPlayer);
-            Board board = new Board(12, 3, 5);
-            PlayerLocation pl = new PlayerLocation(0, 0);
-            //else 
+             Player p = new Player(confirmation.player.team, confirmation.playerID, confirmation.gameID, confirmation.privateGUID, confirmation.player.role);
+             // BoardView1 boardView1 = new BoardView1(); 
+             List<MessageProject.Player> playerList = new List<MessageProject.Player>();
+             playerList.Add(newPlayer);
+             Board board = new Board(12, 3, 5);
+             PlayerLocation pl = new PlayerLocation(0, 0);
+             //else 
 
-            GameMessage gamemessage = new GameMessage(p.ID, playerList, board, pl);
+             GameMessage gamemessage = new GameMessage(p.ID, playerList, board, pl);
 
-            BoardView1 boardview = new BoardView1(gamemessage.board.width, gamemessage.board.taskAreaHeight, gamemessage.board.goalAreaHeight, p);
-            this.Hide();
-            boardview.Show();*/
+             BoardView1 boardview = new BoardView1(gamemessage.board.width, gamemessage.board.taskAreaHeight, gamemessage.board.goalAreaHeight, p);
+             this.Hide();
+             boardview.Show();*/
 
         }
 
@@ -146,7 +146,7 @@ namespace PlayerProgram
                     {
 
                         string xml = Encoding.ASCII.GetString(buffer);
-                        DataManager(xml);                       
+                        DataManager(xml);
                     }
                 }
                 catch
@@ -182,14 +182,46 @@ namespace PlayerProgram
 
                     System.Diagnostics.Debug.Write("Player id " + playerID + " gameID " + gameID + "Player role: " + playerRole + " PLayer team: " + playerTeam);
                     break;
-                case 2:
+                case 5:
+                    gameInfoList.Clear();
+                    foreach (GameInfo g in msg.gameInfoList)
+                    {
+                        // Console.WriteLine("tu:" + g.gameID);
+                        try
+                        {
+                            gameInfoList.Add(g);
+                            string s = "ID: " + g.gameID.ToString() + " Blue: " + g.blueTeamPlayers.ToString() + " Red: " + g.redTeamPlayers.ToString();
+                            Console.Write(s);
+
+                            if (InvokeRequired)
+                            {
+                                this.Invoke(new Action(() => RefreshList(s)));
+                                return;
+                            }
+                            
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
+                    }
+                    break;
+
+                case 8:
 
                     break;
+
                 default:
                     break;
             }
 
         }
+
+        private void RefreshList(string s)
+        {
+            GetGamesBOX.Items.Add(s);
+        }
+
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {

@@ -43,3 +43,16 @@ H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.pdb
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\Message.dll
 H:\Windows7\Documents\Visual Studio 2017\Projects\SE\PlayerProgram\PlayerProgram\bin\Debug\Message.pdb
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe.config
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.exe
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\bin\Debug\PlayerProgram.pdb
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\bin\Debug\Message.dll
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\bin\Debug\Message.pdb
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csprojResolveAssemblyReference.cache
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.BoardView1.resources
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Form1.resources
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.Properties.Resources.resources
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.GenerateResource.Cache
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.csproj.CoreCompileInputs.cache
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.exe
+C:\Users\Piotrek\Source\Repos\SE2\PlayerProgram\PlayerProgram\obj\Debug\PlayerProgram.pdb

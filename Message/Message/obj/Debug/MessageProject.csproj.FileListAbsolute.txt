@@ -10,3 +10,9 @@ C:\Users\stecm\Source\Repos\SE\Message\Message\obj\Debug\MessageProject.csprojRe
 C:\Users\stecm\Source\Repos\SE\Message\Message\obj\Debug\MessageProject.csproj.CoreCompileInputs.cache
 C:\Users\stecm\Source\Repos\SE\Message\Message\obj\Debug\Message.dll
 C:\Users\stecm\Source\Repos\SE\Message\Message\obj\Debug\Message.pdb
+C:\Users\Piotrek\Source\Repos\SE2\Message\Message\bin\Debug\Message.dll
+C:\Users\Piotrek\Source\Repos\SE2\Message\Message\bin\Debug\Message.pdb
+C:\Users\Piotrek\Source\Repos\SE2\Message\Message\obj\Debug\MessageProject.csprojResolveAssemblyReference.cache
+C:\Users\Piotrek\Source\Repos\SE2\Message\Message\obj\Debug\MessageProject.csproj.CoreCompileInputs.cache
+C:\Users\Piotrek\Source\Repos\SE2\Message\Message\obj\Debug\Message.dll
+C:\Users\Piotrek\Source\Repos\SE2\Message\Message\obj\Debug\Message.pdb

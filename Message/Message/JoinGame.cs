@@ -8,7 +8,7 @@ namespace MessageProject
 {
     public class JoinGame : Message
       {
-
+        public int playerID { get; set; }
         public int gameID { get; set; }
         public Role preferredRole { get; set; }
         public Team preferredTeam { get; set; }

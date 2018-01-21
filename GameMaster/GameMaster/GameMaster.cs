@@ -19,7 +19,7 @@ namespace GM
         public Game game;       
         int listenerPortNumber = 5000;
         public string serverIp;
-        public int serverPort = 5100;
+        public int serverPort = 4242;
 
         public void launch()
         {

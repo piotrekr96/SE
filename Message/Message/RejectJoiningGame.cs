@@ -8,6 +8,7 @@ namespace MessageProject
 {
     public class RejectJoiningGame : Message
     {
+        public int playerID { get; set; }
         public int gameID { get; set; }
 
         public RejectJoiningGame() { }
