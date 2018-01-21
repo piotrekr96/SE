@@ -28,6 +28,7 @@ namespace PlayerProgram
             {typeof(RegisteredGames),5},
             {typeof(GetGamesList),6},
             {typeof(RegisterGame),7}
+
         };
         Board b = new Board();
         List<MessageProject.Player> listOfPlayers = new List<MessageProject.Player>();
@@ -105,30 +106,6 @@ namespace PlayerProgram
             byte[] toBytes = Encoding.ASCII.GetBytes(newXMLmessage);
 
             master.Send(toBytes);
-
-
-
-
-
-
-            // if(confirm)
-            //.... 
-            /* MessageProject.Player newPlayer = new MessageProject.Player(23, Team.red, Role.member);
-             ConfirmJoiningGame confirmation = new ConfirmJoiningGame(1, 23, Guid.NewGuid(), newPlayer);
-
-             Player p = new Player(confirmation.player.team, confirmation.playerID, confirmation.gameID, confirmation.privateGUID, confirmation.player.role);
-             // BoardView1 boardView1 = new BoardView1(); 
-             List<MessageProject.Player> playerList = new List<MessageProject.Player>();
-             playerList.Add(newPlayer);
-             Board board = new Board(12, 3, 5);
-             PlayerLocation pl = new PlayerLocation(0, 0);
-             //else 
-
-             GameMessage gamemessage = new GameMessage(p.ID, playerList, board, pl);
-
-             BoardView1 boardview = new BoardView1(gamemessage.board.width, gamemessage.board.taskAreaHeight, gamemessage.board.goalAreaHeight, p);
-             this.Hide();
-             boardview.Show();*/
 
         }
 
@@ -252,6 +229,7 @@ namespace PlayerProgram
         {
             BoardView1 boardView1 = new BoardView1(width, task, goal, p);
             boardView1.Show();
+            this.Hide();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)

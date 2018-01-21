@@ -21,7 +21,9 @@ namespace CommunicationServer
             {typeof(GameMessage),4},           
             {typeof(RegisterGame),5},
             {typeof(GetGamesList),6},
-            {typeof(RegisteredGames),7}
+            {typeof(RegisteredGames),7},
+            {typeof(Move),8 },
+            {typeof(MoveResponse),9 }
         };
 
         static int gmID, counter = 0;
@@ -190,6 +192,32 @@ namespace CommunicationServer
                     byte[] registeredToSend = Encoding.ASCII.GetBytes(registeredSend);
                     client.clientSocket.Send(registeredToSend);
                     break;
+
+                case 8:
+                    string move = Message.messageIntoXML(msg);
+                    byte[] sendMove = Encoding.ASCII.GetBytes(move);
+                    try
+                    {
+                        gmSocket.Send(sendMove);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Write(e);
+                    }
+                    break;
+
+                case 9:
+                    foreach (ClientData c in clients)
+                    {
+                        if (c.id == msg.playerID)
+                        {
+                            string movementResponse = Message.messageIntoXML(msg);
+                            byte[] sendmovementResponse = Encoding.ASCII.GetBytes(movementResponse);
+                            c.clientSocket.Send(sendmovementResponse);
+                        }
+                    }
+                    break;
+
                 default:
                     Console.Write("dostalem cos");
                     byte[] sendEmpty = Encoding.ASCII.GetBytes("");

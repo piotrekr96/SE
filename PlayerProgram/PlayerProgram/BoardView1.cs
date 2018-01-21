@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MessageProject;
 
 namespace PlayerProgram
 {
@@ -235,17 +236,30 @@ namespace PlayerProgram
 
         public void MoveLeft()
         {
-           // MESSAGE, REQUEST A MOVE
-            player.MoveLeft();
+            // MESSAGE, REQUEST A MOVE
 
-            //remove previous label
-            Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
-            BoardLayoutPanel.Controls.Remove(c);
+            MessageProject.Move move = new Move(player.GameID,player.ID,MovementDirection.left);
 
-            BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
-            //bp.testDistConsole(); // just for checking
-            ShowManhattanDistance();
-            ShowPlayerGoals();
+            string MoveMessage = MessageProject.Message.messageIntoXML(move);
+            byte[] toBytes = Encoding.ASCII.GetBytes(MoveMessage);
+            try
+            {
+                Form1.master.Send(toBytes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            /*  player.MoveLeft();
+
+              //remove previous label
+             Control c = BoardLayoutPanel.GetControlFromPosition(player.position_x, player.position_y);
+              BoardLayoutPanel.Controls.Remove(c);
+
+              BoardLayoutPanel.Controls.Add(test, player.position_x, player.position_y);
+              //bp.testDistConsole(); // just for checking
+              ShowManhattanDistance();
+              ShowPlayerGoals();*/
         }
 
         void MoveRight()
